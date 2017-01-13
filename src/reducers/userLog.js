@@ -1,25 +1,21 @@
 import * as types from '../actions/types';
-
 const initialState = {
   loading: false,
-  user: null,
+  userLog: [],
   error: null
 };
-export const userReducer = (state = initialState, action) => {
+export const userLogReducer = (state = initialState, action) => {
   const newState = {...state};
   switch (action.type) {
-    case types.SET_USER:
-      newState.user = action.payload;
-      break;
-    case types.CREATE_USER_REQUEST:
+    case types.FETCH_USER_LOG_REQUEST:
       newState.loading = true;
       break;
-    case types.CREATE_USER_ERROR:
+    case types.FETCH_USER_LOG_ERROR:
       newState.loading = false;
       newState.error = action.error;
       break;
-    case types.CREATE_USER_SUCCESS:
-      newState.user = action.payload;
+    case types.FETCH_USER_LOG_SUCCESS:
+      newState.userLog = action.payload;
       newState.loading = false;
       break;
     default:

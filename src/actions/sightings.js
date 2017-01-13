@@ -2,7 +2,7 @@ import * as types from './types';
 import request from 'superagent';
 import {ROOT} from '../../config';
 
-export const FETCH_SIGHTINGS_REQUEST = () => {
+export const fetchSightings = () => {
   return (dispatch) => {
     dispatch(fetchSightingsRequest());
     request

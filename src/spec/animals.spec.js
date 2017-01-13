@@ -44,10 +44,10 @@ describe('animalsReducer function', () => {
   });
   describe('SET_CURRENT_ANIMAL', () => {
     it('should set the currentAnimal', () => {
-      const myaction = actions.setCurrentAnimal('bird', 1);
+      const myaction = actions.setCurrentAnimal('bird');
       const initialState = { currentAnimal: null };
       let newState = animalsReducer(initialState, myaction);
-      expect(newState.currentAnimal).to.eql({name: 'bird', id: 1});
+      expect(newState.currentAnimal).to.eql('bird');
     });
   });
 });

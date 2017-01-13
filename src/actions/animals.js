@@ -32,10 +32,9 @@ export const fetchAnimalsError = (error) => {
   };
 };
 
-export const setCurrentAnimal = (name, id) => {
+export const setCurrentAnimal = (payload) => {
   return {
     type: types.SET_CURRENT_ANIMAL,
-    name,
-    id
+    payload
   };
 };

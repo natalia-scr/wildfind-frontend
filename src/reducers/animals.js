@@ -20,7 +20,8 @@ export const animalsReducer = (state = initialState, action) => {
       newState.loading = false;
       break;
     case types.SET_CURRENT_ANIMAL:
-      newState.currentAnimal = { id: action.id, name: action.name };
+      newState.currentAnimal = action.payload;
+      break;
     default:
       return newState;
   }
