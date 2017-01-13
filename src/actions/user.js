@@ -1,0 +1,41 @@
+import * as types from './types';
+import request from 'superagent';
+import {ROOT} from '../../config';
+
+export const setUser = (payload) => {
+  return {
+    type: types.SET_USER,
+    payload
+  };
+};
+export const createUser = (payload) => {
+  return (dispatch) => {
+    dispatch(createUserRequest());
+    request
+    .post(`${ROOT}/adduser?user=${payload}`)
+    .end((err, res) => {
+      if (err) dispatch(createUserError(err));
+      else dispatch(createUserSuccess(res.body));
+    });
+  };
+};
+
+export const createUserRequest = () => {
+  return {
+    type: types.CREATE_USER_REQUEST
+  };
+};
+
+export const createUserError = (error) => {
+  return {
+    type: types.CREATE_USER_ERROR,
+    error
+  };
+};
+
+export const createUserSuccess = (payload) => {
+  return {
+    type: types.CREATE_USER_SUCCESS,
+    payload
+  };
+};
