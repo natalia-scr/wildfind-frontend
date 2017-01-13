@@ -14,6 +14,18 @@ export const fetchSightings = () => {
   };
 };
 
+export const fetchSightingsById = (payload) => {
+  return (dispatch) => {
+    dispatch(fetchSightingsRequest());
+    request
+    .get(`${ROOT}/sightings?userId=${payload}`)
+    .end((err, res) => {
+      if (err) dispatch(fetchSightingsError(err));
+      else dispatch(fetchSightingsSuccess(res.body));
+    });
+  };
+};
+
 export const fetchSightingsRequest = () => {
   return {
     type: types.FETCH_SIGHTINGS_REQUEST
@@ -29,5 +41,18 @@ export const fetchSightingsError = (error) => {
   return {
     type: types.FETCH_SIGHTINGS_ERROR,
     error
+  };
+};
+
+export const clearSightings = () => {
+  return {
+    type: types.CLEAR_SIGHTINGS
+  };
+};
+
+export const removeSighting = (payload) => {
+  return {
+    type: types.REMOVE_SIGHTING,
+    payload
   };
 };

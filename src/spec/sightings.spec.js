@@ -28,7 +28,7 @@ describe('sightingsReducer function', () => {
       expect(newState.error).to.eql({'error': {'code': 400}});
     });
   });
-  describe('FETCH_SIGHTINGS_REQUEST_SUCCESS', () => {
+  describe('FETCH_SIGHTINGS_SUCCESS', () => {
     it('should change loading in state to false', () => {
       const myaction = actions.fetchSightingsSuccess([{}]);
       const initialState = { loading: true, sightings: [] };
@@ -40,6 +40,22 @@ describe('sightingsReducer function', () => {
       const initialState = { loading: true, sightings: [] };
       let newState = sightingsReducer(initialState, myaction);
       expect(newState.sightings).to.eql([{name: 'sightings'}]);
+    });
+  });
+  describe('CLEAR_SIGHTINGS action', () => {
+    it('should clear the sightings', () => {
+      const action = actions.clearSightings();
+      const initialState = { sightings: [{name: 'sighting'}] };
+      let newState = sightingsReducer(initialState, action);
+      expect(newState.sightings.length).to.eql(0);
+    });
+  });
+  describe('REMOVE_SIGHTING', () => {
+    it('should remove 1 sighting from the sightings array by the given Id', () => {
+      const action = actions.removeSighting('22');
+      const initialState = { sightings: [{name: 'sighting1', id: '11'}, {name: 'sighting2', id: '22'}] };
+      let newState = sightingsReducer(initialState, action);
+      expect(newState.sightings).to.eql([{name: 'sighting1', id: '11'}]);
     });
   });
 });

@@ -12,12 +12,21 @@ export const sightingsReducer = (state = initialState, action) => {
       newState.loading = true;
       break;
     case types.FETCH_SIGHTINGS_SUCCESS:
-      newState.sightings = action.payload;
+      newState.sightings = newState.sightings.concat(action.payload);
       newState.loading = false;
       break;
     case types.FETCH_SIGHTINGS_ERROR:
       newState.error = action.error;
       newState.loading = false;
+      break;
+    case types.CLEAR_SIGHTINGS:
+      newState.sightings = [];
+      break;
+    case types.REMOVE_SIGHTING:
+      const index = newState.sightings.findIndex(function (sighting) {
+        return sighting.id === action.payload;
+      });
+      newState.sightings = newState.sightings.slice(0, index).concat(newState.sightings.slice(index + 1));
       break;
     default:
       return newState;
