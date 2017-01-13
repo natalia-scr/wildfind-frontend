@@ -2,23 +2,25 @@ import * as types from '../actions/types';
 const initialState = {
   loading: false,
   error: null,
-  sightings: []
+  animals: [],
+  currentAnimal: null
 };
-
-export const sightingsReducer = (state = initialState, action) => {
+export const animalsReducer = (state = initialState, action) => {
   const newState = {...state};
   switch (action.type) {
-    case types.FETCH_SIGHTINGS_REQUEST:
+    case types.FETCH_ANIMALS_REQUEST:
       newState.loading = true;
       break;
-    case types.FETCH_SIGHTINGS_SUCCESS:
-      newState.sightings = action.payload;
+    case types.FETCH_ANIMALS_SUCCESS:
+      newState.animals = action.payload;
       newState.loading = false;
       break;
-    case types.FETCH_SIGHTINGS_ERROR:
+    case types.FETCH_ANIMALS_ERROR:
       newState.error = action.error;
       newState.loading = false;
       break;
+    case types.SET_CURRENT_ANIMAL:
+      newState.currentAnimal = { id: action.id, name: action.name };
     default:
       return newState;
   }

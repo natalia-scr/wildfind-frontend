@@ -25,9 +25,17 @@ export const fetchParksSuccess = (payload) => {
     payload
   };
 };
-export const fetchParksError = (payload) => {
+export const fetchParksError = (error) => {
   return {
     type: types.FETCH_PARKS_ERROR,
-    payload
+    error
+  };
+};
+
+export const setCurrentPark = (name, id) => {
+  return {
+    type: types.SET_CURRENT_PARK,
+    name,
+    id
   };
 };

@@ -6,20 +6,22 @@ const initialState = {
   currentPark: null
 };
 
-export const parksReducer = (state = initialState, { type, payload }) => {
+export const parksReducer = (state = initialState, action) => {
   const newState = {...state};
-  switch (type) {
+  switch (action.type) {
     case types.FETCH_PARKS_REQUEST:
       newState.loading = true;
       break;
     case types.FETCH_PARKS_SUCCESS:
-      newState.parks = payload;
+      newState.parks = action.payload;
       newState.loading = false;
       break;
     case types.FETCH_PARKS_ERROR:
-      newState.error = payload;
+      newState.error = action.error;
       newState.loading = false;
       break;
+    case types.SET_CURRENT_PARK:
+      newState.currentPark = { id: action.id, name: action.name };
     default:
       return newState;
   }
