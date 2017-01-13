@@ -2,6 +2,7 @@ import * as types from '../actions/types';
 const initialState = {
   loading: false,
   error: null,
+  saveError: null,
   sightings: []
 };
 
@@ -27,6 +28,9 @@ export const sightingsReducer = (state = initialState, action) => {
         return sighting.id === action.payload;
       });
       newState.sightings = newState.sightings.slice(0, index).concat(newState.sightings.slice(index + 1));
+      break;
+    case types.SAVE_SIGHTING_ERROR:
+      newState.saveError = action.error;
       break;
     default:
       return newState;

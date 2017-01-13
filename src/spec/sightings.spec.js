@@ -35,7 +35,7 @@ describe('sightingsReducer function', () => {
       let newState = sightingsReducer(initialState, myaction);
       expect(newState.loading).to.be.false;
     });
-    it('should change parks to payload', () => {
+    it('should change sightings to payload', () => {
       const myaction = actions.fetchSightingsSuccess([{name: 'sightings'}]);
       const initialState = { loading: true, sightings: [] };
       let newState = sightingsReducer(initialState, myaction);
@@ -56,6 +56,14 @@ describe('sightingsReducer function', () => {
       const initialState = { sightings: [{name: 'sighting1', id: '11'}, {name: 'sighting2', id: '22'}] };
       let newState = sightingsReducer(initialState, action);
       expect(newState.sightings).to.eql([{name: 'sighting1', id: '11'}]);
+    });
+  });
+  describe('SAVE_SIGHTING', () => {
+    it('should update the state when saveSighting returns an error', () => {
+      const action = actions.saveSightingError({'error': {'code': 400}});
+      const initialState = { saveError: false };
+      let newState = sightingsReducer(initialState, action);
+      expect(newState.saveError).to.eql({'error': {'code': 400}});
     });
   });
 });

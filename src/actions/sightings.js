@@ -26,6 +26,32 @@ export const fetchSightingsById = (payload) => {
   };
 };
 
+export const saveSighting = (payload) => {
+  return (dispatch) => {
+    dispatch(saveSightingRequest());
+    request
+    .post(`${ROOT}/addsighting`)
+    .send(payload)
+    .end((err, res) => {
+      if (err) dispatch(saveSightingError(err));
+    });
+  };
+};
+
+export const saveSightingRequest = (payload) => {
+  return {
+    type: types.SAVE_SIGHTING_REQUEST,
+    payload
+  };
+};
+
+export const saveSightingError = (error) => {
+  return {
+    type: types.SAVE_SIGHTING_ERROR,
+    error
+  };
+};
+
 export const fetchSightingsRequest = () => {
   return {
     type: types.FETCH_SIGHTINGS_REQUEST
