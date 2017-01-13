@@ -5,7 +5,7 @@ const initialState = {
   currentPark: null
 };
 export const parksReducer = (state = initialState, { type, payload }) => {
-  const newState = Object.assign({}, state);
+  const newState = {...state};
   switch (type) {
     case types.FETCH_PARKS_REQUEST:
       newState.loading = true;
@@ -13,8 +13,6 @@ export const parksReducer = (state = initialState, { type, payload }) => {
     case types.FETCH_PARKS_SUCCESS:
       newState.parks = payload;
       break;
-    case types.FETCH_PARKS_ERROR:
-      return payload;
     default:
       return newState;
   }
