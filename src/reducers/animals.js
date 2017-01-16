@@ -5,7 +5,7 @@ const initialState = {
   animals: [],
   currentAnimal: null
 };
-export const animalsReducer = (state = initialState, action) => {
+export const animals = (state = initialState, action) => {
   const newState = {...state};
   switch (action.type) {
     case types.FETCH_ANIMALS_REQUEST:

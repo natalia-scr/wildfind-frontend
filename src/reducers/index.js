@@ -1,16 +1,16 @@
-import { modalsReducer } from './modals';
-import { parksReducer } from './parks';
-import { animalsReducer } from './animals';
-import { sightingsReducer } from './sightings';
-import { userReducer } from './user';
-import { userLogReducer } from './userLog';
+import { modal } from './modal';
+import { parks } from './parks';
+import { animals } from './animals';
+import { sightings } from './sightings';
+import { user } from './user';
+import { userLog } from './userLog';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-  modalsReducer,
-  parksReducer,
-  sightingsReducer,
-  userReducer,
-  userLogReducer,
-  animalsReducer
+  modal,
+  parks,
+  sightings,
+  user,
+  userLog,
+  animals
 });
