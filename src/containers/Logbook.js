@@ -4,12 +4,14 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import { BackButton } from '../UI';
 
 export class Logbook extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Im the Logbook component</Text>
+        <Text>Im Logbook</Text>
+        <BackButton navigator={this.props.navigator} id={'Welcome'} />
       </View>
     );
   }

@@ -4,7 +4,8 @@ import {
   Navigator
 } from 'react-native';
 
-import {ParkList, Logbook, Loading, About, Welcome} from './containers';
+import {ParkList, Logbook, Loading, About, Welcome, AnimalList, Map} from './containers';
+import { ParkInfo } from './UI';
 
 export class WFNavigator extends Component {
 
@@ -20,6 +21,12 @@ export class WFNavigator extends Component {
         return <Logbook navigator={navigator} title='Logbook' />;
       case 'About':
         return <About navigator={navigator} title='About' />;
+      case 'AnimalList':
+        return <AnimalList navigator={navigator} title='AnimalList' />;
+      case 'ParkInfo':
+        return <ParkInfo navigator={navigator} title='ParkInfo' />;
+      case 'Map':
+        return <Map navigator={navigator} title='Map' />;
     }
   }
 

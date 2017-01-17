@@ -5,14 +5,12 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import { onBackPress } from '../services';
+import { BackButton } from '../UI';
 
 export const About = ({navigator}) => (
   <View style={styles.container}>
     <Text>Im About</Text>
-    <TouchableOpacity onPress={onBackPress.bind(null, navigator, 'Welcome')} style={styles.button}>
-      <Text style={styles.text}>Back</Text>
-    </TouchableOpacity>
+    <BackButton navigator={navigator} id={'Welcome'} />
   </View>
 );
 

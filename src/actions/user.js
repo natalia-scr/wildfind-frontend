@@ -8,7 +8,7 @@ export const setUser = (payload) => {
     payload
   };
 };
-export const createUser = (payload) => {
+export const createUser = (payload, cb) => {
   return (dispatch) => {
     dispatch(createUserRequest());
     request
@@ -16,7 +16,13 @@ export const createUser = (payload) => {
     .send({name: payload})
     .end((err, res) => {
       if (err) dispatch(createUserError(err));
-      else dispatch(createUserSuccess(res.body));
+      else {
+        let user = {};
+        user.name = res.body.user.name;
+        user.id = res.body.user._id;
+        dispatch(createUserSuccess(user));
+        cb(user);
+      }
     });
   };
 };

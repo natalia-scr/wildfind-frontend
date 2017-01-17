@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 const initialState = {
   loading: false,
   error: null,
-  parks: [],
+  list: [],
   currentPark: null
 };
 
@@ -13,7 +13,7 @@ export const parks = (state = initialState, action) => {
       newState.loading = true;
       break;
     case types.FETCH_PARKS_SUCCESS:
-      newState.parks = action.payload;
+      newState.list = action.payload;
       newState.loading = false;
       break;
     case types.FETCH_PARKS_ERROR:
