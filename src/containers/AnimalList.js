@@ -17,7 +17,6 @@ class _AnimalList extends Component {
   }
 
   closeModal () {
-    console.warn('click')
     this.props.setModalVisibility(false);
   }
 
