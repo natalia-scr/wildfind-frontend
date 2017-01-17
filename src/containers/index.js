@@ -1,3 +1,3 @@
 export { Login } from './LoginScreen';
-export { Welcome } from './WelcomeScreen';
+export { Welcome } from './Welcome';
 export { Loading } from './LoadingScreen';

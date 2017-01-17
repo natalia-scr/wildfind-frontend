@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Login } from './LoginScreen';
-import { Welcome } from './WelcomeScreen';
+import { Welcome } from './Welcome';
 import * as actions from '../actions/user';
 import {
   View,
@@ -46,7 +46,7 @@ class LoadingScreen extends Component {
           handlePress={this.handlePress}
           userInput={this.state.userInput}
         />}
-      {this.props.isLoading === false && this.props.user !== null && <Welcome /> }
+      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user} /> }
       </View>
     );
   }
