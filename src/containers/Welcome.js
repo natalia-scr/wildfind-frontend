@@ -10,10 +10,8 @@ import Button from 'apsl-react-native-button';
 
 export class Welcome extends Component {
 
-handlePress (page) {
-  this.props.navigator.push({
-    id: page
-  });
+handlePress (id) {
+  this.props.navigator.push({id});
 }
 
 render () {

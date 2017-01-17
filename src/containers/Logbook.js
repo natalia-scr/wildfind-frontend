@@ -19,4 +19,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  button: {
+    borderRadius: 5,
+    borderColor: 'black',
+    borderWidth: 1,
+    height: 40,
+    marginTop: 20,
+    width: 200
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 20
+  },
 });
