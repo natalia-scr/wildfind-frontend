@@ -10,6 +10,7 @@ import {
   AsyncStorage
 } from 'react-native';
 
+
 class LoadingScreen extends Component {
   constructor () {
   super();
@@ -18,19 +19,29 @@ class LoadingScreen extends Component {
   };
 }
   componentDidMount () {
+    // AsyncStorage.removeItem('user')
+    // this.setState({loading: true})
     AsyncStorage.getItem('user').then((value) => {
-      if (value !== null) {
+      console.warn(value);
         this.props.setUser(value);
-      }
     })
+    // .then(
+    //   setTimeout(() => {
+    //     this.stopLoading()
+    //   }, 2000))
    .done();
   }
 
   handlePress = () => {
     const user = this.state.userInput;
-    AsyncStorage.setItem('user', user);
-    this.props.setUser(user);
-    this.props.createUser(user);
+    console.warn(this.saveUser);
+    this.props.createUser(user, this.saveUser);
+  }
+
+  saveUser (user) {
+    console.warn(user);
+    AsyncStorage.setItem('user', user.name);
+    AsyncStorage.setItem('userId', user.id);
   }
 
   handleChange = (value) => {
@@ -46,7 +57,7 @@ class LoadingScreen extends Component {
           handlePress={this.handlePress}
           userInput={this.state.userInput}
         />}
-      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user} /> }
+      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user} navigator={this.props.navigator} /> }
       </View>
     );
   }
@@ -55,7 +66,7 @@ class LoadingScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoading: state.user.loading,
-    user: state.user.user
+    user: state.user.name
   };
 };
 
@@ -64,8 +75,8 @@ const mapDispatchToProps = (dispatch, props) => {
     setUser: (user) => {
       dispatch(actions.setUser(user));
     },
-    createUser: (user) => {
-      dispatch(actions.createUser(user));
+    createUser: (user, cb) => {
+      dispatch(actions.createUser(user, cb));
     }
   };
 };

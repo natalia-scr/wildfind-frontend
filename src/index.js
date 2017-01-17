@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Loading } from './containers';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { WFNavigator } from './WFNavigator';
 
 export class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <Loading />
+        <WFNavigator />
       </Provider>
     );
   }
