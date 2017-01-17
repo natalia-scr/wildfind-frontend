@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-export default class Logbook extends Component {
+export class Logbook extends Component {
   render() {
     return (
       <View style={styles.container}>

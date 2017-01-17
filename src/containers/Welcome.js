@@ -10,9 +10,9 @@ import Button from 'apsl-react-native-button';
 
 export class Welcome extends Component {
 
-handlePress () {
+handlePress (page) {
   this.props.navigator.push({
-  id: 'ParkList'
+    id: page
   });
 }
 
@@ -22,9 +22,9 @@ render () {
       <View style={styles.intro}>
         <Text style={styles.text}>Welcome to WildFind {this.props.user}</Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this)} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button}><Text style={styles.text}>Log Book</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button}><Text style={styles.text}>About</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'About')} ><Text style={styles.text}>About</Text></TouchableOpacity>
     </View>
   )
 }

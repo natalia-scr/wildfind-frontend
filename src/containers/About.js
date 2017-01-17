@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-export const About = ({}) => (
+export const About = () => (
   <View style={styles.container}>
     <Text>Im About</Text>
   </View>
