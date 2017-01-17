@@ -18,7 +18,7 @@ class LoadingScreen extends Component {
   };
 }
   componentDidMount () {
-    AsyncStorage.removeItem('user')
+    // AsyncStorage.removeItem('user')
     // this.setState({loading: true})
     AsyncStorage.getItem('user').then((value) => {
       if (value !== null) {

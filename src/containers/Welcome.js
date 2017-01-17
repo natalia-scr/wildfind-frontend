@@ -12,6 +12,7 @@ export const Welcome = ({user}) => (
     </View>
     <View style={styles.button}><Text style={styles.text}>Explore</Text></View>
     <View style={styles.button}><Text style={styles.text}>Log Book</Text></View>
+    <View style={styles.button}><Text style={styles.text}>About</Text></View>
   </View>
 );
 
