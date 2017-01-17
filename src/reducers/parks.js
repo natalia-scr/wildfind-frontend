@@ -6,7 +6,7 @@ const initialState = {
   currentPark: null
 };
 
-export const parksReducer = (state = initialState, action) => {
+export const parks = (state = initialState, action) => {
   const newState = {...state};
   switch (action.type) {
     case types.FETCH_PARKS_REQUEST:

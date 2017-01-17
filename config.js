@@ -1,3 +1,3 @@
 export default {
-  ROOT: 'https://wildfind-dev.herokuapp.com/api/'
+  ROOT: 'https://wildfind-backend-dev.herokuapp.com/api/'
 };

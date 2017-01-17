@@ -6,7 +6,7 @@ const initialState = {
   sightings: []
 };
 
-export const sightingsReducer = (state = initialState, action) => {
+export const sightings = (state = initialState, action) => {
   const newState = {...state};
   switch (action.type) {
     case types.FETCH_SIGHTINGS_REQUEST:

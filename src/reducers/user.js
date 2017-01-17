@@ -5,7 +5,7 @@ const initialState = {
   user: null,
   error: null
 };
-export const userReducer = (state = initialState, action) => {
+export const user = (state = initialState, action) => {
   const newState = {...state};
   switch (action.type) {
     case types.SET_USER:
