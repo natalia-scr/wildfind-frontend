@@ -19,7 +19,10 @@ export const user = (state = initialState, action) => {
       newState.error = action.error;
       break;
     case types.CREATE_USER_SUCCESS:
-      newState.user = action.payload;
+      newState.user = {};
+      newState.user.name = action.payload.user.name;
+      newState.user.id = action.payload.user._id;
+      console.log(newState.user);
       newState.loading = false;
       break;
     default:

@@ -12,7 +12,8 @@ export const createUser = (payload) => {
   return (dispatch) => {
     dispatch(createUserRequest());
     request
-    .post(`${ROOT}/adduser?user=${payload}`)
+    .post(`${ROOT}/adduser`)
+    .send({name: payload})
     .end((err, res) => {
       if (err) dispatch(createUserError(err));
       else dispatch(createUserSuccess(res.body));
@@ -20,9 +21,10 @@ export const createUser = (payload) => {
   };
 };
 
-export const createUserRequest = () => {
+export const createUserRequest = (payload) => {
   return {
-    type: types.CREATE_USER_REQUEST
+    type: types.CREATE_USER_REQUEST,
+    payload
   };
 };
 

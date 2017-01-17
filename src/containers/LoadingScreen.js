@@ -18,18 +18,23 @@ class LoadingScreen extends Component {
   };
 }
   componentDidMount () {
+    AsyncStorage.removeItem('user')
+    // this.setState({loading: true})
     AsyncStorage.getItem('user').then((value) => {
       if (value !== null) {
         this.props.setUser(value);
       }
     })
+    // .then(
+    //   setTimeout(() => {
+    //     this.stopLoading()
+    //   }, 2000))
    .done();
   }
 
   handlePress = () => {
     const user = this.state.userInput;
     AsyncStorage.setItem('user', user);
-    this.props.setUser(user);
     this.props.createUser(user);
   }
 
@@ -46,7 +51,7 @@ class LoadingScreen extends Component {
           handlePress={this.handlePress}
           userInput={this.state.userInput}
         />}
-      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user} /> }
+      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user.name} /> }
       </View>
     );
   }

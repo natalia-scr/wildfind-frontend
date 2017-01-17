@@ -1,3 +1,1 @@
-export default {
-  ROOT: 'https://wildfind-backend-dev.herokuapp.com/api/'
-};
+export const ROOT = 'https://wildfind-backend-dev.herokuapp.com/api/'
