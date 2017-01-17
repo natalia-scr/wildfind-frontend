@@ -51,7 +51,7 @@ class LoadingScreen extends Component {
           handlePress={this.handlePress}
           userInput={this.state.userInput}
         />}
-      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user.name} /> }
+      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user.name} navigator={this.props.navigator} /> }
       </View>
     );
   }

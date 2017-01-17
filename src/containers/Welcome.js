@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity,
+  Navigator
 } from 'react-native';
+import Button from 'apsl-react-native-button';
 
-export const Welcome = ({user}) => (
-  <View style={styles.container}>
-    <View style={styles.intro}>
-      <Text style={styles.text}>Welcome to WildFind {user}</Text>
+export class Welcome extends Component {
+
+handlePress () {
+  this.props.navigator.push({
+  id: 'ParkList'
+  });
+}
+
+render () {
+  return (
+    <View style={styles.container}>
+      <View style={styles.intro}>
+        <Text style={styles.text}>Welcome to WildFind {this.props.user}</Text>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this)} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button}><Text style={styles.text}>Log Book</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button}><Text style={styles.text}>About</Text></TouchableOpacity>
     </View>
-    <View style={styles.button}><Text style={styles.text}>Explore</Text></View>
-    <View style={styles.button}><Text style={styles.text}>Log Book</Text></View>
-    <View style={styles.button}><Text style={styles.text}>About</Text></View>
-  </View>
-);
+  )
+}
+
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -35,8 +50,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 40,
     marginTop: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     width: 200
   }
 });
