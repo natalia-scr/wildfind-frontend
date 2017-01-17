@@ -3,13 +3,29 @@ import {
   View,
   Text,
   StyleSheet,
+  Modal,
+  TouchableOpacity
 } from 'react-native';
 
 export class AnimalInfo extends Component {
-  render() {
+
+  // handlePress () {
+  //   this.props.closeModal;
+  // }
+
+  render () {
     return (
       <View style={styles.container}>
-        <Text>Im the AnimalInfo component</Text>
+        <Modal
+          animationType={'fade'}
+          visible={this.props.visible}
+          onRequestClose={this.props.closeModal}
+        >
+          <Text>Im the AnimalInfo component</Text>
+          <TouchableOpacity onPress={this.props.closeModal}>
+            <Text>X</Text><
+          /TouchableOpacity>
+        </Modal>
       </View>
     );
   }
@@ -17,6 +33,6 @@ export class AnimalInfo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

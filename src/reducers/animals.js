@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 const initialState = {
   loading: false,
   error: null,
-  animals: [],
+  list: [],
   currentAnimal: null
 };
 export const animals = (state = initialState, action) => {
@@ -12,7 +12,7 @@ export const animals = (state = initialState, action) => {
       newState.loading = true;
       break;
     case types.FETCH_ANIMALS_SUCCESS:
-      newState.animals = action.payload;
+      newState.list = action.payload;
       newState.loading = false;
       break;
     case types.FETCH_ANIMALS_ERROR:
