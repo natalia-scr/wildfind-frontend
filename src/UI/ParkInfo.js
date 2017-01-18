@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 import {
   View,
   Text,
   StyleSheet,
-  Modal,
   TouchableOpacity
 } from 'react-native';
 
+export class _ParkInfo extends Component {
 
-export class ParkInfo extends Component {
+  componentDidMount () {
+    this.props.fetchAnimals();
+  }
 
   handlePress (id) {
     this.props.navigator.push({id});
@@ -34,3 +38,21 @@ const styles = StyleSheet.create({
     flex: 1
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    animals: state.animals.list,
+    loading: state.animals.loading,
+    error: state.animals.error
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    fetchAnimals: () => {
+      dispatch(actions.fetchAnimals());
+    }
+  };
+};
+
+export const ParkInfo = connect(mapStateToProps, mapDispatchToProps)(_ParkInfo);
