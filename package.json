@@ -16,7 +16,9 @@
     "redux": "^3.6.0",
     "redux-actions": "^1.2.0",
     "redux-thunk": "^2.1.0",
-    "superagent": "^3.3.2"
+    "superagent": "^3.3.2",
+    "haversine": "^1.0.1",
+    "rnpm": "^1.9.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

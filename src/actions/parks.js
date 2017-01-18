@@ -9,7 +9,7 @@ export const fetchParks = () => {
     .get(`${ROOT}/parks`)
     .end((err, res) => {
       if (err) dispatch(fetchParksError(err));
-      else dispatch(fetchParksSuccess(res.body));
+      else dispatch(fetchParksSuccess(res.body.parks));
     });
   };
 };

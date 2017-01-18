@@ -2,11 +2,11 @@ import * as types from './types';
 import request from 'superagent';
 import {ROOT} from '../../config';
 
-export const fetchSightings = () => {
+export const fetchSightings = (payload) => {
   return (dispatch) => {
     dispatch(fetchSightingsRequest());
     request
-    .get(`${ROOT}/sightings`)
+    .get(`${ROOT}/sightings?park=${payload}`)
     .end((err, res) => {
       if (err) dispatch(fetchSightingsError(err));
       else dispatch(fetchSightingsSuccess(res.body));

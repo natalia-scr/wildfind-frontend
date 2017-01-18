@@ -1,29 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/modal';
+import MapView from 'react-native-maps';
 import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  Dimensions
 } from 'react-native';
+import haversine from 'haversine';
 import {AnimalInfo} from '../UI';
 
 class _Map extends Component {
-  handlePress (visible) {
-    this.props.setModalVisibility(visible);
-  }
   closeModal () {
     this.props.setModalVisibility(false);
   }
   render () {
     return (
       <View style={styles.container}>
-        <Text>Im the Map component</Text>
-        <TouchableOpacity
-          onPress={this.handlePress.bind(this, true)}>
-          <Text>animal</Text>
-        </TouchableOpacity>
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: 53.451562,
+            longitude: -2.249320,
+            latitudeDelta: 0.0082,
+            longitudeDelta: 0.0081
+          }}
+          onRegionChange={this.onRegionChange}
+          showsUserLocation={true}
+          followUserLocation={true}
+        >
+        {this.state.markers.map(marker => (
+          <MapView.Marker
+            key={marker.id}
+            coordinate={marker.latlng}
+            title={marker.title}
+            description={marker.description}
+          >
+          </MapView.Marker>
+        ))}
+        </MapView>
         <AnimalInfo visible={this.props.modalVisible} closeModal={this.closeModal.bind(this)} />
       </View>
     );
