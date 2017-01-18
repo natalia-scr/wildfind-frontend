@@ -23,7 +23,6 @@ export const animals = (state = initialState, action) => {
       newState.currentAnimal = newState.list.filter((animal) => {
         return animal._id === action.payload;
       })[0];
-      console.warn(newState.currentAnimal);
       break;
     default:
       return newState;
