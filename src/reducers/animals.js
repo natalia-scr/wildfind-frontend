@@ -21,15 +21,12 @@ export const animals = (state = initialState, action) => {
       break;
     case types.SET_CURRENT_ANIMAL:
       newState.currentAnimal = newState.list.filter((animal) => {
-        return animal.id === action.payload;
-      });
+        return animal._id === action.payload;
+      })[0];
+      console.warn(newState.currentAnimal);
       break;
     default:
       return newState;
   }
   return newState;
 };
-
-newState.currentAnimal = newState.list.filter((animal) => {
-       return animal.id === action.payload;
-     });

@@ -21,8 +21,10 @@ class _AnimalList extends Component {
     };
   }
 
-  handlePress (visible) {
+  handlePress (visible, id) {
     this.props.setModalVisibility(visible);
+    console.warn(id);
+    this.props.setCurrentAnimal(id);
   }
 
   closeModal () {
@@ -37,7 +39,7 @@ class _AnimalList extends Component {
           dataSource={this.state.dataSource}
           renderRow={(animal) =>
             <View>
-              <TouchableOpacity onPress={this.handlePress.bind(this, true)} >
+              <TouchableOpacity onPress={this.handlePress.bind(this, true, animal._id)} >
                 <View style={styles.item}>
                   <Image
                     style={{ height: 100, width: 100 }}
@@ -49,7 +51,8 @@ class _AnimalList extends Component {
             </View>
           }
         />
-      <AnimalInfo visible={this.props.modalVisible} closeModal={this.closeModal.bind(this)} />
+        {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
+          closeModal={this.closeModal.bind(this)} /> }
       </View>
     );
   }
@@ -72,6 +75,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     setModalVisibility: (payload) => {
       dispatch(actions.setModalVisibility(payload));
+    },
+    setCurrentAnimal: (payload) => {
+      dispatch(actions.setCurrentAnimal(payload));
     }
   };
 };

@@ -21,7 +21,7 @@ export class AnimalInfo extends Component {
           visible={this.props.visible}
           onRequestClose={this.props.closeModal}
         >
-          <Text>Im the AnimalInfo component</Text>
+          <Text>{this.props.animal.common_name}</Text>
           <TouchableOpacity onPress={this.props.closeModal}>
             <Text>X</Text><
           /TouchableOpacity>
