@@ -9,7 +9,7 @@ export const fetchAnimals = () => {
     .get(`${ROOT}/animals`)
     .end((err, res) => {
       if (err) dispatch(fetchAnimalsError(err));
-      else dispatch(fetchAnimalsSuccess(res.body));
+      else dispatch(fetchAnimalsSuccess(res.body.animals));
     });
   };
 };
