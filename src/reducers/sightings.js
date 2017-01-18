@@ -24,10 +24,13 @@ export const sightings = (state = initialState, action) => {
       newState.list = [];
       break;
     case types.REMOVE_SIGHTING:
-      const index = newState.list.findIndex(function (sighting) {
-        return sighting.id === action.payload;
+      // const index = newState.list.findIndex(function (sighting) {
+      //   return sighting.id === action.payload;
+      // });
+      // newState.list = newState.list.slice(0, index).concat(newState.list.slice(index + 1));
+      newState.list = newState.list.filter((sighting) => {
+        return sighting._id !== action.payload;
       });
-      newState.list = newState.list.slice(0, index).concat(newState.list.slice(index + 1));
       break;
     case types.SAVE_SIGHTING_ERROR:
       newState.saveError = action.error;

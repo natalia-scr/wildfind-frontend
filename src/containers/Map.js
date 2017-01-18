@@ -8,7 +8,7 @@ import {
   Dimensions
 } from 'react-native';
 import haversine from 'haversine';
-import {AnimalInfo} from '../UI';
+import {SightingInfo} from '../UI';
 import * as actions from '../actions';
 
 class _Map extends Component {
@@ -57,6 +57,7 @@ class _Map extends Component {
     });
     return props;
   }
+
   closeModal () {
     let id = this.state.dist.reduce((acc, a) => {
       if (a.dist < 10) {
@@ -92,7 +93,7 @@ class _Map extends Component {
           />
       ))}
         </MapView>
-        <AnimalInfo
+        <SightingInfo
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
           animalId={this.setModalProps()} />
@@ -121,6 +122,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     removeMarker: (payload) => {
       dispatch(actions.removeSighting(payload));
+    },
+    setCurrentAnimal: (payload) => {
+      dispatch(actions.setCurrentAnimal(payload));
     }
   };
 };
