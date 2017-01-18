@@ -20,7 +20,9 @@ export const animals = (state = initialState, action) => {
       newState.loading = false;
       break;
     case types.SET_CURRENT_ANIMAL:
-      newState.currentAnimal = action.payload;
+      newState.currentAnimal = newState.list.filter((animal) => {
+        return animal._id === action.payload;
+      });
       break;
     default:
       return newState;
