@@ -28,6 +28,7 @@ class _Map extends Component {
         const dist = {latitude: lat, longitude: long};
         return {
           id: marker._id,
+          animal: marker.animal_id,
           dist: haversine(dist,
           {latitude: markers[i].lat_lng.latitude, longitude: markers[i].lat_lng.longitude}, {unit: 'meter'}).toFixed(0)
         };
@@ -35,15 +36,38 @@ class _Map extends Component {
       this.setState({
         dist: distances
       });
+      this.props.setModalVisibility(distances.some(a => a.dist < 10));
     },
   error => console.warn(JSON.stringify(error)),
   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 5}
   );
   }
-
-  closeModal () {
-    this.props.setModalVisibility(false);
+  setModalProps () {
+    let props;
+    let id = this.state.dist.reduce((acc, a) => {
+      if (a.dist < 10) {
+        acc = a.id;
+      }
+      return acc;
+    }, '');
+    this.props.markers.map((marker) => {
+      if (id === marker._id) {
+        props = marker.animal_id;
+      }
+    });
+    return props;
   }
+  closeModal () {
+    let id = this.state.dist.reduce((acc, a) => {
+      if (a.dist < 10) {
+        acc = a.id;
+      }
+      return acc;
+    }, '');
+    this.props.setModalVisibility(false);
+    this.props.removeMarker(id);
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -64,11 +88,14 @@ class _Map extends Component {
             key={i}
             coordinate={marker.lat_lng}
             title={marker.animal_name}
-            description={marker.animal_id}
+            description={JSON.stringify(marker.lat_lng)}
           />
       ))}
         </MapView>
-        <AnimalInfo visible={this.props.modalVisible} closeModal={this.closeModal.bind(this)} />
+        <AnimalInfo
+          visible={this.props.modalVisible}
+          closeModal={this.closeModal.bind(this)}
+          animalId={this.setModalProps()} />
       </View>
     );
   }
@@ -91,6 +118,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     setModalVisibility: (payload) => {
       dispatch(actions.setModalVisibility(payload));
+    },
+    removeMarker: (payload) => {
+      dispatch(actions.removeSighting(payload));
     }
   };
 };
