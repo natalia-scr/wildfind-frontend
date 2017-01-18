@@ -7,25 +7,31 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { BackButton, ParkInfoModal } from '../UI';
-import * as actions from '../actions/modal';
-
+import * as actions from '../actions';
 
 class List extends Component {
-
-  handlePress (id) {
-    this.props.navigator.push({id});
+  componentDidMount () {
+    this.props.fetchParks();
   }
-
+  handlePress (parkId, parkName, id) {
+    this.props.navigator.push({id});
+    this.props.setCurrentPark(parkName, parkId);
+  }
   render () {
     return (
       <View>
-        <Text>Parklist1</Text>
-          <TouchableOpacity onPress={this.handlePress.bind(this, 'ParkInfo')} >
-            <Text>Alexandra Park</Text>
-          </TouchableOpacity>
         <BackButton navigator={this.props.navigator} id={'Welcome'} />
+        {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
+        {this.props.loading === false && this.props.parks.map((park, i) => {
+          return <View key={park.id}>
+            <TouchableOpacity onPress={this.handlePress.bind(this, park._id, park.name, 'ParkInfo')} >
+              <Text>{park.name}</Text>
+            </TouchableOpacity>
+          </View>;
+        })
+        }
       </View>
-    )
+    );
   }
 }
 
@@ -33,7 +39,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.parks.loading,
     error: state.parks.error,
-    parks: state.parks.parks,
+    parks: state.parks.list,
     currentPark: state.parks.currentPark,
     modalVisible: state.modal.modalVisible
   };
@@ -44,8 +50,8 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchParks: () => {
       dispatch(actions.fetchParks());
     },
-    setCurrentPark: (user, cb) => {
-      dispatch(actions.setCurrentPark(user, cb));
+    setCurrentPark: (name, id) => {
+      dispatch(actions.setCurrentPark(name, id));
     },
     setModalVisibility: (payload) => {
       dispatch(actions.setModalVisibility(payload));
@@ -55,7 +61,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   button: {
     borderRadius: 5,
