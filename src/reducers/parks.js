@@ -21,9 +21,7 @@ export const parks = (state = initialState, action) => {
       newState.loading = false;
       break;
     case types.SET_CURRENT_PARK:
-      newState.currentPark = { id: action.id, name: action.name };
-      console.warn(newState.currentPark.id);
-      console.warn(newState.currentPark.name);
+      newState.currentPark = { id: action.id, name: action.name, lat_lng: action.lat_lng };
       break;
     default:
       return newState;

@@ -3,7 +3,7 @@ const initialState = {
   loading: false,
   error: null,
   saveError: null,
-  sightings: []
+  list: []
 };
 
 export const sightings = (state = initialState, action) => {
@@ -13,7 +13,7 @@ export const sightings = (state = initialState, action) => {
       newState.loading = true;
       break;
     case types.FETCH_SIGHTINGS_SUCCESS:
-      newState.sightings = newState.sightings.concat(action.payload);
+      newState.list = newState.list.concat(action.payload);
       newState.loading = false;
       break;
     case types.FETCH_SIGHTINGS_ERROR:
@@ -21,13 +21,13 @@ export const sightings = (state = initialState, action) => {
       newState.loading = false;
       break;
     case types.CLEAR_SIGHTINGS:
-      newState.sightings = [];
+      newState.list = [];
       break;
     case types.REMOVE_SIGHTING:
-      const index = newState.sightings.findIndex(function (sighting) {
+      const index = newState.list.findIndex(function (sighting) {
         return sighting.id === action.payload;
       });
-      newState.sightings = newState.sightings.slice(0, index).concat(newState.sightings.slice(index + 1));
+      newState.list = newState.list.slice(0, index).concat(newState.list.slice(index + 1));
       break;
     case types.SAVE_SIGHTING_ERROR:
       newState.saveError = action.error;

@@ -32,10 +32,11 @@ export const fetchParksError = (error) => {
   };
 };
 
-export const setCurrentPark = (name, id) => {
+export const setCurrentPark = (name, id, lat_lng) => {
   return {
     type: types.SET_CURRENT_PARK,
     name,
+    lat_lng,
     id
   };
 };

@@ -13,9 +13,9 @@ class List extends Component {
   componentDidMount () {
     this.props.fetchParks();
   }
-  handlePress (parkId, parkName, id) {
+  handlePress (parkId, parkName, lat_lng, id) {
     this.props.navigator.push({id});
-    this.props.setCurrentPark(parkName, parkId);
+    this.props.setCurrentPark(parkName, parkId, lat_lng);
   }
   render () {
     return (
@@ -23,8 +23,8 @@ class List extends Component {
         <BackButton navigator={this.props.navigator} id={'Welcome'} />
         {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
         {this.props.loading === false && this.props.parks.map((park, i) => {
-          return <View key={park.id}>
-            <TouchableOpacity onPress={this.handlePress.bind(this, park._id, park.name, 'ParkInfo')} >
+          return <View key={i}>
+            <TouchableOpacity onPress={this.handlePress.bind(this, park._id, park.name, park.lat_lng, 'ParkInfo')} >
               <Text>{park.name}</Text>
             </TouchableOpacity>
           </View>;
@@ -50,8 +50,8 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchParks: () => {
       dispatch(actions.fetchParks());
     },
-    setCurrentPark: (name, id) => {
-      dispatch(actions.setCurrentPark(name, id));
+    setCurrentPark: (name, id, lat_lng) => {
+      dispatch(actions.setCurrentPark(name, id, lat_lng));
     },
     setModalVisibility: (payload) => {
       dispatch(actions.setModalVisibility(payload));

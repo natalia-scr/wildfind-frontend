@@ -9,7 +9,7 @@ export const fetchSightings = (payload) => {
     .get(`${ROOT}/sightings?park=${payload}`)
     .end((err, res) => {
       if (err) dispatch(fetchSightingsError(err));
-      else dispatch(fetchSightingsSuccess(res.body));
+      else dispatch(fetchSightingsSuccess(res.body.sightings));
     });
   };
 };
