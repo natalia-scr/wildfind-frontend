@@ -22,7 +22,8 @@ class _Map extends Component {
     if (this.props.animals.length === 0) {
       this.props.fetchAnimals();
     }
-    this.props.fetchSightings(this.props.currentPark.id);
+    if (this.props.randomSearchMode) this.props.fetchSightings(this.props.currentPark.id);
+    else this.props.fetchSightingsById(this.props.currentAnimal._id);
     navigator.geolocation.watchPosition(pos => {
       const markers = this.props.markers;
       const long = +pos.coords.longitude;
@@ -39,8 +40,10 @@ class _Map extends Component {
       this.setState({
         distances
       });
-      if (distances.some(a => a.dist < 10)) {
-        this.onMarker();
+      if (this.props.randomSearchMode) {
+        if (distances.some(a => a.dist < 10)) {
+          this.onMarker();
+        }
       }
     },
   error => console.warn(JSON.stringify(error)),
@@ -114,7 +117,8 @@ const mapStateToProps = (state) => {
     error: state.animals.error,
     currentPark: state.parks.currentPark,
     animals: state.animals.list,
-    currentAnimal: state.animals.currentAnimal
+    currentAnimal: state.animals.currentAnimal,
+    randomSearchMode: state.user.randomSearchMode
   };
 };
 
@@ -134,6 +138,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     fetchAnimals: () => {
       dispatch(actions.fetchAnimals());
+    },
+    fetchSightingsById: (id) => {
+      dispatch(actions.fetchSightingsById(id));
     }
   };
 };

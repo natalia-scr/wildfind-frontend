@@ -28,10 +28,10 @@ export class _ParkInfo extends Component {
           <BackButton navigator={this.props.navigator} id={'ParkList'} />
         <View>
           <Text>Park Info</Text>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', false)} >
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', true)} >
             <Text>start exploring</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList', true)} >
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList', false)} >
             <Text>animal </Text>
           </TouchableOpacity>
         </View>
