@@ -18,10 +18,10 @@ export const fetchSightingsById = (payload) => {
   return (dispatch) => {
     dispatch(fetchSightingsRequest());
     request
-    .get(`${ROOT}/sightings?userId=${payload}`)
+    .get(`${ROOT}/animalsightings?animal_id=${payload}`)
     .end((err, res) => {
       if (err) dispatch(fetchSightingsError(err));
-      else dispatch(fetchSightingsSuccess(res.body));
+      else dispatch(fetchSightingsSuccess(res.body.sightings));
     });
   };
 };
