@@ -22,7 +22,7 @@ class LoadingScreen extends Component {
     // AsyncStorage.removeItem('user')
     // this.setState({loading: true})
     AsyncStorage.getItem('user').then((value) => {
-        this.props.setUser(value);
+        this.props.setUser(JSON.parse(value));
     })
     // .then(
     //   setTimeout(() => {
@@ -33,14 +33,11 @@ class LoadingScreen extends Component {
 
   handlePress = () => {
     const user = this.state.userInput;
-    console.warn(this.saveUser);
     this.props.createUser(user, this.saveUser);
   }
 
   saveUser (user) {
-    console.warn(user);
-    AsyncStorage.setItem('user', user.name);
-    AsyncStorage.setItem('userId', user.id);
+    AsyncStorage.setItem('user', JSON.stringify(user));
   }
 
   handleChange = (value) => {

@@ -17,11 +17,8 @@ export const createUser = (payload, cb) => {
     .end((err, res) => {
       if (err) dispatch(createUserError(err));
       else {
-        let user = {};
-        user.name = res.body.user.name;
-        user.id = res.body.user._id;
-        dispatch(createUserSuccess(user));
-        cb(user);
+        dispatch(createUserSuccess(res.body.user));
+        cb(res.body.user);
       }
     });
   };
