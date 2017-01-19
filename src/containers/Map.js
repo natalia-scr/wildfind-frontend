@@ -77,6 +77,7 @@ class _Map extends Component {
   }
 
   render () {
+    const colour = this.props.randomSearchMode ? '#800000' : '#00FFFF';
     return (
       <View style={styles.container}>
         <MapView
@@ -95,6 +96,7 @@ class _Map extends Component {
             <MapView.Marker
               key={i}
               coordinate={marker.lat_lng}
+              pinColor={colour}
               title={marker.animal_name}
               description={JSON.stringify(marker.lat_lng)}
           />
