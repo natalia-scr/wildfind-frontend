@@ -21,7 +21,7 @@ class _AnimalList extends Component {
   }
 
   componentDidMount () {
-    const filteredList = this.props.animals.sort((a, b) => b.abundance - a.abundance);
+    const filteredList = this.props.animals.filter(animal => animal.abundance > 3);
     this.setState({dataSource: this.state.dataSource.cloneWithRows(filteredList)});
   }
 
@@ -35,8 +35,19 @@ class _AnimalList extends Component {
     this.props.setModalVisibility(false);
   }
 
-  changeTab (abundance) {
-
+  changeTab = (rarity) => {
+    if (rarity === 'common') {
+      const commonList = this.props.animals.filter(animal => animal.abundance > 3);
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(commonList)});
+    }
+    if (rarity === 'uncommon') {
+      const uncommonList = this.props.animals.filter(animal => animal.abundance < 4 && animal.abundance > 0);
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(uncommonList)});
+    }
+    if (rarity === 'rare') {
+      const rareList = this.props.animals.filter(animal => animal.abundance === 0);
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(rareList)});
+    }
   }
 
   render () {
@@ -50,18 +61,17 @@ class _AnimalList extends Component {
           contentContainerStyle={styles.list}
           dataSource={this.state.dataSource}
           renderRow={(animal) =>
-            <View style={styles.animalCard} >
+            <View style={styles.animalContainer}>
               <TouchableOpacity onPress={this.handlePress.bind(this, true, animal._id)} >
                 <View style={styles.item}>
                   <Image
                     style={{ height: 100, width: 100 }}
                     source={{uri: animal.small_img}}
                   />
-                <View style={styles.animalCard}>
-                  <Text>{animal.common_name}</Text>
-                  <Text>{animal.latin_name}</Text>
-                  <Text>{animal.abundance}</Text>
-                </View>
+                  <View style={styles.animalTextContainer}>
+                    <Text>{animal.common_name}</Text>
+                    <Text>{animal.latin_name}</Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             </View>
@@ -109,7 +119,13 @@ const styles = StyleSheet.create({
     height: 100,
     flexDirection: 'row'
   },
-
+  animalTextContainer: {
+    marginLeft: 1
+  },
+  animalContainer: {
+    borderWidth: 1,
+    borderColor: 'black'
+  }
 });
 
 export const AnimalList = connect(mapStateToProps, mapDispatchToProps)(_AnimalList);

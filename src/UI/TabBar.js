@@ -8,13 +8,13 @@ import {
 
 export const TabBar = ({changeTab}) => (
   <View style={styles.tabBar} >
-    <TouchableOpacity style={styles.tab} onPress={changeTab}>
+    <TouchableOpacity style={styles.tab} onPress={changeTab.bind(this, 'common')}>
       <Text>Common </Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.tab} >
+    <TouchableOpacity style={styles.tab} onPress={changeTab.bind(this, 'uncommon')}>
       <Text>Uncommon </Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.tab} >
+    <TouchableOpacity style={styles.tab} onPress={changeTab.bind(this, 'rare')}>
       <Text>Rare </Text>
     </TouchableOpacity>
   </View>
