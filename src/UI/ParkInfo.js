@@ -5,9 +5,11 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 import { BackButton } from './BackButton';
+let { height, width } = Dimensions.get('window');
 
 export class _ParkInfo extends Component {
 
@@ -22,15 +24,13 @@ export class _ParkInfo extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <View>
           <BackButton navigator={this.props.navigator} id={'ParkList'} />
-        </View>
         <View>
-          <Text>Im the Modal component</Text>
-          <TouchableOpacity onPress={this.handlePress.bind(this, 'Map')} >
+          <Text>Park Info</Text>
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map')} >
             <Text>start exploring</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.handlePress.bind(this, 'AnimalList')} >
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList')} >
             <Text>animal </Text>
           </TouchableOpacity>
         </View>
@@ -38,12 +38,6 @@ export class _ParkInfo extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-});
 
 const mapStateToProps = (state) => {
   return {
@@ -60,5 +54,27 @@ const mapDispatchToProps = (dispatch, props) => {
     }
   };
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: height * 0.4
+  },
+  button: {
+    borderRadius: 5,
+    borderColor: 'black',
+    borderWidth: 1,
+    height: 40,
+    marginTop: 20,
+    width: 200,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 20
+  }
+});
 
 export const ParkInfo = connect(mapStateToProps, mapDispatchToProps)(_ParkInfo);
