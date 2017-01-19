@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import { BackButton, ParkInfoModal } from '../UI';
+import { BackButton } from '../UI';
 import * as actions from '../actions';
 
 class List extends Component {
@@ -16,6 +16,7 @@ class List extends Component {
   handlePress (parkId, parkName, lat_lng, id) {
     this.props.navigator.push({id});
     this.props.setCurrentPark(parkName, parkId, lat_lng);
+    this.props.fetchAnimals();
   }
   render () {
     return (
@@ -55,6 +56,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     setModalVisibility: (payload) => {
       dispatch(actions.setModalVisibility(payload));
+    },
+    fetchAnimals: () => {
+      dispatch(actions.fetchAnimals());
     }
   };
 };

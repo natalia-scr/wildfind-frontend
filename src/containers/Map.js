@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
 import {
   View,
-  Text,
   StyleSheet,
   Dimensions
 } from 'react-native';
@@ -15,56 +14,61 @@ class _Map extends Component {
   constructor () {
     super();
     this.state = {
-      dist: []
+      distances: [],
+      animalTarget: null
     };
   }
   componentDidMount () {
+    if (this.props.animals.length === 0) {
+      this.props.fetchAnimals();
+    }
     this.props.fetchSightings(this.props.currentPark.id);
     navigator.geolocation.watchPosition(pos => {
       const markers = this.props.markers;
       const long = +pos.coords.longitude;
       const lat = +pos.coords.latitude;
       const distances = this.props.markers.map((marker, i) => {
-        const dist = {latitude: lat, longitude: long};
+        const d = {latitude: lat, longitude: long};
         return {
           id: marker._id,
           animal: marker.animal_id,
-          dist: haversine(dist,
+          dist: haversine(d,
           {latitude: markers[i].lat_lng.latitude, longitude: markers[i].lat_lng.longitude}, {unit: 'meter'}).toFixed(0)
         };
       });
       this.setState({
-        dist: distances
+        distances
       });
-      this.props.setModalVisibility(distances.some(a => a.dist < 10));
+      if (distances.some(a => a.dist < 10)) {
+        this.onMarker();
+      }
     },
   error => console.warn(JSON.stringify(error)),
   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 5}
   );
   }
-  setModalProps () {
-    let props;
-    let id = this.state.dist.reduce((acc, a) => {
+
+  onMarker () {
+    const id = this.getActiveMarkerId();
+    this.props.markers.forEach((marker) => {
+      if (id === marker._id) {
+        this.props.setCurrentAnimal(marker.animal_id);
+      }
+    });
+    this.props.setModalVisibility(true);
+  }
+
+  getActiveMarkerId () {
+    return this.state.distances.reduce((acc, a) => {
       if (a.dist < 10) {
         acc = a.id;
       }
       return acc;
     }, '');
-    this.props.markers.map((marker) => {
-      if (id === marker._id) {
-        props = marker.animal_id;
-      }
-    });
-    return props;
   }
 
   closeModal () {
-    let id = this.state.dist.reduce((acc, a) => {
-      if (a.dist < 10) {
-        acc = a.id;
-      }
-      return acc;
-    }, '');
+    let id = this.getActiveMarkerId();
     this.props.setModalVisibility(false);
     this.props.removeMarker(id);
   }
@@ -85,18 +89,19 @@ class _Map extends Component {
           followUserLocation={true}
         >
           {this.props.markers.map((marker, i) => (
-          <MapView.Marker
-            key={i}
-            coordinate={marker.lat_lng}
-            title={marker.animal_name}
-            description={JSON.stringify(marker.lat_lng)}
+            <MapView.Marker
+              key={i}
+              coordinate={marker.lat_lng}
+              title={marker.animal_name}
+              description={JSON.stringify(marker.lat_lng)}
           />
       ))}
         </MapView>
-        <SightingInfo
+        {this.props.modalVisible === true && <SightingInfo
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
-          animalId={this.setModalProps()} />
+          currentAnimal={this.props.currentAnimal} />
+        }
       </View>
     );
   }
@@ -107,8 +112,9 @@ const mapStateToProps = (state) => {
     markers: state.sightings.list,
     loading: state.animals.loading,
     error: state.animals.error,
-    currentAnimal: state.animals.currentAnimal,
-    currentPark: state.parks.currentPark
+    currentPark: state.parks.currentPark,
+    animals: state.animals.list,
+    currentAnimal: state.animals.currentAnimal
   };
 };
 
@@ -125,6 +131,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     setCurrentAnimal: (payload) => {
       dispatch(actions.setCurrentAnimal(payload));
+    },
+    fetchAnimals: () => {
+      dispatch(actions.fetchAnimals());
     }
   };
 };
