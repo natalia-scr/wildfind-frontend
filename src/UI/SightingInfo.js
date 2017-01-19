@@ -32,6 +32,15 @@ class _SightingInfo extends Component {
     });
   }
   render () {
+    const animal = this.props.currentAnimal;
+    const park = this.props.currentPark;
+    const sightingInfo = {
+      observer_id: this.props.user.id,
+      animal_name: animal.common_name,
+      park_id: park._id,
+      animal_id: animal._id,
+      lat_lng: park.lat_lng
+    };
     return (
       <View style={styles.container}>
         <Modal
@@ -55,7 +64,7 @@ class _SightingInfo extends Component {
           <Button style={styles.buttonRight} onPress={this.openSaveModal.bind(this)}>
             <Text>save sighting</Text><
           /Button>
-          <SaveSighting closeModal={this.closeSaveModal.bind(this)} visible={this.state.saveModalVisibility} />
+          <SaveSighting sightingInfo={sightingInfo} closeModal={this.closeSaveModal.bind(this)} visible={this.state.saveModalVisibility} />
         </Modal>
       </View>
     );
@@ -64,7 +73,9 @@ class _SightingInfo extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    animals: state.animals.list
+    animals: state.animals.list,
+    currentPark: state.parks.currentPark,
+    user: state.user.name
   };
 };
 
@@ -99,6 +110,5 @@ const styles = StyleSheet.create({
     paddingRight: 50
   }
 });
-
 
 export const SightingInfo = connect(mapStateToProps, mapDispatchToProps)(_SightingInfo);
