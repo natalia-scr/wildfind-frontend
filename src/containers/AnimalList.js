@@ -27,7 +27,6 @@ class _AnimalList extends Component {
 
   handlePress (visible, id) {
     this.props.setModalVisibility(visible);
-    console.warn(id);
     this.props.setCurrentAnimal(id);
   }
 
