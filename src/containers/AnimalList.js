@@ -27,7 +27,6 @@ class _AnimalList extends Component {
 
   handlePress (visible, id) {
     this.props.setModalVisibility(visible);
-    console.warn(id);
     this.props.setCurrentAnimal(id);
   }
 
@@ -78,7 +77,7 @@ class _AnimalList extends Component {
           }
         /> }
         {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
-          closeModal={this.closeModal.bind(this)} /> }
+          closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} /> }
       </View>
     );
   }
