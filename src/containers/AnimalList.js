@@ -77,7 +77,7 @@ class _AnimalList extends Component {
           }
         /> }
         {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
-          closeModal={this.closeModal.bind(this)} /> }
+          closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} /> }
       </View>
     );
   }

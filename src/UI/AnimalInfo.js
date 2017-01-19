@@ -13,8 +13,11 @@ import {
 
 export class AnimalInfo extends Component {
 
-  handlePress = () => {
-    this.props.closeModal();
+  handlePress = (choice, id) => {
+    if (choice === 'return') this.props.closeModal();
+    if (choice === 'search') {
+      this.props.navigator.push({id});
+    }
   }
 
   render () {
@@ -40,8 +43,11 @@ export class AnimalInfo extends Component {
               <View>
                 <Text>{this.props.animal.description}</Text>
               </View>
-              <TouchableOpacity onPress={this.handlePress}>
-                <Text>Find Animal</Text>
+              <TouchableOpacity onPress={this.handlePress.bind(this, 'search', 'Map')}>
+                <Text>Find Animal </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.handlePress.bind(this, 'return')}>
+                <Text>Return to list</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
