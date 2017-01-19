@@ -17,7 +17,8 @@ export class _ParkInfo extends Component {
     this.props.fetchAnimals();
   }
 
-  handlePress (id) {
+  handlePress (id, randomSearch) {
+    this.props.randomSearchMode(randomSearch);
     this.props.navigator.push({id});
   }
 
@@ -27,10 +28,10 @@ export class _ParkInfo extends Component {
           <BackButton navigator={this.props.navigator} id={'ParkList'} />
         <View>
           <Text>Park Info</Text>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map')} >
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', false)} >
             <Text>start exploring</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList')} >
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList', true)} >
             <Text>animal </Text>
           </TouchableOpacity>
         </View>
@@ -43,7 +44,8 @@ const mapStateToProps = (state) => {
   return {
     animals: state.animals.list,
     loading: state.animals.loading,
-    error: state.animals.error
+    error: state.animals.error,
+    randomSearchMode: state.user.randomSearchMode
   };
 };
 
@@ -51,6 +53,9 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     fetchAnimals: () => {
       dispatch(actions.fetchAnimals());
+    },
+    randomSearchMode: (payload) => {
+      dispatch(actions.randomSearchMode(payload));
     }
   };
 };
