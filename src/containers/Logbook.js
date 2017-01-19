@@ -1,25 +1,53 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
-import { BackButton } from '../UI';
 
-export class Logbook extends Component {
-  render() {
+import { BackButton } from '../UI';
+import * as actions from '../actions';
+
+class _Logbook extends Component {
+
+  componentDidMount () {
+    this.props.fetchUserLog(this.props.user.id);
+  }
+
+  render () {
     return (
       <View style={styles.container}>
         <Text>Im Logbook</Text>
+        {this.props.userLog.map((sighting) => {
+          return (
+            <Text>{sighting.animal_name}</Text>
+          );
+        })}
         <BackButton navigator={this.props.navigator} id={'Welcome'} />
       </View>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.name,
+    userLog: state.userLog.userLog
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    fetchUserLog: (userId) => {
+      dispatch(actions.fetchUserLog(userId));
+    }
+  };
+};
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   button: {
     borderRadius: 5,
@@ -32,5 +60,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 20
-  },
+  }
 });
+
+export const Logbook = connect(mapStateToProps, mapDispatchToProps)(_Logbook);
