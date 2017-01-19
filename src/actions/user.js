@@ -44,3 +44,10 @@ export const createUserSuccess = (payload) => {
     payload
   };
 };
+
+export const randomSearchMode = (payload) => {
+  return {
+    type: types.RANDOM_SEARCH_MODE,
+    payload
+  };
+};

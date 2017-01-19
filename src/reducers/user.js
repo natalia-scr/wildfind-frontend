@@ -3,7 +3,8 @@ import * as types from '../actions/types';
 const initialState = {
   loading: false,
   name: null,
-  error: null
+  error: null,
+  randomSearchMode: false
 };
 export const user = (state = initialState, action) => {
   const newState = {...state};
@@ -21,6 +22,9 @@ export const user = (state = initialState, action) => {
     case types.CREATE_USER_SUCCESS:
       newState.name = action.payload;
       newState.loading = false;
+      break;
+    case types.RANDOM_SEARCH_MODE:
+      newState.randomSearchMode = action.payload;
       break;
     default:
       return newState;

@@ -77,7 +77,7 @@ class _AnimalList extends Component {
           }
         /> }
         {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
-          closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} /> }
+          closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings}/> }
       </View>
     );
   }
@@ -103,6 +103,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     setCurrentAnimal: (payload) => {
       dispatch(actions.setCurrentAnimal(payload));
+    },
+    clearSightings: () => {
+      dispatch(actions.clearSightings());
     }
   };
 };

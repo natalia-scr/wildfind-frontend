@@ -16,6 +16,8 @@ export class AnimalInfo extends Component {
   handlePress = (choice, id) => {
     if (choice === 'return') this.props.closeModal();
     if (choice === 'search') {
+      this.props.clearSightings();
+      this.props.closeModal();
       this.props.navigator.push({id});
     }
   }
