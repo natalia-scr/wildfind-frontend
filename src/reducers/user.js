@@ -3,8 +3,7 @@ import * as types from '../actions/types';
 const initialState = {
   loading: false,
   name: null,
-  error: null,
-  userId: null
+  error: null
 };
 export const user = (state = initialState, action) => {
   const newState = {...state};
@@ -20,8 +19,7 @@ export const user = (state = initialState, action) => {
       newState.error = action.error;
       break;
     case types.CREATE_USER_SUCCESS:
-      newState.name = action.payload.name;
-      newState.userId = action.payload.id;
+      newState.name = action.payload;
       newState.loading = false;
       break;
     default:

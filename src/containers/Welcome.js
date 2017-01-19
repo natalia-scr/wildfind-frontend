@@ -3,29 +3,27 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Navigator
+  TouchableOpacity
 } from 'react-native';
-import Button from 'apsl-react-native-button';
 
 export class Welcome extends Component {
 
-handlePress (id) {
-  this.props.navigator.push({id});
-}
+  handlePress (id) {
+    this.props.navigator.push({id});
+  }
 
-render () {
-  return (
-    <View style={styles.container}>
-      <View style={styles.intro}>
-        <Text style={styles.text}>Welcome to WildFind {this.props.user}</Text>
+  render () {
+    return (
+      <View style={styles.container}>
+        <View style={styles.intro}>
+          <Text style={styles.text}>Welcome to WildFind {this.props.user.name} </Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'About')} ><Text style={styles.text}>About</Text></TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'About')} ><Text style={styles.text}>About</Text></TouchableOpacity>
-    </View>
-  )
-}
+    );
+  }
 
 }
 
