@@ -9,16 +9,20 @@ import {
   ListView,
   Image
 } from 'react-native';
-import { AnimalInfo } from '../UI';
+import { AnimalInfo, BackButton, TabBar } from '../UI';
 
 class _AnimalList extends Component {
   constructor (props) {
     super(props);
-    console.warn(this.props.animals.length);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.animals)
+      dataSource: ds.cloneWithRows([])
     };
+  }
+
+  componentDidMount () {
+    const filteredList = this.props.animals.filter(animal => animal.abundance > 3);
+    this.setState({dataSource: this.state.dataSource.cloneWithRows(filteredList)});
   }
 
   handlePress (visible, id) {
@@ -31,26 +35,48 @@ class _AnimalList extends Component {
     this.props.setModalVisibility(false);
   }
 
+  changeTab = (rarity) => {
+    if (rarity === 'common') {
+      const commonList = this.props.animals.filter(animal => animal.abundance > 3);
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(commonList)});
+    }
+    if (rarity === 'uncommon') {
+      const uncommonList = this.props.animals.filter(animal => animal.abundance < 4 && animal.abundance > 0);
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(uncommonList)});
+    }
+    if (rarity === 'rare') {
+      const rareList = this.props.animals.filter(animal => animal.abundance === 0);
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(rareList)});
+    }
+  }
+
   render () {
     return (
       <View style={styles.container}>
-        <ListView
+        <BackButton navigator={this.props.navigator} id={'ParkInfo'} />
+        <TabBar changeTab={this.changeTab} />
+        {this.props.loading === true && <Text>Loading animal list...</Text>}
+        {this.props.loading === false && <ListView
+          enableEmptySections={true}
           contentContainerStyle={styles.list}
           dataSource={this.state.dataSource}
           renderRow={(animal) =>
-            <View>
+            <View style={styles.animalContainer}>
               <TouchableOpacity onPress={this.handlePress.bind(this, true, animal._id)} >
                 <View style={styles.item}>
                   <Image
                     style={{ height: 100, width: 100 }}
                     source={{uri: animal.small_img}}
                   />
-                  <Text>{animal.common_name}</Text>
+                  <View style={styles.animalTextContainer}>
+                    <Text>{animal.common_name}</Text>
+                    <Text>{animal.latin_name}</Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             </View>
           }
-        />
+        /> }
         {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)} /> }
       </View>
@@ -90,9 +116,15 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   item: {
-    width: 100,
-    height: 110,
-    margin: 5
+    height: 100,
+    flexDirection: 'row'
+  },
+  animalTextContainer: {
+    marginLeft: 1
+  },
+  animalContainer: {
+    borderWidth: 1,
+    borderColor: 'black'
   }
 });
 

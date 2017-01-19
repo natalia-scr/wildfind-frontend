@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
+import { BackButton } from './BackButton';
 
 export class _ParkInfo extends Component {
 
@@ -21,6 +22,10 @@ export class _ParkInfo extends Component {
   render () {
     return (
       <View style={styles.container}>
+        <View>
+          <BackButton navigator={this.props.navigator} id={'ParkList'} />
+        </View>
+        <View>
           <Text>Im the Modal component</Text>
           <TouchableOpacity onPress={this.handlePress.bind(this, 'Map')} >
             <Text>start exploring</Text>
@@ -28,6 +33,7 @@ export class _ParkInfo extends Component {
           <TouchableOpacity onPress={this.handlePress.bind(this, 'AnimalList')} >
             <Text>animal </Text>
           </TouchableOpacity>
+        </View>
       </View>
     );
   }
