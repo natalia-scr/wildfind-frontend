@@ -3,13 +3,13 @@ import request from 'superagent';
 import {ROOT} from '../../config';
 
 export const fetchUserLog = (payload) => {
-  return (dispatch) => {
+    return (dispatch) => {
     dispatch(fetchUserLogRequest());
     request
-    .post(`${ROOT}/userlog?userid=${payload}`)
+    .get(`${ROOT}/userlog?user_id=${payload}`)
     .end((err, res) => {
       if (err) dispatch(fetchUserLogError(err));
-      else dispatch(fetchUserLogSuccess(res.body));
+      else dispatch(fetchUserLogSuccess(res.body.sightings));
     });
   };
 };
