@@ -27,6 +27,7 @@ export const fetchSightingsById = (payload) => {
 };
 
 export const saveSighting = (payload) => {
+  console.warn('inside post request');
   return (dispatch) => {
     dispatch(saveSightingRequest());
     request

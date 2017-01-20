@@ -37,7 +37,7 @@ class _SightingInfo extends Component {
     const sightingInfo = {
       observer_id: this.props.user.id,
       animal_name: animal.common_name,
-      park_id: park._id,
+      park_id: park.id,
       animal_id: animal._id,
       lat_lng: park.lat_lng
     };
@@ -64,8 +64,8 @@ class _SightingInfo extends Component {
           <Button style={styles.buttonRight} onPress={this.openSaveModal.bind(this)}>
             <Text>save sighting</Text><
           /Button>
-          <SaveSighting sightingInfo={sightingInfo} closeModal={this.closeSaveModal.bind(this)} visible={this.state.saveModalVisibility} />
         </Modal>
+        <SaveSighting sightingInfo={sightingInfo} closeModal={this.closeSaveModal.bind(this)} visible={this.state.saveModalVisibility} />
       </View>
     );
   }
