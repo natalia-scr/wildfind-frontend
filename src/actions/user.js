@@ -45,9 +45,9 @@ export const createUserSuccess = (payload) => {
   };
 };
 
-export const randomSearchMode = (payload) => {
+export const selectRandomSearchMode = (payload) => {
   return {
-    type: types.RANDOM_SEARCH_MODE,
+    type: types.SELECT_RANDOM_SEARCH_MODE,
     payload
   };
 };

@@ -7,7 +7,7 @@ import {
   Dimensions
 } from 'react-native';
 import haversine from 'haversine';
-import {SightingInfo} from '../UI';
+import {SightingInfo, MapNavBar} from '../UI';
 import * as actions from '../actions';
 
 class _Map extends Component {
@@ -70,6 +70,10 @@ class _Map extends Component {
     }, '');
   }
 
+  handlePress (button, id) {
+
+  }
+
   closeModal () {
     let id = this.getActiveMarkerId();
     this.props.setModalVisibility(false);
@@ -78,6 +82,7 @@ class _Map extends Component {
 
   render () {
     const colour = this.props.randomSearchMode ? '#800000' : '#00FFFF';
+    const route = this.props.randomSearchMode ? 'ParkInfo' : 'AnimalList';
     return (
       <View style={styles.container}>
         <MapView
@@ -102,6 +107,9 @@ class _Map extends Component {
           />
       ))}
         </MapView>
+
+          <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress} />
+
         {this.props.modalVisible === true && <SightingInfo
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
@@ -152,6 +160,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   map: {
+    flex: 0.9,
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
   }
