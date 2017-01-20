@@ -18,14 +18,14 @@ export class _ParkInfo extends Component {
   }
 
   handlePress (id, randomSearch) {
-    this.props.randomSearchMode(randomSearch);
+    this.props.selectRandomSearchMode(randomSearch);
     this.props.navigator.push({id});
   }
 
   render () {
     return (
       <View style={styles.container}>
-          <BackButton navigator={this.props.navigator} id={'ParkList'} />
+        <BackButton navigator={this.props.navigator} id={'ParkList'} />
         <View>
           <Text>Park Info</Text>
           <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', true)} >
@@ -44,8 +44,7 @@ const mapStateToProps = (state) => {
   return {
     animals: state.animals.list,
     loading: state.animals.loading,
-    error: state.animals.error,
-    randomSearchMode: state.user.randomSearchMode
+    error: state.animals.error
   };
 };
 
@@ -54,8 +53,8 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchAnimals: () => {
       dispatch(actions.fetchAnimals());
     },
-    randomSearchMode: (payload) => {
-      dispatch(actions.randomSearchMode(payload));
+    selectRandomSearchMode: (payload) => {
+      dispatch(actions.selectRandomSearchMode(payload));
     }
   };
 };

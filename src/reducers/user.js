@@ -23,7 +23,7 @@ export const user = (state = initialState, action) => {
       newState.name = action.payload;
       newState.loading = false;
       break;
-    case types.RANDOM_SEARCH_MODE:
+    case types.SELECT_RANDOM_SEARCH_MODE:
       newState.randomSearchMode = action.payload;
       break;
     default:
