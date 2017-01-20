@@ -43,8 +43,7 @@ const mapStateToProps = (state) => {
     loading: state.parks.loading,
     error: state.parks.error,
     parks: state.parks.list,
-    currentPark: state.parks.currentPark,
-    modalVisible: state.modal.modalVisible
+    currentPark: state.parks.currentPark
   };
 };
 
@@ -55,9 +54,6 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     setCurrentPark: (name, id, lat_lng) => {
       dispatch(actions.setCurrentPark(name, id, lat_lng));
-    },
-    setModalVisibility: (payload) => {
-      dispatch(actions.setModalVisibility(payload));
     },
     fetchAnimals: () => {
       dispatch(actions.fetchAnimals());
