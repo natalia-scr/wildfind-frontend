@@ -85,7 +85,7 @@ class _AnimalList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    modalVisible: state.modal.modalVisible,
+    modalVisible: state.modal.animalInfoVisible,
     animals: state.animals.list,
     loading: state.animals.loading,
     error: state.animals.error,
@@ -99,7 +99,7 @@ const mapDispatchToProps = (dispatch, props) => {
       dispatch(actions.fetchAnimals());
     },
     setModalVisibility: (payload) => {
-      dispatch(actions.setModalVisibility(payload));
+      dispatch(actions.setAnimalInfoVisibility(payload));
     },
     setCurrentAnimal: (payload) => {
       dispatch(actions.setCurrentAnimal(payload));

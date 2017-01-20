@@ -113,7 +113,7 @@ class _Map extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    modalVisible: state.modal.modalVisible,
+    modalVisible: state.modal.sightingInfoVisible,
     markers: state.sightings.list,
     loading: state.animals.loading,
     error: state.animals.error,
@@ -130,7 +130,7 @@ const mapDispatchToProps = (dispatch, props) => {
       dispatch(actions.fetchSightings(id));
     },
     setModalVisibility: (payload) => {
-      dispatch(actions.setModalVisibility(payload));
+      dispatch(actions.setSightingInfoVisibility(payload));
     },
     removeMarker: (payload) => {
       dispatch(actions.removeSighting(payload));
