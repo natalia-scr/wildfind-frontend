@@ -23,8 +23,8 @@ export class AnimalInfo extends Component {
         >
           <Text>{this.props.animal.common_name}</Text>
           <TouchableOpacity onPress={this.props.closeModal}>
-            <Text>X</Text><
-          /TouchableOpacity>
+            <Text>X</Text>
+          </TouchableOpacity>
         </Modal>
       </View>
     );

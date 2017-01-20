@@ -27,7 +27,6 @@ class _AnimalList extends Component {
 
   handlePress (visible, id) {
     this.props.setModalVisibility(visible);
-    console.warn(id);
     this.props.setCurrentAnimal(id);
   }
 
@@ -51,6 +50,7 @@ class _AnimalList extends Component {
   }
 
   render () {
+    console.warn(this.props.currentAnimal);
     return (
       <View style={styles.container}>
         <BackButton navigator={this.props.navigator} id={'ParkInfo'} />

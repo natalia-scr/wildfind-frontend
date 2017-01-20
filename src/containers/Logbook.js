@@ -3,27 +3,61 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  StyleSheet
+  ListView,
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
-import { BackButton } from '../UI';
+import { AnimalInfo, BackButton } from '../UI';
 import * as actions from '../actions';
 
 class _Logbook extends Component {
 
-  componentDidMount () {
-    this.props.fetchUserLog(this.props.user.id);
+  constructor (props) {
+    super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows([])
+    };
+  }
+
+  componentWillMount () {
+    this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
+  }
+
+  handlePress (visibility, animalId) {
+    this.props.setModalVisibility(true);
+    this.props.setCurrentAnimal(animalId);
   }
 
   render () {
     return (
       <View style={styles.container}>
-        <Text>Im Logbook</Text>
-        {this.props.userLog.map((sighting) => {
-          return (
-            <Text>{sighting.animal_name}</Text>
-          );
-        })}
+        <Text>Your Logbook</Text>
+
+
+        {this.props.loading === true && <Text>Loading sighting list...</Text>}
+        {this.props.loading === false && <ListView
+          enableEmptySections={true}
+          contentContainerStyle={styles.list}
+          dataSource={this.state.dataSource}
+          renderRow={(sighting) =>
+            <View style={styles.sightingContainer}>
+              <TouchableOpacity onPress={this.handlePress(this, true, sighting.animal_id)}>
+                <View style={styles.item}>
+                  <View style={styles.sightingTextContainer}>
+                    <Text>{sighting.animal_name}</Text>
+                    <Text>{sighting.date.slice(0, 15)}</Text>
+                    <Text>{sighting.obs_abundance}</Text>
+                    <Text>{sighting.obs_comment}</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
+          }
+        />}
+
+
         <BackButton navigator={this.props.navigator} id={'Welcome'} />
       </View>
     );
@@ -32,15 +66,21 @@ class _Logbook extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    loading: state.userLog.loading,
     user: state.user.name,
-    userLog: state.userLog.userLog
+    userLog: state.userLog.userLog,
+    currentAnimal: state.animals.currentAnimal,
+    modalVisible: state.modal.modalVisible
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchUserLog: (userId) => {
-      dispatch(actions.fetchUserLog(userId));
+    setModalVisibility: (payload) => {
+      dispatch(actions.setModalVisibility(payload));
+    },
+    setCurrentAnimal: (payload) => {
+      dispatch(actions.setCurrentAnimal(payload));
     }
   };
 };
@@ -60,6 +100,20 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 20
+  },
+  list: {
+    flexWrap: 'wrap'
+  },
+  sightingContainer: {
+    borderWidth: 1,
+    borderColor: 'black'
+  },
+  sightingTextContainer: {
+    marginLeft: 1
+  },
+  item: {
+    height: 100,
+    flexDirection: 'row'
   }
 });
 

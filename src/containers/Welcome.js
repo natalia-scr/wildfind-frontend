@@ -8,6 +8,10 @@ import {
 
 export class Welcome extends Component {
 
+  componentWillMount () {
+    this.props.fetchUserLog(this.props.user.id);
+  }
+
   handlePress (id) {
     this.props.navigator.push({id});
   }
@@ -24,7 +28,6 @@ export class Welcome extends Component {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Login } from './LoginScreen';
 import { Welcome } from './Welcome';
-import * as actions from '../actions/user';
+import * as actions from '../actions';
 import {
   View,
   Text,
@@ -53,7 +53,8 @@ class LoadingScreen extends Component {
           handlePress={this.handlePress}
           userInput={this.state.userInput}
         />}
-      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user} navigator={this.props.navigator} /> }
+      {this.props.isLoading === false && this.props.user !== null && <Welcome user={this.props.user}
+        fetchUserLog={this.props.fetchUserLog} navigator={this.props.navigator} /> }
       </View>
     );
   }
@@ -73,6 +74,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     createUser: (user, cb) => {
       dispatch(actions.createUser(user, cb));
+    },
+    fetchUserLog: (userId) => {
+      dispatch(actions.fetchUserLog(userId));
     }
   };
 };
