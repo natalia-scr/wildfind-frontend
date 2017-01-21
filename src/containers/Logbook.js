@@ -22,12 +22,17 @@ class _Logbook extends Component {
   }
 
   componentWillMount () {
+    this.props.fetchAnimals();
     this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
   }
 
   handlePress (visibility, animalId) {
-    this.props.setModalVisibility(true);
+    this.props.setModalVisibility(visibility);
     this.props.setCurrentAnimal(animalId);
+  }
+
+  closeModal () {
+    this.props.setModalVisibility(false);
   }
 
   render () {
@@ -43,7 +48,7 @@ class _Logbook extends Component {
           dataSource={this.state.dataSource}
           renderRow={(sighting) =>
             <View style={styles.sightingContainer}>
-              <TouchableOpacity onPress={this.handlePress(this, true, sighting.animal_id)}>
+              <TouchableOpacity onPress={this.handlePress.bind(this, true, sighting.animal_id)}>
                 <View style={styles.item}>
                   <View style={styles.sightingTextContainer}>
                     <Text>{sighting.animal_name}</Text>
@@ -56,7 +61,7 @@ class _Logbook extends Component {
             </View>
           }
         />}
-
+        {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible} closeModal={this.closeModal.bind(this)} />}
 
         <BackButton navigator={this.props.navigator} id={'Welcome'} />
       </View>
@@ -76,6 +81,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
+    fetchAnimals: () => {
+      dispatch(actions.fetchAnimals());
+    },
     setModalVisibility: (payload) => {
       dispatch(actions.setModalVisibility(payload));
     },
