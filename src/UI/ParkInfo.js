@@ -14,6 +14,7 @@ let { height, width } = Dimensions.get('window');
 export class _ParkInfo extends Component {
 
   componentDidMount () {
+    this.props.clearSightings();
     this.props.fetchAnimals();
   }
 
@@ -55,6 +56,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     selectRandomSearchMode: (payload) => {
       dispatch(actions.selectRandomSearchMode(payload));
+    },
+    clearSightings: () => {
+      dispatch(actions.clearSightings());
     }
   };
 };

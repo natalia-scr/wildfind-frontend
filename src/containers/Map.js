@@ -14,8 +14,7 @@ class _Map extends Component {
   constructor () {
     super();
     this.state = {
-      distances: [],
-      animalTarget: null
+      distances: []
     };
   }
   componentDidMount () {
@@ -50,7 +49,9 @@ class _Map extends Component {
   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 5}
   );
   }
+handlePress () {
 
+}
   onMarker () {
     const id = this.getActiveMarkerId();
     this.props.markers.forEach((marker) => {
@@ -70,10 +71,6 @@ class _Map extends Component {
     }, '');
   }
 
-  handlePress (button, id) {
-
-  }
-
   closeModal () {
     let id = this.getActiveMarkerId();
     this.props.setModalVisibility(false);
@@ -87,6 +84,7 @@ class _Map extends Component {
       <View style={styles.container}>
         <MapView
           style={styles.map}
+          mapType={'satellite'}
           initialRegion={{
             latitude: this.props.currentPark.lat_lng.latitude, // 53.451562,
             longitude: this.props.currentPark.lat_lng.longitude, // -2.249320,
@@ -113,8 +111,10 @@ class _Map extends Component {
         {this.props.modalVisible === true && <SightingInfo
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
-          currentAnimal={this.props.currentAnimal} />
-        }
+          currentAnimal={this.props.currentAnimal}
+          currentMarkerId={this.getActiveMarkerId()}
+          />}
+
       </View>
     );
   }

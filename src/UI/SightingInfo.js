@@ -65,7 +65,12 @@ class _SightingInfo extends Component {
             <Text>save sighting</Text><
           /Button>
         </Modal>
-        <SaveSighting sightingInfo={sightingInfo} closeModal={this.closeSaveModal.bind(this)} visible={this.state.saveModalVisibility} />
+        <SaveSighting
+        sightingInfo={sightingInfo}
+        closeSaveModal={this.closeSaveModal.bind(this)}
+        visible={this.state.saveModalVisibility}
+        currentMarkerId={this.props.currentMarkerId}
+        />
       </View>
     );
   }

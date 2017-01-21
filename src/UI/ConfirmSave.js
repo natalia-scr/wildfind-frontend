@@ -7,7 +7,7 @@ import {
   Dimensions
 } from 'react-native';
 
-export class ComfirmSave extends Component {
+export class ConfirmSave extends Component {
   render () {
     return (
       <View>
