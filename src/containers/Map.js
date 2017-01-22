@@ -57,8 +57,12 @@ class _Map extends Component {
 
   handlePress (id) {
     this.props.setUserLocation(this.state.userLocation);
-    this.props.selectMapNavMode(true);
-    this.props.navigator.push({id});
+    if (id === 'randomSearchMode') {
+      this.props.setModalVisibility(true);
+    } else {
+      this.props.selectMapNavMode(true);
+      this.props.navigator.push({id});
+    }
   }
 
   onMarker () {
@@ -115,14 +119,14 @@ class _Map extends Component {
           />
       ))}
         </MapView>
-
-          <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)} />
-
+        <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
+          randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
         {this.props.modalVisible === true && <SightingInfo
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
           currentAnimal={this.props.currentAnimal}
           currentMarkerId={this.getActiveMarkerId()}
+          randomSearchMode={this.props.randomSearchMode}
           />}
 
       </View>

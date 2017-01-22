@@ -7,18 +7,23 @@ import {
 } from 'react-native';
 import { BackButton } from './index';
 
-export const MapNavBar = ({handlePress, navigator, route}) => (
+export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, currentAnimal}) => (
   <View style={styles.navBar}>
     <BackButton navigator={navigator} id={route} />
     <View style={styles.tab} >
       <TouchableOpacity onPress={handlePress.bind(null, 'Logbook')}>
-        <Text>Logbook</Text>
+        <Text style={styles.navText}>Logbook</Text>
       </TouchableOpacity>
     </View>
     <View style={styles.tab} >
       <TouchableOpacity onPress={handlePress.bind(null, 'AnimalList')} >
-        <Text>Save Sighting</Text>
+        <Text style={styles.navText}>Record new Sighting</Text>
       </TouchableOpacity>
+    </View>
+    <View style={styles.tab} >
+      { !randomSearchMode && <TouchableOpacity onPress={handlePress.bind(null, 'randomSearchMode')} >
+        <Text style={styles.navText}>Record {currentAnimal.common_name}</Text>
+      </TouchableOpacity> }
     </View>
   </View>
 );
@@ -28,17 +33,20 @@ const styles = StyleSheet.create({
     height: 40,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'darkslategray'
   },
   tab: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: 'cadetblue',
     borderRadius: 1,
-    marginLeft: 20,
-    marginRight: 20,
     padding: 10,
-    width: 120,
+    width: 100,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 100
+  },
+  navText: {
+    color: 'cadetblue'
   }
 });
