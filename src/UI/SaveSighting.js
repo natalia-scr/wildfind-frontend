@@ -18,8 +18,7 @@ class _SaveSighting extends Component {
     super();
     this.state = {
       text: '',
-      count: '0',
-      sightingSaved: false
+      count: '0'
     };
   }
   handlePress () {
@@ -27,10 +26,9 @@ class _SaveSighting extends Component {
     sighting.obs_comment = this.state.text;
     sighting.obs_abundance = +this.state.count;
     this.props.saveSighting({sighting});
-    this.setState({
-      sightingSaved: true
-    });
     this.props.closeSaveModal();
+    this.props.closeSightingModal(false);
+    this.props.removeMarker(this.props.currentMarkerId);
   }
   plusButtonPress () {
     this.setState({
@@ -50,7 +48,7 @@ class _SaveSighting extends Component {
         <Modal
           animationType={'fade'}
           visible={this.props.visible}
-          onRequestClose={this.props.closeModal}
+          onRequestClose={this.props.closeSaveModal}
         >
           <View style={styles.saveModal}>
             <Text style={styles.title}>Save sighting details</Text>
@@ -92,6 +90,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveSighting: (payload) => {
       dispatch(actions.saveSighting(payload));
+    },
+    closeSightingModal: (payload) => {
+      dispatch(actions.setSightingInfoVisibility(payload));
+    },
+    removeMarker: (payload) => {
+      dispatch(actions.removeSighting(payload));
     }
   };
 };

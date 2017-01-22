@@ -27,7 +27,6 @@ export const fetchSightingsById = (payload) => {
 };
 
 export const saveSighting = (payload) => {
-  console.warn('inside post request');
   return (dispatch) => {
     dispatch(saveSightingRequest());
     request
@@ -35,6 +34,7 @@ export const saveSighting = (payload) => {
     .send(payload)
     .end((err, res) => {
       if (err) dispatch(saveSightingError(err));
+      else dispatch(saveSightingSuccess());
     });
   };
 };
@@ -50,6 +50,12 @@ export const saveSightingError = (error) => {
   return {
     type: types.SAVE_SIGHTING_ERROR,
     error
+  };
+};
+
+export const saveSightingSuccess = () => {
+  return {
+    type: types.SAVE_SIGHTING_SUCCESS
   };
 };
 
