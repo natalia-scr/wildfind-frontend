@@ -11,11 +11,12 @@ import * as actions from '../actions';
 
 class _Logbook extends Component {
 
-  componentDidMount () {
+  componentWillMount () {
     this.props.fetchUserLog(this.props.user.id);
   }
 
   render () {
+    const id = this.props.mapNavMode ? 'Map' : 'Welcome';
     return (
       <View style={styles.container}>
         <Text>Im Logbook</Text>
@@ -24,7 +25,7 @@ class _Logbook extends Component {
             <Text>{sighting.animal_name}</Text>
           );
         })}
-        <BackButton navigator={this.props.navigator} id={'Welcome'} />
+        <BackButton navigator={this.props.navigator} id={id} />
       </View>
     );
   }
@@ -33,7 +34,8 @@ class _Logbook extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user.name,
-    userLog: state.userLog.userLog
+    userLog: state.userLog.userLog,
+    mapNavMode: state.user.mapNavMode
   };
 };
 

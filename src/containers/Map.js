@@ -21,8 +21,10 @@ class _Map extends Component {
     if (this.props.animals.length === 0) {
       this.props.fetchAnimals();
     }
-    if (this.props.randomSearchMode) this.props.fetchSightings(this.props.currentPark.id);
-    else this.props.fetchSightingsById(this.props.currentAnimal._id);
+    if (!this.props.mapNavMode) {
+      if (this.props.randomSearchMode) this.props.fetchSightings(this.props.currentPark.id);
+      else this.props.fetchSightingsById(this.props.currentAnimal._id);
+    }
     navigator.geolocation.watchPosition(pos => {
       const markers = this.props.markers;
       const long = +pos.coords.longitude;
@@ -49,9 +51,12 @@ class _Map extends Component {
   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 5}
   );
   }
-handlePress () {
 
-}
+  handlePress (id) {
+    this.props.selectMapNavMode(true);
+    this.props.navigator.push({id});
+  }
+
   onMarker () {
     const id = this.getActiveMarkerId();
     this.props.markers.forEach((marker) => {
@@ -106,7 +111,7 @@ handlePress () {
       ))}
         </MapView>
 
-          <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress} />
+          <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)} />
 
         {this.props.modalVisible === true && <SightingInfo
           visible={this.props.modalVisible}
@@ -128,7 +133,8 @@ const mapStateToProps = (state) => {
     currentPark: state.parks.currentPark,
     animals: state.animals.list,
     currentAnimal: state.animals.currentAnimal,
-    randomSearchMode: state.user.randomSearchMode
+    randomSearchMode: state.user.randomSearchMode,
+    mapNavMode: state.user.mapNavMode
   };
 };
 
@@ -151,6 +157,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     fetchSightingsById: (id) => {
       dispatch(actions.fetchSightingsById(id));
+    },
+    selectMapNavMode: (payload) => {
+      dispatch(actions.selectMapNavMode(payload));
     }
   };
 };

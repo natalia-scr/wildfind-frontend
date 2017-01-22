@@ -4,7 +4,8 @@ const initialState = {
   loading: false,
   name: null,
   error: null,
-  randomSearchMode: false
+  randomSearchMode: false,
+  mapNavMode: false
 };
 export const user = (state = initialState, action) => {
   const newState = {...state};
@@ -25,6 +26,9 @@ export const user = (state = initialState, action) => {
       break;
     case types.SELECT_RANDOM_SEARCH_MODE:
       newState.randomSearchMode = action.payload;
+      break;
+    case types.SELECT_MAP_NAV_MODE:
+      newState.mapNavMode = action.payload;
       break;
     default:
       return newState;

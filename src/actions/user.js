@@ -51,3 +51,10 @@ export const selectRandomSearchMode = (payload) => {
     payload
   };
 };
+
+export const selectMapNavMode = (payload) => {
+  return {
+    type: types.SELECT_MAP_NAV_MODE,
+    payload
+  }
+}
