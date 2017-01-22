@@ -59,6 +59,10 @@ class _Map extends Component {
     this.props.setUserLocation(this.state.userLocation);
     if (id === 'randomSearchMode') {
       this.props.setModalVisibility(true);
+    }
+    if (id === 'newSightings') {
+      this.props.clearSightings();
+      this.props.fetchSightings(this.props.currentPark.id);
     } else {
       this.props.selectMapNavMode(true);
       this.props.navigator.push({id});
@@ -173,6 +177,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     setUserLocation: (payload) => {
       dispatch(actions.setUserLocation(payload));
+    },
+    clearSightings: () => {
+      dispatch(actions.clearSightings());
     }
   };
 };

@@ -21,8 +21,11 @@ export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, curr
       </TouchableOpacity>
     </View>
     <View style={styles.tab} >
-      { !randomSearchMode && <TouchableOpacity onPress={handlePress.bind(null, 'randomSearchMode')} >
+      {!randomSearchMode && currentAnimal !== null && <TouchableOpacity onPress={handlePress.bind(null, 'randomSearchMode')} >
         <Text style={styles.navText}>Record {currentAnimal.common_name}</Text>
+      </TouchableOpacity> }
+      {randomSearchMode && <TouchableOpacity onPress={handlePress.bind(null, 'newSightings')} >
+        <Text style={styles.navText}>Generate New Sightings</Text>
       </TouchableOpacity> }
     </View>
   </View>
@@ -47,6 +50,7 @@ const styles = StyleSheet.create({
     height: 100
   },
   navText: {
-    color: 'cadetblue'
+    color: 'cadetblue',
+    fontSize: 12
   }
 });
