@@ -21,6 +21,15 @@ class _SightingInfo extends Component {
       saveModalVisibility: false
     };
   }
+
+  componentWillMount () {
+    if (!this.props.randomSearchMode) {
+      this.setState({
+        saveModalVisibility: true
+      });
+    }
+  }
+
   openSaveModal () {
     this.setState({
       saveModalVisibility: true
