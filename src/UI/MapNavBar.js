@@ -13,7 +13,7 @@ export const MapNavBar = ({handlePress, navigator, route}) => (
     <TouchableOpacity onPress={handlePress.bind(null, 'Logbook')}>
       <Text>Logbook</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={handlePress.bind(null, 'Save')} >
+    <TouchableOpacity onPress={handlePress.bind(null, 'AnimalList')} >
       <Text>Save Sighting</Text>
     </TouchableOpacity>
   </View>

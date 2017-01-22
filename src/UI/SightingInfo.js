@@ -39,7 +39,7 @@ class _SightingInfo extends Component {
       animal_name: animal.common_name,
       park_id: park.id,
       animal_id: animal._id,
-      lat_lng: park.lat_lng
+      lat_lng: this.props.userLocation
     };
     return (
       <View style={styles.container}>
@@ -80,7 +80,8 @@ const mapStateToProps = (state) => {
   return {
     animals: state.animals.list,
     currentPark: state.parks.currentPark,
-    user: state.user.name
+    user: state.user.name,
+    userLocation: state.user.lat_lng
   };
 };
 
