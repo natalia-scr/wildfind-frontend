@@ -23,12 +23,14 @@ class _SaveSighting extends Component {
   }
   handlePress () {
     const sighting = this.props.sightingInfo;
+    sighting.animal_name = sighting.animal_name ? sighting.animal_name : this.props.currentAnimal.common_name;
+    sighting.animal_id = sighting.animal_id ? sighting.animal_id : this.props.currentAnimal._id;
     sighting.obs_comment = this.state.text;
     sighting.obs_abundance = +this.state.count;
     this.props.saveSighting({sighting});
     this.props.closeSaveModal();
     this.props.closeSightingModal(false);
-    this.props.removeMarker(this.props.currentMarkerId);
+    if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
   }
   plusButtonPress () {
     this.setState({
@@ -86,6 +88,13 @@ class _SaveSighting extends Component {
 
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentAnimal: state.animals.currentAnimal,
+    mapNavMode: state.user.mapNavMode
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     saveSighting: (payload) => {
@@ -121,4 +130,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export const SaveSighting = connect(null, mapDispatchToProps)(_SaveSighting);
+export const SaveSighting = connect(mapStateToProps, mapDispatchToProps)(_SaveSighting);

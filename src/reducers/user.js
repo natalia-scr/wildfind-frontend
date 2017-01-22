@@ -5,7 +5,8 @@ const initialState = {
   name: null,
   error: null,
   randomSearchMode: false,
-  mapNavMode: false
+  mapNavMode: false,
+  lat_lng: null
 };
 export const user = (state = initialState, action) => {
   const newState = {...state};
@@ -29,6 +30,9 @@ export const user = (state = initialState, action) => {
       break;
     case types.SELECT_MAP_NAV_MODE:
       newState.mapNavMode = action.payload;
+      break;
+    case types.SET_USER_LOCATION:
+      newState.lat_lng = action.payload;
       break;
     default:
       return newState;

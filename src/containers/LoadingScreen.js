@@ -22,7 +22,7 @@ class LoadingScreen extends Component {
     // AsyncStorage.removeItem('user')
     // this.setState({loading: true})
     AsyncStorage.getItem('user').then((value) => {
-        this.props.setUser(JSON.parse(value));
+      if (value !== null) this.props.setUser(JSON.parse(value));
     })
     // .then(
     //   setTimeout(() => {

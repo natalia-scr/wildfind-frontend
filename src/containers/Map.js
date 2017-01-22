@@ -14,10 +14,12 @@ class _Map extends Component {
   constructor () {
     super();
     this.state = {
-      distances: []
+      distances: [],
+      userLocation: null
     };
   }
   componentDidMount () {
+    this.props.selectMapNavMode(false);
     if (this.props.animals.length === 0) {
       this.props.fetchAnimals();
     }
@@ -39,7 +41,8 @@ class _Map extends Component {
         };
       });
       this.setState({
-        distances
+        distances,
+        userLocation: {longitude: long.toFixed(6), latitude: lat.toFixed(6)}
       });
       if (this.props.randomSearchMode) {
         if (distances.some(a => a.dist < 10)) {
@@ -53,6 +56,7 @@ class _Map extends Component {
   }
 
   handlePress (id) {
+    this.props.setUserLocation(this.state.userLocation);
     this.props.selectMapNavMode(true);
     this.props.navigator.push({id});
   }
@@ -64,6 +68,7 @@ class _Map extends Component {
         this.props.setCurrentAnimal(marker.animal_id);
       }
     });
+    this.props.setUserLocation(this.state.userLocation);
     this.props.setModalVisibility(true);
   }
 
@@ -134,7 +139,8 @@ const mapStateToProps = (state) => {
     animals: state.animals.list,
     currentAnimal: state.animals.currentAnimal,
     randomSearchMode: state.user.randomSearchMode,
-    mapNavMode: state.user.mapNavMode
+    mapNavMode: state.user.mapNavMode,
+    userLocation: state.user.lat_lng
   };
 };
 
@@ -160,6 +166,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     selectMapNavMode: (payload) => {
       dispatch(actions.selectMapNavMode(payload));
+    },
+    setUserLocation: (payload) => {
+      dispatch(actions.setUserLocation(payload));
     }
   };
 };

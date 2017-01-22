@@ -9,14 +9,15 @@ import {
   ListView,
   Image
 } from 'react-native';
-import { AnimalInfo, BackButton, TabBar } from '../UI';
+import { AnimalInfo, BackButton, TabBar, SaveSighting } from '../UI';
 
 class _AnimalList extends Component {
   constructor (props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([])
+      dataSource: ds.cloneWithRows([]),
+      saveModalVisible: false
     };
   }
 
@@ -26,12 +27,25 @@ class _AnimalList extends Component {
   }
 
   handlePress (visible, id) {
-    this.props.setModalVisibility(visible);
     this.props.setCurrentAnimal(id);
+    if (!this.props.mapNavMode) {
+      this.props.setModalVisibility(visible);
+    } else {
+      this.setState({
+        saveModalVisible: true
+      })
+    }
   }
 
   closeModal () {
     this.props.setModalVisibility(false);
+  }
+
+  closeSaveModal () {
+    this.setState({
+      saveModalVisible: false
+    })
+    this.props.navigator.push({id: 'Map'})
   }
 
   changeTab = (rarity) => {
@@ -50,9 +64,16 @@ class _AnimalList extends Component {
   }
 
   render () {
+    const park = this.props.currentPark;
+    const sightingInfo = {
+      observer_id: this.props.user.id,
+      park_id: park.id,
+      lat_lng: this.props.userLocation
+    }
+    const id = this.props.mapNavMode ? 'Map' : 'ParkInfo';
     return (
       <View style={styles.container}>
-        <BackButton navigator={this.props.navigator} id={'ParkInfo'} />
+        <BackButton navigator={this.props.navigator} id={id} />
         <TabBar changeTab={this.changeTab} />
         {this.props.loading === true && <Text>Loading animal list...</Text>}
         {this.props.loading === false && <ListView
@@ -76,8 +97,15 @@ class _AnimalList extends Component {
             </View>
           }
         /> }
-        {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
+        {this.props.currentAnimal !== null && !this.props.mapNavMode && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings}/> }
+        {this.props.mapNavMode &&
+          <SaveSighting
+            sightingInfo={sightingInfo}
+            closeSaveModal={this.closeSaveModal.bind(this)}
+            visible={this.state.saveModalVisible}
+            currentMarkerId={null}
+            /> }
       </View>
     );
   }
@@ -89,7 +117,11 @@ const mapStateToProps = (state) => {
     animals: state.animals.list,
     loading: state.animals.loading,
     error: state.animals.error,
-    currentAnimal: state.animals.currentAnimal
+    currentAnimal: state.animals.currentAnimal,
+    mapNavMode: state.user.mapNavMode,
+    currentPark: state.parks.currentPark,
+    user: state.user.name,
+    userLocation: state.user.lat_lng
   };
 };
 
