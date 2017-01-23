@@ -41,9 +41,7 @@ class _AnimalList extends Component {
   }
 
   closeSaveModal () {
-    this.setState({
-      saveModalVisible: false
-    })
+    this.props.setSightingInfoVisibility(false);
     this.props.navigator.push({id: 'Map'})
   }
 
@@ -103,12 +101,13 @@ class _AnimalList extends Component {
         /> }
         {this.props.currentAnimal !== null && !this.props.mapNavMode && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings}/> }
-        {this.props.mapNavMode &&
+        {this.props.mapNavMode && this.props.currentAnimal !== null &&
           <SaveSighting
             sightingInfo={sightingInfo}
-            closeSaveModal={this.closeSaveModal.bind(this)}
+            closeModal={this.closeSaveModal.bind(this)}
             visible={this.state.saveModalVisible}
             currentMarkerId={null}
+            callsaveAnimation={null}
             /> }
       </View>
     );
@@ -142,7 +141,10 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     clearSightings: () => {
       dispatch(actions.clearSightings());
-    }
+    },
+    setSightingInfoVisibility: (payload) => {
+      dispatch(actions.setSightingInfoVisibility(payload));
+    },
   };
 };
 
