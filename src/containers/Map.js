@@ -9,7 +9,7 @@ import {
   Text
 } from 'react-native';
 import haversine from 'haversine';
-import {SightingInfo, MapNavBar} from '../UI';
+import {SaveSighting, MapNavBar} from '../UI';
 import * as actions from '../actions';
 import Popup from 'react-native-popup';
 
@@ -162,7 +162,7 @@ class _Map extends Component {
         <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
           randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
         {this.props.modalVisible === true &&
-        <SightingInfo
+        <SaveSighting
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
           currentAnimal={this.props.currentAnimal}

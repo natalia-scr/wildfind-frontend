@@ -18,19 +18,18 @@ class _SightingInfo extends Component {
   constructor () {
     super();
     this.state = {
-      saveModalVisibility: false
+      saveModalVisibility: true
     };
   }
 
-  componentWillMount () {
-    if (!this.props.randomSearchMode) {
-      this.setState({
-        saveModalVisibility: true
-      });
-    }
-  }
+  // componentWillMount () {
+  //     this.setState({
+  //       saveModalVisibility: true
+  //     });
+  // }
 
   openSaveModal () {
+    console.warn('click');
     this.setState({
       saveModalVisibility: true
     });
@@ -50,11 +49,22 @@ class _SightingInfo extends Component {
       animal_id: animal._id,
       lat_lng: this.props.userLocation
     };
+
     return (
       <View style={styles.container}>
+      {this.state.saveModalVisibility &&
+        <SaveSighting
+        sightingInfo={sightingInfo}
+        closeSaveModal={this.closeSaveModal.bind(this)}
+        visible={this.state.saveModalVisibility}
+        currentMarkerId={this.props.currentMarkerId}
+        callsaveAnimation={this.props.callsaveAnimation}
+        />
+      }
         <Modal
           animationType={'fade'}
           visible={this.props.visible}
+          transparent={true}
           onRequestClose={this.props.closeModal}
         >
           <Text>{this.props.currentAnimal.common_name}</Text>
@@ -74,17 +84,11 @@ class _SightingInfo extends Component {
             <Text>save sighting</Text><
           /Button>
         </Modal>
-        <SaveSighting
-        sightingInfo={sightingInfo}
-        closeSaveModal={this.closeSaveModal.bind(this)}
-        visible={this.state.saveModalVisibility}
-        currentMarkerId={this.props.currentMarkerId}
-        callsaveAnimation={this.props.callsaveAnimation}
-        />
       </View>
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {
@@ -105,7 +109,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'transparent'
   },
   buttonRight: {
     position: 'absolute',

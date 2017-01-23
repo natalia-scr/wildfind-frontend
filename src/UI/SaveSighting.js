@@ -23,16 +23,22 @@ class _SaveSighting extends Component {
     };
   }
   handlePress () {
-    const sighting = this.props.sightingInfo;
+    const animal = this.props.currentAnimal;
+    const park = this.props.currentPark;
+    const sighting = {
+      observer_id: this.props.user.id,
+      animal_name: animal.common_name,
+      park_id: park.id,
+      animal_id: animal._id,
+      lat_lng: this.props.userLocation
+    };
     sighting.animal_name = sighting.animal_name ? sighting.animal_name : this.props.currentAnimal.common_name;
     sighting.animal_id = sighting.animal_id ? sighting.animal_id : this.props.currentAnimal._id;
     sighting.obs_comment = this.state.text;
     sighting.obs_abundance = +this.state.count;
     this.props.saveSighting({sighting});
-    this.props.closeSaveModal();
-    this.props.closeSightingModal(false);
-    this.props.callsaveAnimation();
-    console.warn(this.props.currentMarkerId);
+    this.props.closeModal();
+    if (this.props.callsaveAnimation !== null) this.props.callsaveAnimation();
     if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
   }
   plusButtonPress () {
@@ -50,13 +56,15 @@ class _SaveSighting extends Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.sightingContainer}>
         <Modal
           animationType={'fade'}
           visible={this.props.visible}
-          onRequestClose={this.props.closeSaveModal}
+          onRequestClose={this.props.closeModal}
         >
           <View style={styles.saveModal}>
+            <Text>{this.props.currentAnimal.common_name}</Text>
+            <Text>{this.props.currentAnimal.latin_name}</Text>
             <Text style={styles.title}>Save sighting details</Text>
             <Text style={styles.title}>Leave a comment about your experience:</Text>
             <TextInput
@@ -78,8 +86,6 @@ class _SaveSighting extends Component {
               <Button style={styles.smallButton} onPress={this.minusButtonPress.bind(this)}>-</Button>
             </View>
             <View>
-              <Text> Sighting info to be saved: </Text>
-              <Text>{this.props.sightingInfo.observer_id}</Text>
             </View>
             <TouchableOpacity onPress={this.handlePress.bind(this)}>
               <Text>Save sighting</Text>
@@ -95,7 +101,12 @@ class _SaveSighting extends Component {
 const mapStateToProps = (state) => {
   return {
     currentAnimal: state.animals.currentAnimal,
-    mapNavMode: state.user.mapNavMode
+    mapNavMode: state.user.mapNavMode,
+    animals: state.animals.list,
+    currentPark: state.parks.currentPark,
+    user: state.user.name,
+    userLocation: state.user.lat_lng
+
   };
 };
 
@@ -109,13 +120,18 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeMarker: (payload) => {
       dispatch(actions.removeSighting(payload));
+    },
+    setCurrentAnimal: (payload) => {
+      dispatch(actions.setCurrentAnimal(payload));
     }
   };
 };
 
 const styles = StyleSheet.create({
+  sightingContainer: {
+    flex: 1
+  },
   saveModal: {
-    flex: 1,
     paddingLeft: 40,
     paddingTop: 40
   },
