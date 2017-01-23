@@ -79,6 +79,7 @@ class _SightingInfo extends Component {
         closeSaveModal={this.closeSaveModal.bind(this)}
         visible={this.state.saveModalVisibility}
         currentMarkerId={this.props.currentMarkerId}
+        callsaveAnimation={this.props.callsaveAnimation}
         />
       </View>
     );

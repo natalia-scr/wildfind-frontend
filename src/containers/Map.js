@@ -4,7 +4,9 @@ import MapView from 'react-native-maps';
 import {
   View,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  Animated,
+  Text
 } from 'react-native';
 import haversine from 'haversine';
 import {SightingInfo, MapNavBar} from '../UI';
@@ -12,8 +14,9 @@ import * as actions from '../actions';
 import Popup from 'react-native-popup';
 
 class _Map extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
+    this.animatedValue = new Animated.Value(-70);
     this.state = {
       distances: [],
       userLocation: {latitude: 0, longitude: 0}
@@ -106,8 +109,26 @@ class _Map extends Component {
 
   closeModal () {
     let id = this.getActiveMarkerId();
-    this.props.setModalVisibility(false);
     this.props.removeMarker(id);
+    this.props.setModalVisibility(false);
+  }
+  callsaveAnimation () {
+    Animated.timing(
+     this.animatedValue,
+      {
+        toValue: 0,
+        duration: 500
+      }).start(this.closesaveAnimation());
+  }
+  closesaveAnimation () {
+    setTimeout(() => {
+      Animated.timing(
+      this.animatedValue,
+        {
+          toValue: -70,
+          duration: 500
+        }).start();
+    }, 1000);
   }
 
   render () {
@@ -140,14 +161,22 @@ class _Map extends Component {
         </MapView>
         <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
           randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
-        {this.props.modalVisible === true && <SightingInfo
+        {this.props.modalVisible === true &&
+        <SightingInfo
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
           currentAnimal={this.props.currentAnimal}
           currentMarkerId={this.getActiveMarkerId()}
           randomSearchMode={this.props.randomSearchMode}
+          callsaveAnimation={this.callsaveAnimation.bind(this)}
           />}
-          <Popup ref={popup => this.popup = popup} />
+
+        <Animated.View style={{ transform: [{ translateY: this.animatedValue }], height: 70, backgroundColor: 'green', position: 'absolute', left: 0, top: 0, right: 0, justifyContent: 'center' }}>
+          <Text style={{ marginLeft: 10, color: 'white', fontSize: 16, fontWeight: 'bold' }}>
+              Sighting successfully saved!
+          </Text>
+        </Animated.View>
+         <Popup ref={popup => this.popup = popup} />
       </View>
     );
   }
