@@ -22,8 +22,7 @@ class _AnimalList extends Component {
   }
 
   componentDidMount () {
-    const filteredList = this.props.animals.filter(animal => animal.abundance > 3);
-    this.setState({dataSource: this.state.dataSource.cloneWithRows(filteredList)});
+    this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.animals)});
   }
 
   handlePress (visible, id) {
@@ -49,6 +48,9 @@ class _AnimalList extends Component {
   }
 
   changeTab = (rarity) => {
+    if (rarity === 'all') {
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.animals)});
+    }
     if (rarity === 'common') {
       const commonList = this.props.animals.filter(animal => animal.abundance > 3);
       this.setState({dataSource: this.state.dataSource.cloneWithRows(commonList)});
@@ -73,7 +75,9 @@ class _AnimalList extends Component {
     const id = this.props.mapNavMode ? 'Map' : 'ParkInfo';
     return (
       <View style={styles.container}>
-        <BackButton navigator={this.props.navigator} id={id} />
+        <View style={styles.topBar}>
+          <BackButton navigator={this.props.navigator} id={id} />
+        </View>
         <TabBar changeTab={this.changeTab} />
         {this.props.loading === true && <Text>Loading animal list...</Text>}
         {this.props.loading === false && <ListView
@@ -159,6 +163,11 @@ const styles = StyleSheet.create({
   animalContainer: {
     borderWidth: 1,
     borderColor: 'black'
+  },
+  topBar: {
+    backgroundColor: 'darkolivegreen',
+    height: 30,
+    justifyContent: 'center'
   }
 });
 

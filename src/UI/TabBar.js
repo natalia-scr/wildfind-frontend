@@ -8,6 +8,9 @@ import {
 
 export const TabBar = ({changeTab}) => (
   <View style={styles.tabBar} >
+    <TouchableOpacity style={styles.tab} onPress={changeTab.bind(this, 'all')}>
+      <Text>All </Text>
+    </TouchableOpacity>
     <TouchableOpacity style={styles.tab} onPress={changeTab.bind(this, 'common')}>
       <Text>Common </Text>
     </TouchableOpacity>
