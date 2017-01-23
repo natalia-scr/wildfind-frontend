@@ -12,7 +12,11 @@ export const animals = (state = initialState, action) => {
       newState.loading = true;
       break;
     case types.FETCH_ANIMALS_SUCCESS:
-      newState.list = action.payload.sort((a, b) => b.abundance - a.abundance);
+      newState.list = action.payload.sort((a, b) => {
+        if (a.common_name < b.common_name) return -1;
+        if (a.common_name > b.common_name) return 1;
+        return 0;
+      });
       newState.loading = false;
       break;
     case types.FETCH_ANIMALS_ERROR:
