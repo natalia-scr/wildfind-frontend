@@ -9,9 +9,9 @@ import {
 
 class _Welcome extends Component {
 
-  componentWillMount () {
-    this.props.fetchUserLog(this.props.user.id);
-  }
+  // componentWillMount () {
+  //   this.props.fetchUserLog(this.props.user.id);
+  // }
 
   handlePress (id) {
     this.props.navigator.push({id});
