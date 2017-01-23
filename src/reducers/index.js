@@ -3,7 +3,7 @@ import { parks } from './parks';
 import { animals } from './animals';
 import { sightings } from './sightings';
 import { user } from './user';
-import { userLog } from './userLog';
+import { logBook } from './logBook';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -11,6 +11,6 @@ export default combineReducers({
   parks,
   sightings,
   user,
-  userLog,
+  logBook,
   animals
 });

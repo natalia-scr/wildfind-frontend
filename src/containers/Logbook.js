@@ -5,7 +5,8 @@ import {
   Text,
   ListView,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import { AnimalInfo, BackButton } from '../UI';
@@ -24,15 +25,16 @@ class _Logbook extends Component {
     this.props.fetchUserLog(this.props.user.id);
     this.props.fetchAnimals();
     this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
+
   }
 
   handlePress (visibility, animalId) {
-    this.props.setModalVisibility(visibility);
+    this.props.setAnimalInfoVisibility(visibility);
     this.props.setCurrentAnimal(animalId);
   }
 
   closeModal () {
-    this.props.setModalVisibility(false);
+    this.props.setAnimalInfoVisibility(false);
   }
 
   render () {
@@ -54,7 +56,7 @@ class _Logbook extends Component {
                   <View style={styles.sightingTextContainer}>
                     <Text>{sighting.animal_name}</Text>
                     <Text>{sighting.date.slice(0, 15)}</Text>
-                    <Text>{sighting.obs_abundance}</Text>
+                    <Text>You spotted {sighting.obs_abundance}!</Text>
                     <Text>{sighting.obs_comment}</Text>
                   </View>
                 </View>
@@ -62,7 +64,7 @@ class _Logbook extends Component {
             </View>
           }
         />}
-        {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible} closeModal={this.closeModal.bind(this)} />}
+        {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.animalInfoVisible} closeModal={this.closeModal.bind(this)} />}
         <BackButton navigator={this.props.navigator} id={id} />
 
       </View>
@@ -72,11 +74,11 @@ class _Logbook extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.userLog.loading,
+    loading: state.logBook.loading,
     user: state.user.name,
-    userLog: state.userLog.userLog,
+    userLog: state.logBook.userLog,
     currentAnimal: state.animals.currentAnimal,
-    modalVisible: state.modal.modalVisible,
+    animalInfoVisible: state.modal.animalInfoVisible,
     mapNavMode: state.user.mapNavMode
   };
 };
@@ -86,11 +88,14 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchAnimals: () => {
       dispatch(actions.fetchAnimals());
     },
-    setModalVisibility: (payload) => {
-      dispatch(actions.setModalVisibility(payload));
+    setAnimalInfoVisibility: (payload) => {
+      dispatch(actions.setAnimalInfoVisibility(payload));
     },
     setCurrentAnimal: (payload) => {
       dispatch(actions.setCurrentAnimal(payload));
+    },
+    fetchUserLog: (userId) => {
+      dispatch(actions.fetchUserLog(userId));
     }
   };
 };
@@ -109,7 +114,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: 20
+    fontFamily: 'American Typewriter-Bold'
   },
   list: {
     flexWrap: 'wrap'
