@@ -4,7 +4,7 @@ const initialState = {
   userLog: [],
   error: null
 };
-export const userLog = (state = initialState, action) => {
+export const logBook = (state = initialState, action) => {
   const newState = {...state};
   switch (action.type) {
     case types.FETCH_USER_LOG_REQUEST:

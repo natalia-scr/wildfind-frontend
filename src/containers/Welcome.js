@@ -9,6 +9,10 @@ import {
 
 class _Welcome extends Component {
 
+  // componentWillMount () {
+  //   this.props.fetchUserLog(this.props.user.id);
+  // }
+
   handlePress (id) {
     this.props.navigator.push({id});
   }
@@ -25,7 +29,6 @@ class _Welcome extends Component {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({

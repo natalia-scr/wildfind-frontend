@@ -11,6 +11,7 @@ import {
 import haversine from 'haversine';
 import {SightingInfo, MapNavBar} from '../UI';
 import * as actions from '../actions';
+import Popup from 'react-native-popup';
 
 class _Map extends Component {
   constructor (props) {
@@ -18,7 +19,7 @@ class _Map extends Component {
     this.animatedValue = new Animated.Value(-70);
     this.state = {
       distances: [],
-      userLocation: null
+      userLocation: {latitude: 0, longitude: 0}
     };
   }
   componentDidMount () {
@@ -31,7 +32,7 @@ class _Map extends Component {
       else this.props.fetchSightingsById(this.props.currentAnimal._id);
     }
     navigator.geolocation.watchPosition(pos => {
-      const markers = this.props.markers;
+      const markers = this.props.markers.slice(0);
       const long = +pos.coords.longitude;
       const lat = +pos.coords.latitude;
       const distances = this.props.markers.map((marker, i) => {
@@ -60,13 +61,27 @@ class _Map extends Component {
 
   handlePress (id) {
     this.props.setUserLocation(this.state.userLocation);
+    const userLocation = this.props.userLocation !== null ? this.props.userLocation : this.state.userLocation;
     if (id === 'randomSearchMode') {
-      this.props.setModalVisibility(true);
+      if (haversine(userLocation, this.props.currentPark.lat_lng, {unit: 'meter'}).toFixed(0) > 500) {
+        this.popup.alert('You need to be in the park to record a Sighting');
+      } else {
+        this.props.setModalVisibility(true);
+      }
     }
     if (id === 'newSightings') {
       this.props.clearSightings();
       this.props.fetchSightings(this.props.currentPark.id);
-    } else {
+    }
+    if (id === 'AnimalList') {
+      if (haversine(userLocation, this.props.currentPark.lat_lng, {unit: 'meter'}).toFixed(0) > 500) {
+        this.popup.alert('You need to be in the park to record a Sighting');
+      } else {
+        this.props.selectMapNavMode(true);
+        this.props.navigator.push({id});
+      }
+    }
+    if (id === 'Logbook') {
       this.props.selectMapNavMode(true);
       this.props.navigator.push({id});
     }
@@ -155,11 +170,13 @@ class _Map extends Component {
           randomSearchMode={this.props.randomSearchMode}
           callsaveAnimation={this.callsaveAnimation.bind(this)}
           />}
+
         <Animated.View style={{ transform: [{ translateY: this.animatedValue }], height: 70, backgroundColor: 'green', position: 'absolute', left: 0, top: 0, right: 0, justifyContent: 'center' }}>
           <Text style={{ marginLeft: 10, color: 'white', fontSize: 16, fontWeight: 'bold' }}>
               Sighting successfully saved!
           </Text>
         </Animated.View>
+         <Popup ref={popup => this.popup = popup} />
       </View>
     );
   }
