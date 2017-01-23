@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -6,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export class Welcome extends Component {
+class _Welcome extends Component {
 
   componentWillMount () {
     this.props.fetchUserLog(this.props.user.id);
@@ -54,3 +55,11 @@ const styles = StyleSheet.create({
     width: 200
   }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.name
+  };
+};
+
+export const Welcome = connect(mapStateToProps)(_Welcome);

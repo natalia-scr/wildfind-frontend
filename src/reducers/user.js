@@ -3,7 +3,10 @@ import * as types from '../actions/types';
 const initialState = {
   loading: false,
   name: null,
-  error: null
+  error: null,
+  randomSearchMode: false,
+  mapNavMode: false,
+  lat_lng: null
 };
 export const user = (state = initialState, action) => {
   const newState = {...state};
@@ -21,6 +24,15 @@ export const user = (state = initialState, action) => {
     case types.CREATE_USER_SUCCESS:
       newState.name = action.payload;
       newState.loading = false;
+      break;
+    case types.SELECT_RANDOM_SEARCH_MODE:
+      newState.randomSearchMode = action.payload;
+      break;
+    case types.SELECT_MAP_NAV_MODE:
+      newState.mapNavMode = action.payload;
+      break;
+    case types.SET_USER_LOCATION:
+      newState.lat_lng = action.payload;
       break;
     default:
       return newState;

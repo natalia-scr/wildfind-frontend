@@ -12,7 +12,6 @@ import { AnimalInfo, BackButton } from '../UI';
 import * as actions from '../actions';
 
 class _Logbook extends Component {
-
   constructor (props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -22,6 +21,7 @@ class _Logbook extends Component {
   }
 
   componentWillMount () {
+    this.props.fetchUserLog(this.props.user.id);
     this.props.fetchAnimals();
     this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
   }
@@ -36,6 +36,7 @@ class _Logbook extends Component {
   }
 
   render () {
+    const id = this.props.mapNavMode ? 'Map' : 'Welcome';
     return (
       <View style={styles.container}>
         <Text>Your Logbook</Text>
@@ -62,8 +63,8 @@ class _Logbook extends Component {
           }
         />}
         {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible} closeModal={this.closeModal.bind(this)} />}
+        <BackButton navigator={this.props.navigator} id={id} />
 
-        <BackButton navigator={this.props.navigator} id={'Welcome'} />
       </View>
     );
   }
@@ -75,7 +76,8 @@ const mapStateToProps = (state) => {
     user: state.user.name,
     userLog: state.userLog.userLog,
     currentAnimal: state.animals.currentAnimal,
-    modalVisible: state.modal.modalVisible
+    modalVisible: state.modal.modalVisible,
+    mapNavMode: state.user.mapNavMode
   };
 };
 

@@ -7,7 +7,7 @@ import {
   Dimensions
 } from 'react-native';
 import haversine from 'haversine';
-import {SightingInfo} from '../UI';
+import {SightingInfo, MapNavBar} from '../UI';
 import * as actions from '../actions';
 
 class _Map extends Component {
@@ -15,14 +15,18 @@ class _Map extends Component {
     super();
     this.state = {
       distances: [],
-      animalTarget: null
+      userLocation: null
     };
   }
   componentDidMount () {
+    this.props.selectMapNavMode(false);
     if (this.props.animals.length === 0) {
       this.props.fetchAnimals();
     }
-    this.props.fetchSightings(this.props.currentPark.id);
+    if (!this.props.mapNavMode) {
+      if (this.props.randomSearchMode) this.props.fetchSightings(this.props.currentPark.id);
+      else this.props.fetchSightingsById(this.props.currentAnimal._id);
+    }
     navigator.geolocation.watchPosition(pos => {
       const markers = this.props.markers;
       const long = +pos.coords.longitude;
@@ -37,15 +41,32 @@ class _Map extends Component {
         };
       });
       this.setState({
-        distances
+        distances,
+        userLocation: {longitude: long.toFixed(6), latitude: lat.toFixed(6)}
       });
-      if (distances.some(a => a.dist < 10)) {
-        this.onMarker();
+      if (this.props.randomSearchMode) {
+        if (distances.some(a => a.dist < 10)) {
+          this.onMarker();
+        }
       }
     },
   error => console.warn(JSON.stringify(error)),
   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 5}
   );
+  }
+
+  handlePress (id) {
+    this.props.setUserLocation(this.state.userLocation);
+    if (id === 'randomSearchMode') {
+      this.props.setModalVisibility(true);
+    }
+    if (id === 'newSightings') {
+      this.props.clearSightings();
+      this.props.fetchSightings(this.props.currentPark.id);
+    } else {
+      this.props.selectMapNavMode(true);
+      this.props.navigator.push({id});
+    }
   }
 
   onMarker () {
@@ -55,6 +76,7 @@ class _Map extends Component {
         this.props.setCurrentAnimal(marker.animal_id);
       }
     });
+    this.props.setUserLocation(this.state.userLocation);
     this.props.setModalVisibility(true);
   }
 
@@ -74,10 +96,13 @@ class _Map extends Component {
   }
 
   render () {
+    const colour = this.props.randomSearchMode ? '#800000' : '#00FFFF';
+    const route = this.props.randomSearchMode ? 'ParkInfo' : 'AnimalList';
     return (
       <View style={styles.container}>
         <MapView
           style={styles.map}
+          mapType={'satellite'}
           initialRegion={{
             latitude: this.props.currentPark.lat_lng.latitude, // 53.451562,
             longitude: this.props.currentPark.lat_lng.longitude, // -2.249320,
@@ -92,29 +117,38 @@ class _Map extends Component {
             <MapView.Marker
               key={i}
               coordinate={marker.lat_lng}
+              pinColor={colour}
               title={marker.animal_name}
               description={JSON.stringify(marker.lat_lng)}
           />
       ))}
         </MapView>
+        <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
+          randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
         {this.props.modalVisible === true && <SightingInfo
           visible={this.props.modalVisible}
           closeModal={this.closeModal.bind(this)}
-          currentAnimal={this.props.currentAnimal} />
-        }
+          currentAnimal={this.props.currentAnimal}
+          currentMarkerId={this.getActiveMarkerId()}
+          randomSearchMode={this.props.randomSearchMode}
+          />}
+
       </View>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
-    modalVisible: state.modal.modalVisible,
+    modalVisible: state.modal.sightingInfoVisible,
     markers: state.sightings.list,
     loading: state.animals.loading,
     error: state.animals.error,
     currentPark: state.parks.currentPark,
     animals: state.animals.list,
-    currentAnimal: state.animals.currentAnimal
+    currentAnimal: state.animals.currentAnimal,
+    randomSearchMode: state.user.randomSearchMode,
+    mapNavMode: state.user.mapNavMode,
+    userLocation: state.user.lat_lng
   };
 };
 
@@ -124,7 +158,7 @@ const mapDispatchToProps = (dispatch, props) => {
       dispatch(actions.fetchSightings(id));
     },
     setModalVisibility: (payload) => {
-      dispatch(actions.setModalVisibility(payload));
+      dispatch(actions.setSightingInfoVisibility(payload));
     },
     removeMarker: (payload) => {
       dispatch(actions.removeSighting(payload));
@@ -134,6 +168,18 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     fetchAnimals: () => {
       dispatch(actions.fetchAnimals());
+    },
+    fetchSightingsById: (id) => {
+      dispatch(actions.fetchSightingsById(id));
+    },
+    selectMapNavMode: (payload) => {
+      dispatch(actions.selectMapNavMode(payload));
+    },
+    setUserLocation: (payload) => {
+      dispatch(actions.setUserLocation(payload));
+    },
+    clearSightings: () => {
+      dispatch(actions.clearSightings());
     }
   };
 };
@@ -143,6 +189,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   map: {
+    flex: 0.9,
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
   }
