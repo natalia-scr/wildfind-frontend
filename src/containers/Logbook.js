@@ -54,7 +54,7 @@ class _Logbook extends Component {
               <TouchableOpacity onPress={this.handlePress.bind(this, true, sighting.animal_id)}>
                 <View style={styles.item}>
                   <View style={styles.sightingTextContainer}>
-                    <Text>{sighting.animal_name}</Text>
+                    <Text style={styles.text}>{sighting.animal_name}</Text>
                     <Text>{sighting.date.slice(0, 15)}</Text>
                     <Text>You spotted {sighting.obs_abundance}!</Text>
                     <Text>{sighting.obs_comment}</Text>
@@ -114,7 +114,8 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontFamily: 'American Typewriter-Bold'
+    fontFamily: 'American Typewriter-Bold',
+    fontSize: 50
   },
   list: {
     flexWrap: 'wrap'
