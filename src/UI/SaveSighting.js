@@ -7,7 +7,8 @@ import {
   Modal,
   TouchableOpacity,
   Dimensions,
-  TextInput
+  TextInput,
+  Animated
 } from 'react-native';
 import * as actions from '../actions';
 let { height, width } = Dimensions.get('window');
@@ -18,7 +19,7 @@ class _SaveSighting extends Component {
     super();
     this.state = {
       text: '',
-      count: '0'
+      count: '1'
     };
   }
   handlePress () {
@@ -30,6 +31,8 @@ class _SaveSighting extends Component {
     this.props.saveSighting({sighting});
     this.props.closeSaveModal();
     this.props.closeSightingModal(false);
+    this.props.callsaveAnimation();
+    console.warn(this.props.currentMarkerId);
     if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
   }
   plusButtonPress () {
@@ -44,6 +47,7 @@ class _SaveSighting extends Component {
       });
     }
   }
+
   render () {
     return (
       <View>
