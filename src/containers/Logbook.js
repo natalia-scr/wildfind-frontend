@@ -6,12 +6,14 @@ import {
   ListView,
   StyleSheet,
   TouchableOpacity,
-  Image,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native';
 import { TopBar } from './index';
 import { AnimalInfo, BackButton } from '../UI';
 import * as actions from '../actions';
+let { height, width } = Dimensions.get('window');
+
 
 class _Logbook extends Component {
   constructor (props) {
@@ -42,26 +44,23 @@ class _Logbook extends Component {
     const id = this.props.mapNavMode ? 'Map' : 'Welcome';
     return (
       <View style={styles.container}>
-
-
         <TopBar navigator={this.props.navigator} id={id} title={`${this.props.user.name}\'s Logbook`} />
         <ScrollView style={{flex: 1}}>
         <View style={styles.logBookContainer}>
           {this.props.loading === true && <Text>Loading sighting list...</Text>}
           {this.props.loading === false &&
-              <View >
-                {this.props.userLog.map(sighting => {
+              <View>
+                {this.props.userLog.map((sighting) => {
                 return <View key={sighting._id} style={styles.sightingContainer}>
                   <TouchableOpacity style={styles.sightingCard} onPress={this.handlePress.bind(this, true, sighting.animal_id)}>
-                        <View style={styles.item}>
-                          <View style={styles.sightingTextContainer}>
-                            <Text style={styles.text}>{sighting.animal_name}</Text>
-                            <Text>{sighting.date.slice(0, 15)}</Text>
-                            <Text>You spotted {sighting.obs_abundance}!</Text>
-                            <Text>{sighting.obs_comment}</Text>
-                          </View>
-                        </View>
-                      </TouchableOpacity>
+                      <View style={styles.sightingTextContainer}>
+                        <Text style={styles.text}>{sighting.animal_name}</Text>
+                        <Text style={styles.latin}>{sighting.latin_name}</Text>
+                        <Text>{sighting.date.slice(0, 15)}</Text>
+                        <Text>You spotted {sighting.obs_abundance}!</Text>
+                        <Text>{sighting.obs_comment}</Text>
+                      </View>
+                    </TouchableOpacity>
                 </View>;
                 })}
               </View>
@@ -105,7 +104,8 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    paddingBottom: height * 0.4
   },
   logBookContainer: {
     flex: 1
@@ -122,16 +122,19 @@ const styles = StyleSheet.create({
     width: 200
   },
   text: {
-    textAlign: 'center',
-    fontFamily: 'American Typewriter-Bold',
-    fontSize: 50
+
   },
   sightingContainer: {
-    borderWidth: 1,
-    borderColor: 'black'
+    borderRadius: 20,
+    borderWidth: 3,
+    borderColor: 'lightgray',
+    marginTop: 5
   },
   sightingTextContainer: {
     marginLeft: 1
+  },
+  latin: {
+    fontStyle: 'italic'
   }
 });
 
