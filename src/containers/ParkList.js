@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Dimensions
 } from 'react-native';
-import { BackButton } from '../UI';
+import { TopBar } from './index';
 import * as actions from '../actions';
 let { height, width } = Dimensions.get('window');
 
@@ -15,24 +15,26 @@ class List extends Component {
   componentDidMount () {
     this.props.fetchParks();
   }
-  handlePress (parkId, parkName, lat_lng, id) {
+  handlePress (parkId, id) {
     this.props.navigator.push({id});
-    this.props.setCurrentPark(parkName, parkId, lat_lng);
+    this.props.setCurrentPark(parkId);
     this.props.fetchAnimals();
   }
   render () {
     return (
       <View style={styles.container}>
-        <BackButton navigator={this.props.navigator} id={'Welcome'} />
-        {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
-        {this.props.loading === false && this.props.parks.map((park, i) => {
-          return <View key={i}>
-            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, park.name, park.lat_lng, 'ParkInfo')} >
-              <Text>{park.name}</Text>
-            </TouchableOpacity>
-          </View>;
-        })
-        }
+        <TopBar title={'Parks'} id={'Welcome'} navigator={this.props.navigator} />
+        <View style={styles.parksContainer}>
+          {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
+          {this.props.loading === false && this.props.parks.map((park, i) => {
+            return <View key={i}>
+              <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo')} >
+                <Text>{park.name}</Text>
+              </TouchableOpacity>
+            </View>;
+          })
+          }
+        </View>
       </View>
     );
   }
@@ -63,7 +65,9 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
+  },
+  parksContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: height * 0.4

@@ -21,7 +21,9 @@ export const parks = (state = initialState, action) => {
       newState.loading = false;
       break;
     case types.SET_CURRENT_PARK:
-      newState.currentPark = { id: action.id, name: action.name, lat_lng: action.lat_lng };
+      newState.currentPark = newState.list.filter((park) => {
+        return park._id === action.payload;
+      })[0];
       break;
     default:
       return newState;
