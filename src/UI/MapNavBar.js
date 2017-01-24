@@ -5,11 +5,9 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import { BackButton } from './index';
 
 export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, currentAnimal}) => (
   <View style={styles.navBar}>
-    <BackButton navigator={navigator} id={route} />
     <View style={styles.tab} >
       <TouchableOpacity onPress={handlePress.bind(null, 'Logbook')}>
         <Text style={styles.navText}>Logbook</Text>

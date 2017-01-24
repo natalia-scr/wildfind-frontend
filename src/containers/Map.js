@@ -9,6 +9,7 @@ import {
   Text
 } from 'react-native';
 import haversine from 'haversine';
+import { TopBar } from './index';
 import {SaveSighting, MapNavBar} from '../UI';
 import * as actions from '../actions';
 import Popup from 'react-native-popup';
@@ -136,48 +137,49 @@ class _Map extends Component {
     const route = this.props.randomSearchMode ? 'ParkInfo' : 'AnimalList';
     return (
       <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          mapType={'satellite'}
-          initialRegion={{
-            latitude: this.props.currentPark.lat_lng.latitude, // 53.451562,
-            longitude: this.props.currentPark.lat_lng.longitude, // -2.249320,
-            latitudeDelta: 0.0082,
-            longitudeDelta: 0.0081
-          }}
-          onRegionChange={this.onRegionChange}
-          showsUserLocation={true}
-          followUserLocation={true}
-        >
-          {this.props.markers.map((marker, i) => (
-            <MapView.Marker
-              key={i}
-              coordinate={marker.lat_lng}
-              pinColor={colour}
-              title={marker.animal_name}
-              description={JSON.stringify(marker.lat_lng)}
-          />
-      ))}
-        </MapView>
+        <TopBar navigator={this.props.navigator} id={route} title={this.props.currentPark.name} />
+          <MapView
+            style={styles.map}
+            mapType={'satellite'}
+            initialRegion={{
+              latitude: this.props.currentPark.lat_lng.latitude, // 53.451562,
+              longitude: this.props.currentPark.lat_lng.longitude, // -2.249320,
+              latitudeDelta: 0.0082,
+              longitudeDelta: 0.0081
+            }}
+            onRegionChange={this.onRegionChange}
+            showsUserLocation={true}
+            followUserLocation={true}
+          >
+            {this.props.markers.map((marker, i) => (
+              <MapView.Marker
+                key={i}
+                coordinate={marker.lat_lng}
+                pinColor={colour}
+                title={marker.animal_name}
+                description={JSON.stringify(marker.lat_lng)}
+            />
+        ))}
+          </MapView>
         <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
           randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
         {this.props.modalVisible === true &&
-        <SaveSighting
-          visible={this.props.modalVisible}
-          closeModal={this.closeModal.bind(this)}
-          currentAnimal={this.props.currentAnimal}
-          currentMarkerId={this.getActiveMarkerId()}
-          randomSearchMode={this.props.randomSearchMode}
-          callsaveAnimation={this.callsaveAnimation.bind(this)}
-          />}
+          <SaveSighting
+            visible={this.props.modalVisible}
+            closeModal={this.closeModal.bind(this)}
+            currentAnimal={this.props.currentAnimal}
+            currentMarkerId={this.getActiveMarkerId()}
+            randomSearchMode={this.props.randomSearchMode}
+            callsaveAnimation={this.callsaveAnimation.bind(this)}
+            />}
 
-        <Animated.View style={{ transform: [{ translateY: this.animatedValue }], height: 70, backgroundColor: 'green', position: 'absolute', left: 0, top: 0, right: 0, justifyContent: 'center' }}>
-          <Text style={{ marginLeft: 10, color: 'white', fontSize: 16, fontWeight: 'bold' }}>
-              Sighting successfully saved!
-          </Text>
-        </Animated.View>
-         <Popup ref={popup => this.popup = popup} />
-      </View>
+          <Animated.View style={{ transform: [{ translateY: this.animatedValue }], height: 70, backgroundColor: 'green', position: 'absolute', left: 0, top: 0, right: 0, justifyContent: 'center' }}>
+            <Text style={{ marginLeft: 10, color: 'white', fontSize: 16, fontWeight: 'bold' }}>
+                Sighting successfully saved!
+            </Text>
+          </Animated.View>
+           <Popup ref={popup => this.popup = popup} />
+        </View>
     );
   }
 }
@@ -230,6 +232,9 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  mapContainer: {
     flex: 1
   },
   map: {
