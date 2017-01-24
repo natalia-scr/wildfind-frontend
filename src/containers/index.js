@@ -1,9 +1,10 @@
-export { Login } from './LoginScreen';
+export { LoginInput } from './LoginInput';
 export { Welcome } from './Welcome';
-export { Loading } from './LoadingScreen';
+export { LoginScreen } from './LoginScreen';
 export { ParkList } from './ParkList';
 export { Logbook } from './Logbook';
 export { About } from './About';
 export { Map } from './Map';
 export { AnimalList } from './AnimalList';
 export { TopBar } from './TopBar';
+export { LoadingScreen } from './LoadingScreen';

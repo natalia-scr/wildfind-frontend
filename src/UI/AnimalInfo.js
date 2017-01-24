@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-
+// 
 // const mapStateToProps = (state) => {
 //   return {
 //     modalVisible: state.modal.modalVisible,
@@ -88,5 +88,5 @@ const styles = StyleSheet.create({
 //     }
 //   };
 // };
-
+//
 // export const AnimalInfo = connect(mapStateToProps, mapDispatchToProps)(_AnimalInfo);

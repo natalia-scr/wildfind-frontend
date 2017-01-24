@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   topBarText: {
     alignItems: 'center',
-    padding: 10,
+    paddingTop: 25,
     fontSize: 20,
     color: 'whitesmoke'
   },

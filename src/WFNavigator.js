@@ -4,15 +4,15 @@ import {
   Navigator
 } from 'react-native';
 
-import {ParkList, Logbook, Loading, About, Welcome, AnimalList, Map} from './containers';
+import {ParkList, Logbook, LoginScreen, About, Welcome, AnimalList, Map} from './containers';
 import { ParkInfo } from './UI';
 
 export class WFNavigator extends Component {
 
   renderScene (route, navigator) {
     switch (route.id) {
-      case 'Loading':
-        return <Loading navigator={navigator} title='Loading' />;
+      case 'LoginScreen':
+        return <LoginScreen navigator={navigator} title='LoginScreen' />;
       case 'Welcome':
         return <Welcome navigator={navigator} title='Welcome' />;
       case 'ParkList':
@@ -34,7 +34,7 @@ export class WFNavigator extends Component {
     return (
       <Navigator
       style={styles.container}
-      initialRoute={{id: 'Loading'}}
+      initialRoute={{id: 'LoginScreen'}}
       renderScene={this.renderScene}
       configureScene={(route) => {
         return Navigator.SceneConfigs.FadeAndroid;
