@@ -28,7 +28,7 @@ class _SaveSighting extends Component {
     const sighting = {
       observer_id: this.props.user.id,
       animal_name: animal.common_name,
-      park_id: park.id,
+      park_id: park._id,
       animal_id: animal._id,
       lat_lng: this.props.userLocation
     };

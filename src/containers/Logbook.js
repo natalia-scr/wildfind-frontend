@@ -6,9 +6,10 @@ import {
   ListView,
   StyleSheet,
   TouchableOpacity,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
-
+import { TopBar } from './index';
 import { AnimalInfo, BackButton } from '../UI';
 import * as actions from '../actions';
 
@@ -41,32 +42,34 @@ class _Logbook extends Component {
     const id = this.props.mapNavMode ? 'Map' : 'Welcome';
     return (
       <View style={styles.container}>
-        <Text>Your Logbook</Text>
 
 
-        {this.props.loading === true && <Text>Loading sighting list...</Text>}
-        {this.props.loading === false && <ListView
-          enableEmptySections={true}
-          contentContainerStyle={styles.list}
-          dataSource={this.state.dataSource}
-          renderRow={(sighting) =>
-            <View style={styles.sightingContainer}>
-              <TouchableOpacity onPress={this.handlePress.bind(this, true, sighting.animal_id)}>
-                <View style={styles.item}>
-                  <View style={styles.sightingTextContainer}>
-                    <Text style={styles.text}>{sighting.animal_name}</Text>
-                    <Text>{sighting.date.slice(0, 15)}</Text>
-                    <Text>You spotted {sighting.obs_abundance}!</Text>
-                    <Text>{sighting.obs_comment}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </View>
-          }
-        />}
-        {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.animalInfoVisible} closeModal={this.closeModal.bind(this)} />}
-        <BackButton navigator={this.props.navigator} id={id} />
-
+        <TopBar navigator={this.props.navigator} id={id} title={`${this.props.user.name}\'s Logbook`} />
+        <ScrollView style={{flex: 1}}>
+        <View style={styles.logBookContainer}>
+          {this.props.loading === true && <Text>Loading sighting list...</Text>}
+          {this.props.loading === false &&
+              <View >
+                {this.props.userLog.map(sighting => {
+                return <View key={sighting._id} style={styles.sightingContainer}>
+                  <TouchableOpacity style={styles.sightingCard} onPress={this.handlePress.bind(this, true, sighting.animal_id)}>
+                        <View style={styles.item}>
+                          <View style={styles.sightingTextContainer}>
+                            <Text style={styles.text}>{sighting.animal_name}</Text>
+                            <Text>{sighting.date.slice(0, 15)}</Text>
+                            <Text>You spotted {sighting.obs_abundance}!</Text>
+                            <Text>{sighting.obs_comment}</Text>
+                          </View>
+                        </View>
+                      </TouchableOpacity>
+                </View>;
+                })}
+              </View>
+            }
+          {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal}
+          visible={this.props.animalInfoVisible} closeModal={this.closeModal.bind(this)} />}
+        </View>
+        </ScrollView>
       </View>
     );
   }
@@ -104,6 +107,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  logBookContainer: {
+    flex: 1
+  },
+  sightingCard: {
+    margin: 10
+  },
   button: {
     borderRadius: 5,
     borderColor: 'black',
@@ -117,19 +126,12 @@ const styles = StyleSheet.create({
     fontFamily: 'American Typewriter-Bold',
     fontSize: 50
   },
-  list: {
-    flexWrap: 'wrap'
-  },
   sightingContainer: {
     borderWidth: 1,
     borderColor: 'black'
   },
   sightingTextContainer: {
     marginLeft: 1
-  },
-  item: {
-    height: 100,
-    flexDirection: 'row'
   }
 });
 

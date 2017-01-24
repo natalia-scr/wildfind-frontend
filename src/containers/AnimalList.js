@@ -62,12 +62,6 @@ class _AnimalList extends Component {
   }
 
   render () {
-    const park = this.props.currentPark;
-    const sightingInfo = {
-      observer_id: this.props.user.id,
-      park_id: park.id,
-      lat_lng: this.props.userLocation
-    }
     const id = this.props.mapNavMode ? 'Map' : 'ParkInfo';
     return (
       <View style={styles.container}>
@@ -99,7 +93,6 @@ class _AnimalList extends Component {
           closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings}/> }
         {this.props.mapNavMode && this.props.currentAnimal !== null &&
           <SaveSighting
-            sightingInfo={sightingInfo}
             closeModal={this.closeSaveModal.bind(this)}
             visible={this.props.sightingInfoVisible}
             currentMarkerId={null}
@@ -118,7 +111,6 @@ const mapStateToProps = (state) => {
     error: state.animals.error,
     currentAnimal: state.animals.currentAnimal,
     mapNavMode: state.user.mapNavMode,
-    currentPark: state.parks.currentPark,
     user: state.user.name,
     userLocation: state.user.lat_lng,
     sightingInfoVisible: state.modal.sightingInfoVisible

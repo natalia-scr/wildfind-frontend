@@ -27,11 +27,12 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     position: 'absolute',
-    left: width * 0.4
-
+    left: width * 0.33
   },
   topBarText: {
     alignItems: 'center',
-    paddingTop: 10
+    padding: 10,
+    fontSize: 20,
+    color: 'whitesmoke'
   }
 });
