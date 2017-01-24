@@ -22,14 +22,14 @@ export const TopBar = ({id, navigator, title}) => (
 const styles = StyleSheet.create({
   topBar: {
     backgroundColor: '#2c9d33',
-    height: 40,
+    height: 55,
     flexDirection: 'row',
     justifyContent: 'space-between',
     position: 'relative'
   },
   topBarText: {
     alignItems: 'center',
-    padding: 10,
+    paddingTop: 25,
     fontSize: 20,
     color: 'whitesmoke'
   },

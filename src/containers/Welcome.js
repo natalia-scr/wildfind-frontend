@@ -4,7 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 class _Welcome extends Component {
@@ -19,14 +20,21 @@ class _Welcome extends Component {
 
   render () {
     return (
+      <Image
+        source={require('../img/bird.jpg')}
+        style={styles.background}
+        resizeMode={'cover'}>
       <View style={styles.container}>
         <View style={styles.intro}>
-          <Text style={styles.text}>Welcome to WildFind {this.props.user.name} </Text>
+        <Image
+          source={require('../img/WildFind.png')}
+          style={styles.logo}
+        />
         </View>
         <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'About')} ><Text style={styles.text}>About</Text></TouchableOpacity>
       </View>
+      </Image>
     );
   }
 }
@@ -34,8 +42,15 @@ class _Welcome extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'rgba(1,1,1,0.6)',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  background: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    backgroundColor: 'transparent'
   },
   intro: {
     marginBottom: 150
@@ -45,14 +60,13 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   button: {
-    borderRadius: 5,
-    borderColor: 'black',
-    borderWidth: 1,
-    height: 40,
+    borderRadius: 15,
+    height: 80,
+    backgroundColor: 'rgba(197, 228, 188, 0.7)',
     marginTop: 20,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    width: 200
+    width: 200,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
