@@ -8,11 +8,13 @@ import {
   TouchableOpacity,
   Dimensions,
   TextInput,
-  Animated
+  Animated,
+  Image
 } from 'react-native';
 import * as actions from '../actions';
 let { height, width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
+import { createSighting } from '../services';
 
 class _SaveSighting extends Component {
   constructor () {
@@ -23,21 +25,9 @@ class _SaveSighting extends Component {
     };
   }
   handlePress () {
-    const animal = this.props.currentAnimal;
-    const park = this.props.currentPark;
-    const sighting = {
-      observer_id: this.props.user.id,
-      animal_name: animal.common_name,
-      park_id: park._id,
-      animal_id: animal._id,
-      lat_lng: this.props.userLocation
-    };
-    sighting.animal_name = sighting.animal_name ? sighting.animal_name : this.props.currentAnimal.common_name;
-    sighting.animal_id = sighting.animal_id ? sighting.animal_id : this.props.currentAnimal._id;
-    sighting.obs_comment = this.state.text;
-    sighting.obs_abundance = +this.state.count;
+    const sighting = createSighting(this.props.user, this.props.currentPark, this.props.currentAnimal, this.props.userLocation, this.state.text, this.state.count);
     this.props.saveSighting({sighting});
-    this.props.closeModal();
+    this.props.closeModal('save');
     if (this.props.callsaveAnimation !== null) this.props.callsaveAnimation();
     if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
   }
@@ -63,8 +53,16 @@ class _SaveSighting extends Component {
           onRequestClose={this.props.closeModal}
         >
           <View style={styles.saveModal}>
-            <Text>{this.props.currentAnimal.common_name}</Text>
-            <Text>{this.props.currentAnimal.latin_name}</Text>
+            <View style={styles.animalInfo}>
+              <Image
+                style={{ height: 50, width: 50 }}
+                source={{uri: this.props.currentAnimal.small_img}}
+              />
+              <View style={styles.animalTextContainer}>
+                <Text style={{fontSize: 18}}>{this.props.currentAnimal.common_name}</Text>
+                <Text style={{fontSize: 12}}>{this.props.currentAnimal.latin_name}</Text>
+              </View>
+            </View>
             <Text style={styles.title}>Save sighting details</Text>
             <Text style={styles.title}>Leave a comment about your experience:</Text>
             <TextInput
@@ -87,6 +85,9 @@ class _SaveSighting extends Component {
             </View>
             <View>
             </View>
+            <Button style={styles.buttonLeft} onPress={this.props.closeModal}>
+              <Text>cancel and keep searching</Text><
+            /Button>
             <TouchableOpacity onPress={this.handlePress.bind(this)}>
               <Text>Save sighting</Text>
             </TouchableOpacity>
@@ -147,6 +148,12 @@ const styles = StyleSheet.create({
   },
   title: {
     justifyContent: 'center'
+  },
+  animalInfo: {
+    flexDirection: 'row'
+  },
+  animalTextContainer: {
+    margin: 2
   }
 });
 

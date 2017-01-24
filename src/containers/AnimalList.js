@@ -38,9 +38,9 @@ class _AnimalList extends Component {
     this.props.setAnimalInfoVisibility(false);
   }
 
-  closeSaveModal () {
+  closeSaveModal (status) {
     this.props.setSightingInfoVisibility(false);
-    this.props.navigator.push({id: 'Map'})
+    if (status === 'save') this.props.navigator.push({id: 'Map'});
   }
 
   changeTab = (rarity) => {
