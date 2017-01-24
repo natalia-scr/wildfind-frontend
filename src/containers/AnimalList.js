@@ -9,6 +9,7 @@ import {
   ListView,
   Image
 } from 'react-native';
+import { TopBar } from './index';
 import { AnimalInfo, BackButton, TabBar, SaveSighting } from '../UI';
 
 class _AnimalList extends Component {
@@ -70,9 +71,7 @@ class _AnimalList extends Component {
     const id = this.props.mapNavMode ? 'Map' : 'ParkInfo';
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
-          <BackButton navigator={this.props.navigator} id={id} />
-        </View>
+        <TopBar title={'Species List'} id={id} navigator={this.props.navigator} />
         <TabBar changeTab={this.changeTab} />
         {this.props.loading === true && <Text>Loading animal list...</Text>}
         {this.props.loading === false && <ListView
