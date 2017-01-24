@@ -5,7 +5,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native';
 import { TopBar } from './index';
 import * as actions from '../actions';
@@ -24,18 +25,24 @@ class List extends Component {
     return (
       <View style={styles.container}>
         <TopBar title={'Parks'} id={'Welcome'} navigator={this.props.navigator} />
+          <Image
+            source={require('../img/apark.jpg')}
+            style={styles.background}
+            resizeMode={'cover'}
+          >
         <View style={styles.parksContainer}>
           {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
           {this.props.loading === false && this.props.parks.map((park, i) => {
             return <View key={i}>
               <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo')} >
-                <Text>{park.name}</Text>
+                <Text style={styles.text}>{park.name}</Text>
               </TouchableOpacity>
             </View>;
           })
           }
         </View>
-      </View>
+      </Image>
+    </View>
     );
   }
 }
@@ -64,27 +71,33 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 const styles = StyleSheet.create({
+  background: {
+     flex: 1,
+     width: undefined,
+     height: undefined,
+     backgroundColor: 'transparent',
+     justifyContent: 'center',
+     alignItems: 'center'
+   },
   container: {
     flex: 1
   },
   parksContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: height * 0.4
+    alignItems: 'center'
   },
   button: {
-    borderRadius: 5,
-    borderColor: 'black',
-    borderWidth: 1,
-    height: 40,
-    marginTop: 20,
-    width: 200,
+    height: 130,
+    width: width - 5,
+    marginTop: 2,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'rgba(3, 15, 1, 0.85)'
   },
   text: {
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 25,
+    color: 'rgb(201, 238, 194)'
   }
 });
 
