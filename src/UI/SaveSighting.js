@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   Dimensions,
   TextInput,
-  Animated
+  Animated,
+  Image
 } from 'react-native';
 import * as actions from '../actions';
 let { height, width } = Dimensions.get('window');
@@ -52,8 +53,16 @@ class _SaveSighting extends Component {
           onRequestClose={this.props.closeModal}
         >
           <View style={styles.saveModal}>
-            <Text>{this.props.currentAnimal.common_name}</Text>
-            <Text>{this.props.currentAnimal.latin_name}</Text>
+            <View style={styles.animalInfo}>
+              <Image
+                style={{ height: 50, width: 50 }}
+                source={{uri: this.props.currentAnimal.small_img}}
+              />
+              <View style={styles.animalTextContainer}>
+                <Text style={{fontSize: 18}}>{this.props.currentAnimal.common_name}</Text>
+                <Text style={{fontSize: 12}}>{this.props.currentAnimal.latin_name}</Text>
+              </View>
+            </View>
             <Text style={styles.title}>Save sighting details</Text>
             <Text style={styles.title}>Leave a comment about your experience:</Text>
             <TextInput
@@ -139,6 +148,12 @@ const styles = StyleSheet.create({
   },
   title: {
     justifyContent: 'center'
+  },
+  animalInfo: {
+    flexDirection: 'row'
+  },
+  animalTextContainer: {
+    margin: 2
   }
 });
 
