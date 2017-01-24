@@ -16,8 +16,7 @@ class _AnimalList extends Component {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([]),
-      saveModalVisible: false
+      dataSource: ds.cloneWithRows([])
     };
   }
 
@@ -28,16 +27,14 @@ class _AnimalList extends Component {
   handlePress (visible, id) {
     this.props.setCurrentAnimal(id);
     if (!this.props.mapNavMode) {
-      this.props.setModalVisibility(visible);
+      this.props.setAnimalInfoVisibility(visible);
     } else {
-      this.setState({
-        saveModalVisible: true
-      })
+      this.props.setSightingInfoVisibility(visible);
     }
   }
 
   closeModal () {
-    this.props.setModalVisibility(false);
+    this.props.setAnimalInfoVisibility(false);
   }
 
   closeSaveModal () {
@@ -99,13 +96,13 @@ class _AnimalList extends Component {
             </View>
           }
         /> }
-        {this.props.currentAnimal !== null && !this.props.mapNavMode && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.modalVisible}
+        {this.props.currentAnimal !== null && !this.props.mapNavMode && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.animalInfoVisible}
           closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings}/> }
         {this.props.mapNavMode && this.props.currentAnimal !== null &&
           <SaveSighting
             sightingInfo={sightingInfo}
             closeModal={this.closeSaveModal.bind(this)}
-            visible={this.state.saveModalVisible}
+            visible={this.props.sightingInfoVisible}
             currentMarkerId={null}
             callsaveAnimation={null}
             /> }
@@ -116,7 +113,7 @@ class _AnimalList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    modalVisible: state.modal.animalInfoVisible,
+    animalInfoVisible: state.modal.animalInfoVisible,
     animals: state.animals.list,
     loading: state.animals.loading,
     error: state.animals.error,
@@ -124,7 +121,8 @@ const mapStateToProps = (state) => {
     mapNavMode: state.user.mapNavMode,
     currentPark: state.parks.currentPark,
     user: state.user.name,
-    userLocation: state.user.lat_lng
+    userLocation: state.user.lat_lng,
+    sightingInfoVisible: state.modal.sightingInfoVisible
   };
 };
 
@@ -133,7 +131,7 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchAnimals: () => {
       dispatch(actions.fetchAnimals());
     },
-    setModalVisibility: (payload) => {
+    setAnimalInfoVisibility: (payload) => {
       dispatch(actions.setAnimalInfoVisibility(payload));
     },
     setCurrentAnimal: (payload) => {
