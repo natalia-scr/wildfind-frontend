@@ -14,25 +14,29 @@ export const TopBar = ({id, navigator, title}) => (
     <View style={styles.textContainer}>
       <Text style={styles.topBarText}>{title}</Text>
     </View>
+    <View style={styles.button}>
+    </View>
   </View>
 );
 
 const styles = StyleSheet.create({
   topBar: {
-    backgroundColor: 'darkolivegreen',
+    backgroundColor: '#2c9d33',
     height: 40,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     position: 'relative'
-  },
-  textContainer: {
-    position: 'absolute',
-    left: width * 0.33
   },
   topBarText: {
     alignItems: 'center',
     padding: 10,
     fontSize: 20,
     color: 'whitesmoke'
+  },
+  button: {
+    height: 40,
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
