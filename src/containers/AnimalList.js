@@ -9,6 +9,7 @@ import {
   ListView,
   Image
 } from 'react-native';
+import { TopBar } from './index';
 import { AnimalInfo, BackButton, TabBar, SaveSighting } from '../UI';
 
 class _AnimalList extends Component {
@@ -61,18 +62,10 @@ class _AnimalList extends Component {
   }
 
   render () {
-    const park = this.props.currentPark;
-    const sightingInfo = {
-      observer_id: this.props.user.id,
-      park_id: park.id,
-      lat_lng: this.props.userLocation
-    }
     const id = this.props.mapNavMode ? 'Map' : 'ParkInfo';
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
-          <BackButton navigator={this.props.navigator} id={id} />
-        </View>
+        <TopBar title={'Species List'} id={id} navigator={this.props.navigator} />
         <TabBar changeTab={this.changeTab} />
         {this.props.loading === true && <Text>Loading animal list...</Text>}
         {this.props.loading === false && <ListView
@@ -100,7 +93,6 @@ class _AnimalList extends Component {
           closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings}/> }
         {this.props.mapNavMode && this.props.currentAnimal !== null &&
           <SaveSighting
-            sightingInfo={sightingInfo}
             closeModal={this.closeSaveModal.bind(this)}
             visible={this.props.sightingInfoVisible}
             currentMarkerId={null}
@@ -119,7 +111,6 @@ const mapStateToProps = (state) => {
     error: state.animals.error,
     currentAnimal: state.animals.currentAnimal,
     mapNavMode: state.user.mapNavMode,
-    currentPark: state.parks.currentPark,
     user: state.user.name,
     userLocation: state.user.lat_lng,
     sightingInfoVisible: state.modal.sightingInfoVisible

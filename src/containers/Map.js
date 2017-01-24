@@ -28,7 +28,7 @@ class _Map extends Component {
       this.props.fetchAnimals();
     }
     if (!this.props.mapNavMode) {
-      if (this.props.randomSearchMode) this.props.fetchSightings(this.props.currentPark.id);
+      if (this.props.randomSearchMode) this.props.fetchSightings(this.props.currentPark._id);
       else this.props.fetchSightingsById(this.props.currentAnimal._id);
     }
     navigator.geolocation.watchPosition(pos => {
@@ -71,7 +71,7 @@ class _Map extends Component {
     }
     if (id === 'newSightings') {
       this.props.clearSightings();
-      this.props.fetchSightings(this.props.currentPark.id);
+      this.props.fetchSightings(this.props.currentPark._id);
     }
     if (id === 'AnimalList') {
       if (haversine(userLocation, this.props.currentPark.lat_lng, {unit: 'meter'}).toFixed(0) > 500) {

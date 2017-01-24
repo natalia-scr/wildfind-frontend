@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Dimensions
 } from 'react-native';
-import { BackButton } from './BackButton';
+import { TopBar } from '../containers';
 let { height, width } = Dimensions.get('window');
 
 export class _ParkInfo extends Component {
@@ -26,8 +26,8 @@ export class _ParkInfo extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <BackButton navigator={this.props.navigator} id={'ParkList'} />
-        <View>
+        <TopBar navigator={this.props.navigator} id={'ParkList'} title={this.props.park.name} />
+        <View style={styles.parkInfoContainer}>
           <Text>Park Info</Text>
           <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', true)} >
             <Text>start exploring</Text>
@@ -45,7 +45,8 @@ const mapStateToProps = (state) => {
   return {
     animals: state.animals.list,
     loading: state.animals.loading,
-    error: state.animals.error
+    error: state.animals.error,
+    park: state.parks.currentPark
   };
 };
 
@@ -64,7 +65,9 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
+  },
+  parkInfoContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: height * 0.4
