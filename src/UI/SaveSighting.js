@@ -56,7 +56,7 @@ class _SaveSighting extends Component {
             <View style={styles.animalInfo}>
               <Image
                 style={styles.img}
-                source={{uri: this.props.currentAnimal.photo}}
+                source={{uri: this.props.currentAnimal.small_img}}
               />
               <View style={styles.animalTextContainer}>
                 <Text style={styles.title}>{this.props.currentAnimal.common_name}</Text>
@@ -64,7 +64,7 @@ class _SaveSighting extends Component {
               </View>
             </View>
             <View style={styles.description}>
-              <Text style={styles.descriptionText}>{this.props.currentAnimal.description.split('\n')[0]}</Text>
+              <Text style={styles.descriptionText}>{this.props.currentAnimal.short_des}</Text>
             </View>
             <View style={styles.saveBox}>
               <Text style={styles.saveTitle}>Save sighting details</Text>
@@ -77,27 +77,27 @@ class _SaveSighting extends Component {
                 value={this.state.text}
               />
               <View>
-                <Text style={styles.text}>Abundance:</Text>
-                <View style={styles.abundanceContainer}>
-                  <Button style={styles.smallButton} onPress={this.plusButtonPress.bind(this)}>+</Button>
+              <View style={styles.abundanceContainer}>
+              <Text style={styles.text}>Abundance:</Text>
+                <View style={styles.countContainer}>
+                  <Button style={styles.smallButtonMinus} onPress={this.minusButtonPress.bind(this)}>-</Button>
                   <TextInput
                     style={styles.numericInput}
                     keyboardType='numeric'
                     onChangeText={(count) => this.setState({count})}
                     value={this.state.count}
                   />
-                  <Button style={styles.smallButton} onPress={this.minusButtonPress.bind(this)}>-</Button>
+                  <Button style={styles.smallButtonPlus} onPress={this.plusButtonPress.bind(this)}>+</Button>
                 </View>
+                </View>
+                <Button style={styles.buttonSave} onPress={this.handlePress.bind(this)}>
+                  <Text style={styles.text}>Save sighting</Text>
+                </Button>
+                <Button style={styles.buttonCancel} onPress={this.props.closeModal}>
+                  <Text style={styles.text}>cancel and keep searching</Text><
+                /Button>
               </View>
             </View>
-            <View>
-            </View>
-            <Button style={styles.buttonLeft} onPress={this.props.closeModal}>
-              <Text style={styles.text}>cancel and keep searching</Text><
-            /Button>
-            <TouchableOpacity onPress={this.handlePress.bind(this)}>
-              <Text style={styles.text}>Save sighting</Text>
-            </TouchableOpacity>
           </View>
         </Modal>
       </View>
@@ -140,24 +140,46 @@ const styles = StyleSheet.create({
     flex: 1
   },
   saveModal: {
-    width: width * 0.95,
+    width: width * 0.90,
     height: height * 0.95,
     padding: 20,
     marginTop: 20,
-    marginLeft: 10,
+    marginLeft: 15,
     borderRadius: 5,
     backgroundColor: 'rgba(242, 247, 243, 0.98)'
   },
-  smallButton: {
+  buttonSave: {
+    width: width * 0.7,
+    borderColor: 'rgb(44, 157, 51)',
+    backgroundColor: 'rgb(135, 203, 139)'
+  },
+  buttonCancel: {
+    width: width * 0.7,
+    borderColor: 'rgb(247, 121, 51)',
+    backgroundColor: 'rgb(247, 168, 124)'
+  },
+  smallButtonPlus: {
     width: 40,
     height: 40,
     marginLeft: 2,
-    marginRight: 2
+    marginRight: 2,
+    borderColor: 'rgb(44, 157, 51)'
+  },
+  smallButtonMinus: {
+    width: 40,
+    height: 40,
+    marginLeft: 2,
+    marginRight: 2,
+    borderColor: 'rgb(247, 121, 51)'
   },
   textInput: {
     height: height * 0.1,
-    width: width * 0.65,
-    backgroundColor: 'white'
+    width: width * 0.7,
+    backgroundColor: 'white',
+    marginTop: 10,
+    marginBottom: 15,
+    padding: 20,
+    marginLeft: 20
   },
   title: {
     justifyContent: 'center',
@@ -201,28 +223,38 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: 40,
     width: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 5,
     marginLeft: 5,
     marginRight: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#3e3e3e',
+    fontSize: 14
   },
   saveBox: {
-    paddingTop: 20
+    paddingTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   description: {
     paddingTop: 10,
     borderBottomWidth: 1,
     paddingBottom: 10,
     borderBottomColor: 'white',
-    height: 120
+    height: 140
   },
   descriptionText: {
     color: '#3e3e3e'
   },
+  countContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10
+  },
   abundanceContainer: {
-    flexDirection: 'row'
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
