@@ -24,7 +24,6 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		8B2BE1838390A05327E1F3DD /* libPods-Wildfind.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFCCCA84D805ED431741E153 /* libPods-Wildfind.a */; };
 		B70C850453104EBF93D6164E /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B27DF822E0804D5E84F30808 /* libAirMaps.a */; };
 		E1B21FF11E364158001B8CA9 /* AIRGMSMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B21FD01E364158001B8CA9 /* AIRGMSMarker.m */; };
 		E1B21FF21E364158001B8CA9 /* AIRGoogleMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B21FD21E364158001B8CA9 /* AIRGoogleMap.m */; };
@@ -298,7 +297,6 @@
 		E1B21FEE1E364158001B8CA9 /* DummyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyView.m; sourceTree = "<group>"; };
 		E1B21FEF1E364158001B8CA9 /* RCTConvert+GMSMapViewType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+GMSMapViewType.h"; sourceTree = "<group>"; };
 		E1B21FF01E364158001B8CA9 /* RCTConvert+GMSMapViewType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+GMSMapViewType.m"; sourceTree = "<group>"; };
-		FFCCCA84D805ED431741E153 /* libPods-Wildfind.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wildfind.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,7 +324,6 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				B70C850453104EBF93D6164E /* libAirMaps.a in Frameworks */,
-				8B2BE1838390A05327E1F3DD /* libPods-Wildfind.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				E1B21FCE1E364158001B8CA9 /* AirGoogleMaps */,
-				FFCCCA84D805ED431741E153 /* libPods-Wildfind.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -630,6 +626,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = Y7K9L576YD;
 					};
 				};
 			};
@@ -1072,6 +1071,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = Y7K9L576YD;
 				INFOPLIST_FILE = Wildfind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1091,6 +1091,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y7K9L576YD;
 				INFOPLIST_FILE = Wildfind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
