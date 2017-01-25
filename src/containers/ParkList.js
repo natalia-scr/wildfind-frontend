@@ -10,17 +10,24 @@ import {
 } from 'react-native';
 import { TopBar } from './index';
 import * as actions from '../actions';
-let { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
+import Popup from 'react-native-popup';
+
 
 class List extends Component {
   componentDidMount () {
     this.props.fetchParks();
   }
-  handlePress (parkId, id) {
-    this.props.navigator.push({id});
-    this.props.setCurrentPark(parkId);
-    this.props.fetchAnimals();
+  handlePress (parkId, id, active, name) {
+    if (active) {
+      this.props.navigator.push({id});
+      this.props.setCurrentPark(parkId);
+      this.props.fetchAnimals();
+    } else {
+      this.popup.alert(`${name} coming soon`);
+    }
   }
+
   render () {
     return (
       <View style={styles.container}>
@@ -34,7 +41,7 @@ class List extends Component {
           {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
           {this.props.loading === false && this.props.parks.map((park, i) => {
             return <View key={i}>
-              <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo')} >
+              <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo', park.active, park.name)} >
                 <Text style={styles.text}>{park.name}</Text>
               </TouchableOpacity>
             </View>;
@@ -42,6 +49,7 @@ class List extends Component {
           }
         </View>
       </Image>
+      <Popup ref={popup => this.popup = popup} />
     </View>
     );
   }
@@ -83,21 +91,22 @@ const styles = StyleSheet.create({
     flex: 1
   },
   parksContainer: {
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center'
   },
   button: {
-    height: 130,
-    width: width - 5,
-    marginTop: 2,
+    height: 80,
+    width: 300,
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(3, 15, 1, 0.85)'
+    backgroundColor: 'rgba(19, 33, 17, 0.85)'
   },
   text: {
     textAlign: 'center',
     fontSize: 25,
-    color: 'rgb(201, 238, 194)'
+    color: 'white',
+    fontFamily: 'coming soon'
   }
 });
 

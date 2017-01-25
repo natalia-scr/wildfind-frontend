@@ -78,7 +78,7 @@ class _AnimalList extends Component {
                 <View style={styles.item}>
                   <Image
                     style={{ height: 100, width: 100 }}
-                    source={{uri: animal.small_img}}
+                    source={require(`../img/animals/eastern_gray_squirrel.jpg`)}
                   />
                   <View style={styles.animalTextContainer}>
                     <Text>{animal.common_name}</Text>

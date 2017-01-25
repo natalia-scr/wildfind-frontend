@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 import { onBackPress } from '../services';
 
@@ -19,9 +20,12 @@ const styles = StyleSheet.create({
   button: {
     height: 40,
     width: 50,
-    paddingTop: 25,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    ...Platform.select({
+      ios: {paddingTop: 25},
+      android: {paddingTop: 10}
+    })
   },
   Buttontext: {
     fontSize: 20,
