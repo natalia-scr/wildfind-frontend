@@ -21,7 +21,7 @@ class _Welcome extends Component {
   render () {
     return (
       <Image
-        source={require('../img/bird.jpg')}
+        source={require('../img/bird2.jpg')}
         style={styles.background}
         resizeMode={'cover'}>
       <View style={styles.container}>
@@ -31,8 +31,10 @@ class _Welcome extends Component {
           style={styles.logo}
         />
         </View>
-        <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
+        </View>
       </View>
       </Image>
     );
@@ -52,17 +54,25 @@ const styles = StyleSheet.create({
     height: undefined,
     backgroundColor: 'transparent'
   },
+  logo: {
+    marginTop: 100
+  },
   intro: {
     marginBottom: 150
   },
   text: {
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 20,
+    color: 'rgb(176, 245, 183)'
+  },
+  buttonsContainer: {
+    marginTop: -60
   },
   button: {
     borderRadius: 15,
     height: 80,
-    backgroundColor: 'rgba(197, 228, 188, 0.7)',
+    borderWidth: 3,
+    borderColor: 'rgb(176, 245, 183)',
     marginTop: 20,
     width: 200,
     justifyContent: 'center',
