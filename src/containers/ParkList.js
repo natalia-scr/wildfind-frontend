@@ -80,13 +80,13 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   background: {
-     flex: 1,
-     width: undefined,
-     height: undefined,
-     backgroundColor: 'transparent',
-     justifyContent: 'center',
-     alignItems: 'center'
-   },
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   container: {
     flex: 1
   },
