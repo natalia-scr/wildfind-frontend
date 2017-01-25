@@ -104,8 +104,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingBottom: height * 0.4
+    flex: 1
   },
   logBookContainer: {
     flex: 1
