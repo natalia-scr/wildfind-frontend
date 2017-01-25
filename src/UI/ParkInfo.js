@@ -6,10 +6,11 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native';
 import { TopBar } from '../containers';
-let { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export class _ParkInfo extends Component {
 
@@ -24,16 +25,31 @@ export class _ParkInfo extends Component {
   }
 
   render () {
+    const { park } = this.props;
     return (
       <View style={styles.container}>
         <TopBar navigator={this.props.navigator} id={'ParkList'} title={this.props.park.name} />
+        <Image
+          source={require('../img/alexlake.jpg')}
+          style={styles.background}
+          resizeMode={'cover'}
+        >
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{park.name} </Text>
+            <Text style={styles.location}>{park.location} </Text>
+          </View>
+        </Image>
         <View style={styles.parkInfoContainer}>
-          <Text>Park Info</Text>
+          <Text style={styles.quote} >{park.quote}</Text>
+          <Text style={styles.author}>{park.quoteAuthor}</Text>
+          <Text style={styles.text}>{park.info}</Text>
+        </View>
+        <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', true)} >
-            <Text>start exploring</Text>
+            <Text style={styles.buttonText} >Start Exploring</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList', false)} >
-            <Text>animal </Text>
+            <Text style={styles.buttonText} >Species List</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -64,27 +80,88 @@ const mapDispatchToProps = (dispatch, props) => {
   };
 };
 const styles = StyleSheet.create({
+  background: {
+    height: 250,
+    width: width,
+    backgroundColor: 'transparent',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
+  },
   container: {
     flex: 1
   },
   parkInfoContainer: {
+    backgroundColor: 'rgba(242, 247, 243, 0.98)',
+    padding: 8
+  },
+  buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: height * 0.4
+    flexDirection: 'row'
   },
   button: {
-    borderRadius: 5,
-    borderColor: 'black',
-    borderWidth: 1,
-    height: 40,
-    marginTop: 20,
-    width: 200,
+    borderRadius: 6,
+    borderColor: 'rgb(175, 180, 180)',
+    borderWidth: 2,
+    marginLeft: 10,
+    marginRight: 10,
+    height: 35,
+    width: 150,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
+    alignItems: 'center',
+    backgroundColor: 'transparent'
+    },
+    buttonText: {
+      color: 'rgb(44, 157, 51)',
+      fontSize: 14,
+      fontWeight: '400'
+    },
   text: {
+    fontSize: 14,
+    color: '#3e3e3e',
+    textAlign: 'left',
+    marginTop: 10,
+    marginBottom: 0
+  },
+  author: {
+    fontSize: 10,
+    color: '#3e3e3e',
+    textAlign: 'center'
+  },
+  quote: {
+    fontSize: 15,
+    color: '#3e3e3e',
     textAlign: 'center',
-    fontSize: 20
+    fontStyle: 'italic'
+  },
+  titleContainer: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    marginTop: 1,
+    margin: 12
+  },
+  title: {
+    fontSize: 25,
+    color: 'white',
+    textAlign: 'right',
+    fontWeight: '300'
+  },
+  subTitle: {
+    fontSize: 18,
+    color: '#3e3e3e',
+    textAlign: 'left'
+  },
+  location: {
+    fontSize: 15,
+    color: 'white'
+  },
+  infoContainer: {
+    flex: 0.4,
+    margin: 8
+  },
+  quoteContainer: {
+    flex: 0.4,
+    margin: 12
   }
 });
 

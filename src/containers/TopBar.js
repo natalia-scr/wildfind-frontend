@@ -3,9 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  Platform
 } from 'react-native';
-let {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 import {BackButton } from '../UI';
 
 export const TopBar = ({id, navigator, title}) => (
@@ -22,16 +23,22 @@ export const TopBar = ({id, navigator, title}) => (
 const styles = StyleSheet.create({
   topBar: {
     backgroundColor: 'rgb(44, 157, 51)',
-    height: 55,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    position: 'relative'
+    position: 'relative',
+    ...Platform.select({
+      ios: {height: 55},
+      android: {height: 40}
+    })
   },
   topBarText: {
     alignItems: 'center',
-    paddingTop: 25,
     fontSize: 20,
-    color: 'whitesmoke'
+    color: 'whitesmoke',
+    ...Platform.select({
+      ios: {paddingTop: 25},
+      android: {paddingTop: 10}
+    })
   },
   button: {
     height: 40,
