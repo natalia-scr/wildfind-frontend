@@ -22,7 +22,7 @@ export const TopBar = ({id, navigator, title}) => (
 const styles = StyleSheet.create({
   topBar: {
     backgroundColor: 'rgb(44, 157, 51)',
-    height: 40,
+    height: 55,
     flexDirection: 'row',
     justifyContent: 'space-between',
     position: 'relative'
