@@ -105,8 +105,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 25,
-    color: 'white',
-    fontFamily: 'coming soon'
+    color: 'white'
   }
 });
 
