@@ -136,9 +136,10 @@ class _Map extends Component {
   render () {
     const colour = this.props.randomSearchMode ? '#800000' : '#00FFFF';
     const route = this.props.randomSearchMode ? 'ParkInfo' : 'AnimalList';
+    const title = this.props.randomSearchMode ? this.props.currentPark.name : this.props.currentAnimal.common_name;
     return (
       <View style={styles.container}>
-        <TopBar navigator={this.props.navigator} id={route} title={this.props.currentPark.name} />
+        <TopBar navigator={this.props.navigator} id={route} title={title} />
         <MapView
           style={styles.map}
           mapType={'satellite'}
@@ -158,10 +159,9 @@ class _Map extends Component {
                 coordinate={marker.lat_lng}
                 pinColor={colour}
                 title={marker.animal_name}
-                description={JSON.stringify(marker.lat_lng)}
             />
         ))}
-        
+
         </MapView>
         <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
           randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
