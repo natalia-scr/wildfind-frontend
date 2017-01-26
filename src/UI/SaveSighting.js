@@ -9,7 +9,8 @@ import {
   Dimensions,
   TextInput,
   Animated,
-  Image
+  Image,
+  Platform
 } from 'react-native';
 import * as actions from '../actions';
 let { height, width } = Dimensions.get('window');
@@ -136,9 +137,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const styles = StyleSheet.create({
-  sightingContainer: {
-    flex: 1
-  },
   saveModal: {
     width: width * 0.90,
     height: height * 0.95,
@@ -177,9 +175,11 @@ const styles = StyleSheet.create({
     width: width * 0.7,
     backgroundColor: 'white',
     marginTop: 10,
-    marginBottom: 15,
-    padding: 20,
-    marginLeft: 20
+    marginLeft: 20,
+    ...Platform.select({
+      ios: {padding: 20, marginBottom: 15},
+      android: {padding: 10, marginBottom: 5}
+    })
   },
   title: {
     justifyContent: 'center',
@@ -191,8 +191,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#3e3e3e',
     fontSize: 16,
-    marginBottom: 10,
-    fontWeight: '500'
+    fontWeight: '500',
+    ...Platform.select({
+      ios: {marginBottom: 10},
+      android: {marginBottom: 1}
+    })
   },
   small: {
     fontSize: 12,
@@ -201,8 +204,11 @@ const styles = StyleSheet.create({
   animalInfo: {
     flexDirection: 'row',
     borderBottomWidth: 1,
-    paddingBottom: 10,
-    borderBottomColor: 'white'
+    borderBottomColor: 'white',
+    ...Platform.select({
+      ios: {paddingBottom: 10},
+      android: {paddingBottom: 5}
+    })
   },
   animalTextContainer: {
     marginLeft: 20,
@@ -231,16 +237,21 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   saveBox: {
-    paddingTop: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    ...Platform.select({
+      ios: {paddingTop: 20},
+      android: {paddingTop: 5}
+    })
   },
   description: {
     paddingTop: 10,
     borderBottomWidth: 1,
     paddingBottom: 10,
     borderBottomColor: 'white',
-    height: 140
+    ...Platform.select({
+      ios: {height: 140}
+    })
   },
   descriptionText: {
     color: '#3e3e3e'
@@ -249,8 +260,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10
+    ...Platform.select({
+      ios: {marginTop: 10, marginBottom: 10}
+    })
   },
   abundanceContainer: {
     justifyContent: 'center',
