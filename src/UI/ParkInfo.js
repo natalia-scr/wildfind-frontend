@@ -88,10 +88,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'rgb(235, 232, 225)'
   },
   parkInfoContainer: {
-    backgroundColor: 'rgb(235, 232, 225)',
     padding: 10
   },
   buttonContainer: {
