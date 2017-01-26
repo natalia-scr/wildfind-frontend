@@ -10,9 +10,9 @@ import {
   Dimensions
 } from 'react-native';
 import { TopBar } from './index';
-import { AnimalInfo, BackButton } from '../UI';
+import { AnimalInfo } from '../UI';
 import * as actions from '../actions';
-let { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 
 class _Logbook extends Component {
@@ -26,9 +26,8 @@ class _Logbook extends Component {
 
   componentWillMount () {
     this.props.fetchUserLog(this.props.user.id);
-    this.props.fetchAnimals();
     this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
-
+    if (this.props.animals === 0) this.props.fetchAnimals();
   }
 
   handlePress (visibility, animalId) {

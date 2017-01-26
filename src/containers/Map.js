@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  Text
+  Text,
+  ScrollView
 } from 'react-native';
 import haversine from 'haversine';
 import { TopBar } from './index';
@@ -161,18 +162,17 @@ class _Map extends Component {
             />
         ))}
           </MapView>
-        <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
-          randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
-        {this.props.modalVisible === true &&
-          <SaveSighting
-            visible={this.props.modalVisible}
-            closeModal={this.closeModal.bind(this)}
-            currentAnimal={this.props.currentAnimal}
-            currentMarkerId={this.getActiveMarkerId()}
-            randomSearchMode={this.props.randomSearchMode}
-            callsaveAnimation={this.callsaveAnimation.bind(this)}
-            />}
-
+          {this.props.modalVisible === true &&
+            <SaveSighting
+              visible={this.props.modalVisible}
+              closeModal={this.closeModal.bind(this)}
+              currentAnimal={this.props.currentAnimal}
+              currentMarkerId={this.getActiveMarkerId()}
+              randomSearchMode={this.props.randomSearchMode}
+              callsaveAnimation={this.callsaveAnimation.bind(this)}
+              />}
+              <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
+                randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
           <Animated.View style={{ transform: [{ translateY: this.animatedValue }], height: 70, backgroundColor: 'green', position: 'absolute', left: 0, top: 0, right: 0, justifyContent: 'center' }}>
             <Text style={{ marginLeft: 10, color: 'white', fontSize: 16, fontWeight: 'bold' }}>
                 Sighting successfully saved!

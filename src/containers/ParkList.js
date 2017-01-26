@@ -13,11 +13,13 @@ import * as actions from '../actions';
 const { height, width } = Dimensions.get('window');
 import Popup from 'react-native-popup';
 
-
 class List extends Component {
   componentDidMount () {
-    this.props.fetchParks();
+    if (this.props.parks.length === 0) {
+      this.props.fetchParks();
+    }
   }
+
   handlePress (parkId, id, active, name) {
     if (active) {
       this.props.navigator.push({id});
@@ -32,25 +34,25 @@ class List extends Component {
     return (
       <View style={styles.container}>
         <TopBar title={'Parks'} id={'Welcome'} navigator={this.props.navigator} />
-          <Image
-            source={require('../img/apark.jpg')}
-            style={styles.background}
-            resizeMode={'cover'}
-          >
-        <View style={styles.parksContainer}>
-          {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
-          {this.props.loading === false && this.props.parks.map((park, i) => {
-            return <View key={i}>
-              <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo', park.active, park.name)} >
-                <Text style={styles.text}>{park.name}</Text>
-              </TouchableOpacity>
-            </View>;
-          })
-          }
-        </View>
-      </Image>
-      <Popup ref={popup => this.popup = popup} />
-    </View>
+        <Image
+          source={require('../img/apark.jpg')}
+          style={styles.background}
+          resizeMode={'cover'}
+        >
+          <View style={styles.parksContainer}>
+            {this.props.loading === true && <View><Text style={{color: 'white'}}>Loading parks...</Text></View>}
+            {this.props.loading === false && this.props.parks.map((park, i) => {
+              return <View key={i}>
+                <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo', park.active, park.name)} >
+                  <Text style={styles.text}>{park.name}</Text>
+                </TouchableOpacity>
+              </View>;
+            })
+            }
+          </View>
+        </Image>
+        <Popup ref={popup => this.popup = popup} />
+      </View>
     );
   }
 }

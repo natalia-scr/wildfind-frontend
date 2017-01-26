@@ -31,6 +31,7 @@ export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, curr
 
 const styles = StyleSheet.create({
   navBar: {
+    flex: 0.08,
     height: 40,
     flexDirection: 'row',
     justifyContent: 'center',
