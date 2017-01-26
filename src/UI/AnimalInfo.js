@@ -8,8 +8,11 @@ import {
   Modal,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native';
+let { height, width } = Dimensions.get('window');
+import Button from 'apsl-react-native-button';
 
 export class AnimalInfo extends Component {
 
@@ -26,15 +29,15 @@ export class AnimalInfo extends Component {
     return (
       <View style={styles.container}>
             <Modal
-              animationType={'fade'}
               visible={this.props.visible}
               onRequestClose={this.props.closeModal}
+              transparent={true}
             >
-            <ScrollView style={{flex: 1}} >
-              <View style={{flex: 1}} >
-              <View>
+              <View style={styles.animalModal}>
+              <ScrollView style={{flex: 1}} >
+              <View style={styles.header}>
                 <Image
-                  style={{ height: 200, width: 200 }}
+                  style={styles.photo}
                   source={{uri: this.props.animal.photo}}
                 />
               </View>
@@ -45,14 +48,17 @@ export class AnimalInfo extends Component {
               <View>
                 <Text>{this.props.animal.description}</Text>
               </View>
-              <TouchableOpacity onPress={this.handlePress.bind(this, 'search', 'Map')}>
-                <Text>Find Animal </Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.handlePress.bind(this, 'return')}>
-                <Text>Return to list</Text>
-              </TouchableOpacity>
+              <View style={styles.buttonContainer}>
+                <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
+                  <Text>Find Animal </Text>
+                </Button>
+                <Button style={styles.buttonCancel} onPress={this.handlePress.bind(this, 'return')}>
+                  <Text>Return to list</Text>
+                </Button>
+              </View>
+              </ScrollView>
+
             </View>
-          </ScrollView>
             </Modal>
       </View>
     );
@@ -62,31 +68,36 @@ export class AnimalInfo extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  animalModal: {
+    width: width * 0.95,
+    height: height * 0.95,
+    padding: 15,
+    marginTop: 20,
+    marginLeft: 8,
+    borderRadius: 5,
+    backgroundColor: 'rgba(242, 247, 243, 0.98)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonSave: {
+    width: width * 0.7,
+    borderColor: 'rgb(44, 157, 51)',
+    backgroundColor: 'rgb(135, 203, 139)'
+  },
+  buttonCancel: {
+    width: width * 0.7,
+    borderColor: 'rgb(247, 121, 51)',
+    backgroundColor: 'rgb(247, 168, 124)'
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10
+  },
+  photo: {
+    width: 150,
+    height: 150,
+    borderRadius: 5
   }
 });
-// 
-// const mapStateToProps = (state) => {
-//   return {
-//     modalVisible: state.modal.modalVisible,
-//     animals: state.animals.list,
-//     loading: state.animals.loading,
-//     error: state.animals.error,
-//     currentAnimal: state.animals.currentAnimal
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch, props) => {
-//   return {
-//     fetchAnimals: () => {
-//       dispatch(actions.fetchAnimals());
-//     },
-//     setModalVisibility: (payload) => {
-//       dispatch(actions.setModalVisibility(payload));
-//     },
-//     setCurrentAnimal: (payload) => {
-//       dispatch(actions.setCurrentAnimal(payload));
-//     }
-//   };
-// };
-//
-// export const AnimalInfo = connect(mapStateToProps, mapDispatchToProps)(_AnimalInfo);

@@ -9,9 +9,10 @@ import {
   Text,
   StyleSheet,
   AsyncStorage,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
-
+let { height, width } = Dimensions.get('window');
 
 class _LoginScreen extends Component {
   constructor () {
@@ -22,7 +23,7 @@ class _LoginScreen extends Component {
   };
 }
   componentDidMount () {
-    // AsyncStorage.removeItem('user')
+    //AsyncStorage.removeItem('user')
     this.setState({loading: true})
     AsyncStorage.getItem('user').then((value) => {
       if (value !== null) this.props.setUser(JSON.parse(value));
@@ -58,6 +59,7 @@ class _LoginScreen extends Component {
         <Image
           source={require('../img/WildFind.png')}
           style={styles.logo}
+          resizeMode={'contain'}
         />
         </View>
         <View>
@@ -111,7 +113,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   logo: {
-    marginTop: 100
+    marginTop: 100,
+    width: width * 0.8
   },
   intro: {
     marginBottom: 150
