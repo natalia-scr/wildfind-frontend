@@ -33,12 +33,12 @@ export class WFNavigator extends Component {
   render () {
     return (
       <Navigator
-      style={styles.container}
-      initialRoute={{id: 'LoginScreen'}}
-      renderScene={this.renderScene}
-      configureScene={(route) => {
-        return Navigator.SceneConfigs.FadeAndroid;
-      }}
+        style={styles.container}
+        initialRoute={{id: 'LoginScreen'}}
+        renderScene={this.renderScene}
+        configureScene={(route) => {
+          return Navigator.SceneConfigs.FadeAndroid;
+        }}
       />
     );
   }
@@ -47,5 +47,5 @@ export class WFNavigator extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
+  }
 });

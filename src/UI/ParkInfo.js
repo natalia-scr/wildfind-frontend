@@ -10,7 +10,7 @@ import {
   Image
 } from 'react-native';
 import { TopBar } from '../containers';
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export class _ParkInfo extends Component {
 
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent'
-    },
-    buttonText: {
-      color: 'rgb(44, 157, 51)',
-      fontSize: 14,
-      fontWeight: '400'
-    },
+  },
+  buttonText: {
+    color: 'rgb(44, 157, 51)',
+    fontSize: 14,
+    fontWeight: '400'
+  },
   text: {
     fontSize: 14,
     color: '#3e3e3e',

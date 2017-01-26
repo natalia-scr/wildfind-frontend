@@ -5,14 +5,11 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
   Image
 } from 'react-native';
 import { TopBar } from './index';
 import * as actions from '../actions';
-const { height, width } = Dimensions.get('window');
 import Popup from 'react-native-popup';
-
 
 class List extends Component {
   componentDidMount () {
@@ -32,25 +29,25 @@ class List extends Component {
     return (
       <View style={styles.container}>
         <TopBar title={'Parks'} id={'Welcome'} navigator={this.props.navigator} />
-          <Image
-            source={require('../img/apark.jpg')}
-            style={styles.background}
-            resizeMode={'cover'}
-          >
-        <View style={styles.parksContainer}>
-          {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
-          {this.props.loading === false && this.props.parks.map((park, i) => {
-            return <View key={i}>
-              <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo', park.active, park.name)} >
-                <Text style={styles.text}>{park.name}</Text>
-              </TouchableOpacity>
-            </View>;
-          })
+        <Image
+          source={require('../img/apark.jpg')}
+          style={styles.background}
+          resizeMode={'cover'}
+        >
+          <View style={styles.parksContainer}>
+            {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
+            {this.props.loading === false && this.props.parks.map((park, i) => {
+              return <View key={i}>
+                <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo', park.active, park.name)} >
+                  <Text style={styles.text}>{park.name}</Text>
+                </TouchableOpacity>
+              </View>;
+            })
           }
-        </View>
-      </Image>
-      <Popup ref={popup => this.popup = popup} />
-    </View>
+          </View>
+        </Image>
+        <Popup ref={popup => this.popup = popup} />
+      </View>
     );
   }
 }

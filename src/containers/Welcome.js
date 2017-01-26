@@ -24,18 +24,18 @@ class _Welcome extends Component {
         source={require('../img/bird2.jpg')}
         style={styles.background}
         resizeMode={'cover'}>
-      <View style={styles.container}>
-        <View style={styles.intro}>
-        <Image
-          source={require('../img/WildFind.png')}
-          style={styles.logo}
-        />
+        <View style={styles.container}>
+          <View style={styles.intro}>
+            <Image
+              source={require('../img/WildFind.png')}
+              style={styles.logo}
+            />
+          </View>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
-        </View>
-      </View>
       </Image>
     );
   }
