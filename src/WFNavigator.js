@@ -14,7 +14,7 @@ export class WFNavigator extends Component {
       case 'LoginScreen':
         return <LoginScreen navigator={navigator} title='LoginScreen' />;
       case 'Welcome':
-        return <Welcome navigator={navigator} title='Welcome' />;
+        return <LoginScreen navigator={navigator} title='Welcome' />;
       case 'ParkList':
         return <ParkList navigator={navigator} title='ParkList' />;
       case 'Logbook':

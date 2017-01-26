@@ -13,8 +13,11 @@ import Popup from 'react-native-popup';
 
 class List extends Component {
   componentDidMount () {
-    this.props.fetchParks();
+    if (this.props.parks.length === 0) {
+      this.props.fetchParks();
+    }
   }
+
   handlePress (parkId, id, active, name) {
     if (active) {
       this.props.navigator.push({id});
@@ -35,7 +38,7 @@ class List extends Component {
           resizeMode={'cover'}
         >
           <View style={styles.parksContainer}>
-            {this.props.loading === true && <View><Text>Loading parks...</Text></View>}
+            {this.props.loading === true && <View><Text style={{color: 'white'}}>Loading parks...</Text></View>}
             {this.props.loading === false && this.props.parks.map((park, i) => {
               return <View key={i}>
                 <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo', park.active, park.name)} >
@@ -44,6 +47,7 @@ class List extends Component {
               </View>;
             })
           }
+
           </View>
         </Image>
         <Popup ref={popup => this.popup = popup} />

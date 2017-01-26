@@ -26,9 +26,9 @@ class _Logbook extends Component {
 
   componentDidMount () {
     this.props.fetchUserLog(this.props.user.id);
-    this.props.fetchAnimals();
     this.props.fetchParks();
     this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
+    if (this.props.animals.length === 0) this.props.fetchAnimals();
   }
 
   handlePress (visibility, animalId) {

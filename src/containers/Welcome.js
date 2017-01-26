@@ -20,46 +20,17 @@ class _Welcome extends Component {
 
   render () {
     return (
-      <Image
-        source={require('../img/bird2.jpg')}
-        style={styles.background}
-        resizeMode={'cover'}>
-        <View style={styles.container}>
-          <View style={styles.intro}>
-            <Image
-              source={require('../img/WildFind.png')}
-              style={styles.logo}
-            />
-          </View>
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
-          </View>
+      <View style={styles.welcomeContainer}>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'ParkList')} ><Text style={styles.text}>Explore</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Logbook')} ><Text style={styles.text}>Log Book</Text></TouchableOpacity>
         </View>
-      </Image>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'rgba(1,1,1,0.6)',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  background: {
-    flex: 1,
-    width: undefined,
-    height: undefined,
-    backgroundColor: 'transparent'
-  },
-  logo: {
-    marginTop: 100
-  },
-  intro: {
-    marginBottom: 150
-  },
   text: {
     textAlign: 'center',
     fontSize: 20,

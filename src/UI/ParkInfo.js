@@ -16,7 +16,7 @@ export class _ParkInfo extends Component {
 
   componentDidMount () {
     this.props.clearSightings();
-    this.props.fetchAnimals();
+    if (this.props.animals === 0) this.fetchAnimals();
   }
 
   handlePress (id, randomSearch) {
@@ -81,7 +81,7 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 const styles = StyleSheet.create({
   background: {
-    height: 250,
+    height: height / 2.4,
     width: width,
     backgroundColor: 'transparent',
     justifyContent: 'flex-end',

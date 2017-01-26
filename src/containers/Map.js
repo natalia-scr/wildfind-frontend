@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  Text
+  Text,
+  ScrollView
 } from 'react-native';
 import haversine from 'haversine';
 import { TopBar } from './index';
@@ -160,6 +161,7 @@ class _Map extends Component {
                 description={JSON.stringify(marker.lat_lng)}
             />
         ))}
+        
         </MapView>
         <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
           randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
@@ -231,12 +233,7 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  mapContainer: {
-    flex: 1
-  },
+  
   map: {
     flex: 0.9,
     width: Dimensions.get('window').width,
