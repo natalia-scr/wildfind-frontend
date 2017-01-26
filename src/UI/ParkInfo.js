@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  Image
+  Image,
+  Platform
 } from 'react-native';
 import { TopBar } from '../containers';
 const { height, width } = Dimensions.get('window');
@@ -98,7 +99,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingTop: 8
+    paddingTop: 8,
+    ...Platform.select({
+      android: {marginTop: 10}
+    })
   },
   buttonExplore: {
     borderRadius: 6,
