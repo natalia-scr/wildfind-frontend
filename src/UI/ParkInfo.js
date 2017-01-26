@@ -44,10 +44,10 @@ export class _ParkInfo extends Component {
           <Text style={styles.author}>{park.quoteAuthor}</Text>
           <Text style={styles.text}>{park.info}</Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.buttonExplore} onPress={this.handlePress.bind(this, 'Map', true)} >
+            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', true)} >
               <Text style={styles.buttonText} >Start Exploring</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonList} onPress={this.handlePress.bind(this, 'AnimalList', false)} >
+            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList', false)} >
               <Text style={styles.buttonText} >Species List</Text>
             </TouchableOpacity>
           </View>
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   parkInfoContainer: {
-    backgroundColor: 'rgb(235, 232, 225)',
-    padding: 10
+    backgroundColor: 'rgba(242, 247, 243, 0.98)',
+    padding: 12
   },
   buttonContainer: {
     justifyContent: 'center',
@@ -100,28 +100,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 8
   },
-  buttonExplore: {
+  button: {
     borderRadius: 6,
+    borderColor: 'rgb(175, 180, 180)',
+    borderWidth: 2,
     marginLeft: 10,
     marginRight: 10,
     height: 35,
     width: width * 0.4,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(97, 192, 232, 0.8)'
-  },
-  buttonList: {
-    borderRadius: 6,
-    marginLeft: 10,
-    marginRight: 10,
-    height: 35,
-    width: width * 0.4,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(120, 212, 125, 0.8)'
+    backgroundColor: 'transparent'
   },
   buttonText: {
-    color: '#3e3e3e',
+    color: 'rgb(44, 157, 51)',
     fontSize: 14,
     fontWeight: '400'
   },

@@ -13,7 +13,7 @@ export const LoginInput = ({userInput, handleChange, handlePress}) => (
   <View style={styles.loginContainer}>
     <View style={styles.inputBox}>
       <View style={styles.loginTextBox}>
-        <Text style={styles.loginText}>Enter your name to start exploring</Text>
+        <Text style={styles.loginText}>{`Enter your Name to \nStart Exploring`}</Text>
       </View>
       <View>
         <TextInput
@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(229, 238, 242, 0.35)',
     padding: 10,
     paddingTop: 30,
-    borderRadius: 10
+    borderRadius: 10,
+    paddingLeft: 30,
+    paddingRight: 30
   },
   loginText: {
     fontSize: 24,
