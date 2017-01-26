@@ -35,27 +35,27 @@ export class AnimalInfo extends Component {
             >
               <View style={styles.animalModal}>
               <ScrollView style={{flex: 1}} >
-              <View style={styles.header}>
-                <Image
-                  style={styles.photo}
-                  source={{uri: this.props.animal.photo}}
-                />
-              </View>
-              <View>
-                <Text>{this.props.animal.common_name}</Text>
-                <Text>{this.props.animal.latin_name}</Text>
-              </View>
-              <View>
-                <Text>{this.props.animal.description}</Text>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
-                  <Text>Find Animal </Text>
-                </Button>
-                <Button style={styles.buttonCancel} onPress={this.handlePress.bind(this, 'return')}>
-                  <Text>Return to list</Text>
-                </Button>
-              </View>
+                <View style={styles.header}>
+                  <Image
+                    style={styles.photo}
+                    source={{uri: this.props.animal.small_img}}
+                  />
+                  <View style={styles.titleText}>
+                    <Text style={styles.title}>{this.props.animal.common_name}</Text>
+                    <Text style={styles.small}>{this.props.animal.latin_name}</Text>
+                  </View>
+                </View>
+                <View style={styles.description}>
+                  <Text style={styles.text}>{this.props.animal.description}</Text>
+                </View>
+                <View style={styles.buttonContainer}>
+                  <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
+                    <Text style={styles.text}>Find Animal </Text>
+                  </Button>
+                  <Button style={styles.buttonCancel} onPress={this.handlePress.bind(this, 'return')}>
+                    <Text style={styles.text}>Return to list</Text>
+                  </Button>
+                </View>
               </ScrollView>
 
             </View>
@@ -80,24 +80,53 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  header: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   buttonSave: {
-    width: width * 0.7,
-    borderColor: 'rgb(44, 157, 51)',
-    backgroundColor: 'rgb(135, 203, 139)'
+    width: width * 0.4,
+    marginRight: 10,
+    borderWidth: 0,
+    backgroundColor: 'rgba(135, 203, 139, 0.8)'
   },
   buttonCancel: {
-    width: width * 0.7,
-    borderColor: 'rgb(247, 121, 51)',
-    backgroundColor: 'rgb(247, 168, 124)'
+    width: width * 0.4,
+    borderWidth: 0,
+    backgroundColor: 'rgba(247, 168, 124, 0.8)'
   },
   buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
+    flexDirection: 'row'
   },
   photo: {
-    width: 150,
-    height: 150,
+    width: 145,
+    height: 145,
     borderRadius: 5
+  },
+  titleText: {
+    marginTop: 10,
+    padding: 8,
+    backgroundColor: 'rgba(229, 238, 242, 0.95)',
+    width: width * 0.86
+  },
+  small: {
+    fontSize: 12,
+    color: 'rgb(44, 157, 51)',
+    fontStyle: 'italic'
+  },
+  title: {
+    justifyContent: 'center',
+    color: '#3e3e3e',
+    fontSize: 18,
+    fontWeight: '500'
+  },
+  description: {
+    marginTop: 10
+  },
+  text: {
+    color: '#3e3e3e'
   }
 });
