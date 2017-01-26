@@ -10,7 +10,7 @@ import {
   Image
 } from 'react-native';
 import { TopBar } from '../containers';
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export class _ParkInfo extends Component {
 

@@ -17,7 +17,8 @@ class _AnimalList extends Component {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([])
+      dataSource: ds.cloneWithRows([]),
+      active: 'all'
     };
   }
 
@@ -44,21 +45,24 @@ class _AnimalList extends Component {
   }
 
   changeTab = (rarity) => {
-    if (rarity === 'all') {
-      this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.animals)});
-    }
+    let active = 'all';
+    let list = this.props.animals;
     if (rarity === 'common') {
-      const commonList = this.props.animals.filter(animal => animal.abundance > 3);
-      this.setState({dataSource: this.state.dataSource.cloneWithRows(commonList)});
+      list = this.props.animals.filter(animal => animal.abundance > 3);
+      active = 'common';
     }
     if (rarity === 'uncommon') {
-      const uncommonList = this.props.animals.filter(animal => animal.abundance < 4 && animal.abundance > 0);
-      this.setState({dataSource: this.state.dataSource.cloneWithRows(uncommonList)});
+      list = this.props.animals.filter(animal => animal.abundance < 4 && animal.abundance > 0);
+      active = 'uncommon';
     }
     if (rarity === 'rare') {
-      const rareList = this.props.animals.filter(animal => animal.abundance === 0);
-      this.setState({dataSource: this.state.dataSource.cloneWithRows(rareList)});
+      list = this.props.animals.filter(animal => animal.abundance === 0);
+      active = 'rare';
     }
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(list),
+      active
+    })
   }
 
   render () {
@@ -67,7 +71,7 @@ class _AnimalList extends Component {
     return (
       <View style={styles.container}>
         <TopBar title={title} id={id} navigator={this.props.navigator} />
-        <TabBar changeTab={this.changeTab} />
+        <TabBar changeTab={this.changeTab} active={this.state.active} />
         {this.props.loading === true && <Text>Loading animal list...</Text>}
         {this.props.loading === false && <ListView
           enableEmptySections={true}
