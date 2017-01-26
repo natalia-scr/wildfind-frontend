@@ -128,13 +128,14 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'rgb(235, 232, 225)'
   },
   logBookContainer: {
     flex: 1,
     height: height,
-    backgroundColor: 'rgba(242, 247, 243, 0.98)'
-
+    backgroundColor: 'rgb(235, 232, 225)',
+    padding: 5
   },
   sightingCard: {
     margin: 10
@@ -154,9 +155,7 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   },
   sightingContainer: {
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: 'aliceblue',
+    borderRadius: 15,
     marginTop: 5,
     backgroundColor: 'rgb(234, 249, 234)'
   },
@@ -179,7 +178,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   noSightingText: {
-    fontSize: 25
+    fontSize: 25,
+    textAlign: 'center'
   },
   content: {
     flexDirection: 'row',
