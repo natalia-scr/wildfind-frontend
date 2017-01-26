@@ -5,11 +5,14 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
 import { TopBar } from './index';
 import * as actions from '../actions';
 import Popup from 'react-native-popup';
+
+let { height, width } = Dimensions.get('window');
 
 class List extends Component {
   componentDidMount () {
@@ -32,24 +35,27 @@ class List extends Component {
     return (
       <View style={styles.container}>
         <TopBar title={'Parks'} id={'Welcome'} navigator={this.props.navigator} />
-        <Image
-          source={require('../img/apark.jpg')}
-          style={styles.background}
-          resizeMode={'cover'}
-        >
           <View style={styles.parksContainer}>
             {this.props.loading === true && <View><Text style={{color: 'white'}}>Loading parks...</Text></View>}
             {this.props.loading === false && this.props.parks.map((park, i) => {
               return <View key={i}>
                 <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, park._id, 'ParkInfo', park.active, park.name)} >
-                  <Text style={styles.text}>{park.name}</Text>
+                  <View>
+                    <Image
+                    source={{uri: park.img}}
+                    style={styles.img}
+                    >
+                      <View style={styles.titleText}>
+                        <Text style={styles.text}>{park.name}</Text>
+                      </View>
+                    </Image>
+                  </View>
                 </TouchableOpacity>
               </View>;
             })
           }
 
           </View>
-        </Image>
         <Popup ref={popup => this.popup = popup} />
       </View>
     );
@@ -89,24 +95,38 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'rgb(235, 232, 225)'
   },
   parksContainer: {
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
+  img: {
+    height: height * 0.298,
+    width: width
+  },
   button: {
-    height: 80,
-    width: 300,
-    marginTop: 20,
+    height: height * 0.298,
+    width: width,
+    borderRadius: 5,
+    marginBottom: 3,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(19, 33, 17, 0.85)'
+    alignItems: 'center'
   },
   text: {
     textAlign: 'center',
-    fontSize: 25,
-    color: 'white'
+    fontSize: 18,
+    color: 'whitesmoke'
+  },
+  titleText: {
+    position: 'absolute',
+    bottom: 0,
+    width: width,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(1, 1, 1, 0.4)',
+    padding: 10
   }
 });
 
