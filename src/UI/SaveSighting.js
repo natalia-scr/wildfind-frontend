@@ -199,7 +199,8 @@ const styles = StyleSheet.create({
   },
   small: {
     fontSize: 12,
-    color: 'rgb(44, 157, 51)'
+    color: 'rgb(44, 157, 51)',
+    fontStyle: 'italic'
   },
   animalInfo: {
     flexDirection: 'row',
