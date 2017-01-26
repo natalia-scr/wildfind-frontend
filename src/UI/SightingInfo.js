@@ -5,12 +5,11 @@ import {
   Text,
   StyleSheet,
   Modal,
-  TouchableOpacity,
   Image,
   Dimensions
 } from 'react-native';
 import * as actions from '../actions';
-let { height, width } = Dimensions.get('window');
+let { width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
 import { SaveSighting } from './SaveSighting';
 
@@ -54,11 +53,11 @@ class _SightingInfo extends Component {
       <View style={styles.container}>
       {this.state.saveModalVisibility &&
         <SaveSighting
-        sightingInfo={sightingInfo}
-        closeSaveModal={this.closeSaveModal.bind(this)}
-        visible={this.state.saveModalVisibility}
-        currentMarkerId={this.props.currentMarkerId}
-        callsaveAnimation={this.props.callsaveAnimation}
+          sightingInfo={sightingInfo}
+          closeSaveModal={this.closeSaveModal.bind(this)}
+          visible={this.state.saveModalVisibility}
+          currentMarkerId={this.props.currentMarkerId}
+          callsaveAnimation={this.props.callsaveAnimation}
         />
       }
         <Modal
@@ -88,7 +87,6 @@ class _SightingInfo extends Component {
     );
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {

@@ -78,18 +78,18 @@ class _SaveSighting extends Component {
                 value={this.state.text}
               />
               <View>
-              <View style={styles.abundanceContainer}>
-              <Text style={styles.text}>Abundance:</Text>
-                <View style={styles.countContainer}>
-                  <Button style={styles.smallButtonMinus} onPress={this.minusButtonPress.bind(this)}>-</Button>
-                  <TextInput
-                    style={styles.numericInput}
-                    keyboardType='numeric'
-                    onChangeText={(count) => this.setState({count})}
-                    value={this.state.count}
-                  />
-                  <Button style={styles.smallButtonPlus} onPress={this.plusButtonPress.bind(this)}>+</Button>
-                </View>
+                <View style={styles.abundanceContainer}>
+                  <Text style={styles.text}>Abundance:</Text>
+                  <View style={styles.countContainer}>
+                    <Button style={styles.smallButtonMinus} onPress={this.minusButtonPress.bind(this)}>-</Button>
+                    <TextInput
+                      style={styles.numericInput}
+                      keyboardType='numeric'
+                      onChangeText={(count) => this.setState({count})}
+                      value={this.state.count}
+                    />
+                    <Button style={styles.smallButtonPlus} onPress={this.plusButtonPress.bind(this)}>+</Button>
+                  </View>
                 </View>
                 <Button style={styles.buttonSave} onPress={this.handlePress.bind(this)}>
                   <Text style={styles.text}>Save sighting</Text>
@@ -199,7 +199,8 @@ const styles = StyleSheet.create({
   },
   small: {
     fontSize: 12,
-    color: 'rgb(44, 157, 51)'
+    color: 'rgb(44, 157, 51)',
+    fontStyle: 'italic'
   },
   animalInfo: {
     flexDirection: 'row',

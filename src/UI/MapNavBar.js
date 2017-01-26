@@ -27,7 +27,7 @@ export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, curr
     <View style={styles.tab} >
       {!randomSearchMode && currentAnimal !== null && <TouchableOpacity onPress={handlePress.bind(null, 'randomSearchMode')} >
         <Text style={styles.navText}>Record {currentAnimal.common_name}</Text>
-      </TouchableOpacity> }
+      </TouchableOpacity>}
       {randomSearchMode && <TouchableOpacity onPress={handlePress.bind(null, 'newSightings')} >
         <Text style={styles.navText}>Get new sightings</Text>
       </TouchableOpacity> }

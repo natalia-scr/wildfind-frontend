@@ -63,9 +63,10 @@ class _AnimalList extends Component {
 
   render () {
     const id = this.props.mapNavMode ? 'Map' : 'ParkInfo';
+    const title = this.props.mapNavMode ? 'What have you spotted?' : 'Species List';
     return (
       <View style={styles.container}>
-        <TopBar title={'Species List'} id={id} navigator={this.props.navigator} />
+        <TopBar title={title} id={id} navigator={this.props.navigator} />
         <TabBar changeTab={this.changeTab} />
         {this.props.loading === true && <Text>Loading animal list...</Text>}
         {this.props.loading === false && <ListView
@@ -77,12 +78,12 @@ class _AnimalList extends Component {
               <TouchableOpacity onPress={this.handlePress.bind(this, true, animal._id)} >
                 <View style={styles.item}>
                   <Image
-                    style={{ height: 100, width: 100 }}
+                    style={styles.image}
                     source={{uri: animal.small_img}}
                   />
                   <View style={styles.animalTextContainer}>
-                    <Text>{animal.common_name}</Text>
-                    <Text>{animal.latin_name}</Text>
+                    <Text style={styles.title} >{animal.common_name}</Text>
+                    <Text style={styles.small}>{animal.latin_name}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -139,27 +140,45 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'rgb(235, 232, 225)'
+  },
+  image: {
+    height: 100,
+    width: 100,
+    borderRadius: 100,
+    padding: 10,
+    margin: 2
   },
   list: {
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    padding: 10
   },
   item: {
-    height: 100,
+    height: 110,
     flexDirection: 'row'
   },
   animalTextContainer: {
-    marginLeft: 1
+    marginLeft: 15,
+    marginTop: 20,
+    paddingTop: 5
   },
   animalContainer: {
-    borderWidth: 1,
-    borderColor: 'black'
+    borderBottomColor: 'rgb(195, 219, 202)',
+    borderBottomWidth: 1,
+    marginBottom: 5
   },
-  topBar: {
-    backgroundColor: 'darkolivegreen',
-    height: 30,
-    justifyContent: 'center'
-  }
+  title: {
+    justifyContent: 'center',
+    color: '#3e3e3e',
+    fontSize: 18,
+    fontWeight: '500'
+  },
+  small: {
+    fontSize: 12,
+    color: 'rgb(44, 157, 51)',
+    fontStyle: 'italic'
+  },
 });
 
 export const AnimalList = connect(mapStateToProps, mapDispatchToProps)(_AnimalList);
