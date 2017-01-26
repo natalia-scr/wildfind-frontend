@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     ...Platform.select({
       ios: {marginBottom: 5},
-      android: {marginBottom: 1}
+      android: {marginBottom: 5}
     })
   },
   small: {
@@ -235,7 +235,10 @@ const styles = StyleSheet.create({
     marginRight: 5,
     textAlign: 'center',
     color: '#3e3e3e',
-    fontSize: 14
+    fontSize: 14,
+    ...Platform.select({
+      android: {marginBottom: 9}
+    })
   },
   saveBox: {
     justifyContent: 'center',

@@ -23,7 +23,7 @@ class _LoginScreen extends Component {
   };
 }
   componentDidMount () {
-    //AsyncStorage.removeItem('user')
+    // AsyncStorage.removeItem('user')
     this.setState({loading: true})
     AsyncStorage.getItem('user').then((value) => {
       if (value !== null) this.props.setUser(JSON.parse(value));
