@@ -231,12 +231,7 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  mapContainer: {
-    flex: 1
-  },
+  
   map: {
     flex: 0.9,
     width: Dimensions.get('window').width,
