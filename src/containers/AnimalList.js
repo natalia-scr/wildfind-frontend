@@ -148,9 +148,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(235, 232, 225)'
   },
   image: {
-    height: 100,
-    width: 100,
-    borderRadius: 100,
+    height: 90,
+    width: 90,
+    borderRadius: 45,
     padding: 10,
     margin: 2
   },

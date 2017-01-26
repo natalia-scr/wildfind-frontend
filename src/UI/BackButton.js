@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 0,
     ...Platform.select({
-      ios: {paddingTop: 25},
+      ios: {paddingTop: 34},
       android: {paddingTop: 10}
     })
   },
