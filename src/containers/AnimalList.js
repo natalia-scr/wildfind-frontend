@@ -140,7 +140,8 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'rgb(235, 232, 225)'
   },
   image: {
     height: 100,
@@ -158,7 +159,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   animalTextContainer: {
-    marginLeft: 1,
+    marginLeft: 15,
+    marginTop: 20,
     paddingTop: 5
   },
   animalContainer: {
