@@ -5,12 +5,10 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
   Image
 } from 'react-native';
 import { TopBar } from './index';
 import * as actions from '../actions';
-const { height, width } = Dimensions.get('window');
 import Popup from 'react-native-popup';
 
 class List extends Component {
@@ -48,7 +46,8 @@ class List extends Component {
                 </TouchableOpacity>
               </View>;
             })
-            }
+          }
+
           </View>
         </Image>
         <Popup ref={popup => this.popup = popup} />

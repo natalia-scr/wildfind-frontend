@@ -3,11 +3,9 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
   Platform
 } from 'react-native';
-const {height, width} = Dimensions.get('window');
-import {BackButton } from '../UI';
+import { BackButton } from '../UI';
 
 export const TopBar = ({id, navigator, title}) => (
   <View style={styles.topBar}>
