@@ -138,11 +138,11 @@ const mapDispatchToProps = (dispatch) => {
 
 const styles = StyleSheet.create({
   saveModal: {
-    width: width * 0.90,
+    width: width * 0.95,
     height: height * 0.95,
-    padding: 20,
+    padding: 15,
     marginTop: 20,
-    marginLeft: 15,
+    marginLeft: 10,
     borderRadius: 5,
     backgroundColor: 'rgba(242, 247, 243, 0.98)'
   },
@@ -171,13 +171,13 @@ const styles = StyleSheet.create({
     borderColor: 'rgb(247, 121, 51)'
   },
   textInput: {
-    height: height * 0.1,
+    height: height * 0.08,
     width: width * 0.7,
     backgroundColor: 'white',
     marginTop: 10,
     marginLeft: 20,
     ...Platform.select({
-      ios: {padding: 20, marginBottom: 15},
+      ios: {padding: 10, marginBottom: 10},
       android: {padding: 10, marginBottom: 5}
     })
   },
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     ...Platform.select({
-      ios: {marginBottom: 10},
+      ios: {marginBottom: 5},
       android: {marginBottom: 1}
     })
   },
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'white',
     ...Platform.select({
-      ios: {paddingBottom: 10},
+      ios: {paddingBottom: 5},
       android: {paddingBottom: 5}
     })
   },
@@ -216,12 +216,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#3e3e3e',
-    fontSize: 14
+    fontSize: 12
   },
   img: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 90,
+    height: 90,
+    borderRadius: 45,
     borderWidth: 2,
     borderColor: 'white'
   },
@@ -240,28 +240,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
-      ios: {paddingTop: 20},
+      ios: {paddingTop: 10},
       android: {paddingTop: 5}
     })
   },
   description: {
     paddingTop: 10,
     borderBottomWidth: 1,
-    paddingBottom: 10,
+    paddingBottom: 0,
     borderBottomColor: 'white',
     ...Platform.select({
-      ios: {height: 140}
+      ios: {height: 130}
     })
   },
   descriptionText: {
-    color: '#3e3e3e'
+    color: '#3e3e3e',
+    fontSize: 13
   },
   countContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
-      ios: {marginTop: 10, marginBottom: 10}
+      ios: {marginTop: 5, marginBottom: 5}
     })
   },
   abundanceContainer: {

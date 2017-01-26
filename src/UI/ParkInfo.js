@@ -43,14 +43,14 @@ export class _ParkInfo extends Component {
           <Text style={styles.quote} >{park.quote}</Text>
           <Text style={styles.author}>{park.quoteAuthor}</Text>
           <Text style={styles.text}>{park.info}</Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', true)} >
-            <Text style={styles.buttonText} >Start Exploring</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList', false)} >
-            <Text style={styles.buttonText} >Species List</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'Map', true)} >
+              <Text style={styles.buttonText} >Start Exploring</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={this.handlePress.bind(this, 'AnimalList', false)} >
+              <Text style={styles.buttonText} >Species List</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -92,12 +92,13 @@ const styles = StyleSheet.create({
   },
   parkInfoContainer: {
     backgroundColor: 'rgba(242, 247, 243, 0.98)',
-    padding: 8
+    padding: 12
   },
   buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingTop: 8
   },
   button: {
     borderRadius: 6,
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     height: 35,
-    width: 150,
+    width: width * 0.4,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent'
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
       fontWeight: '400'
     },
   text: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#3e3e3e',
     textAlign: 'left',
     marginTop: 10,
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   quote: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#3e3e3e',
     textAlign: 'center',
     fontStyle: 'italic'

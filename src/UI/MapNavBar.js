@@ -3,8 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
+let { height, width } = Dimensions.get('window');
 
 export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, currentAnimal}) => (
   <View style={styles.navBar}>
@@ -13,17 +15,21 @@ export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, curr
         <Text style={styles.navText}>Logbook</Text>
       </TouchableOpacity>
     </View>
+    <View style={styles.separator}>
+    </View>
     <View style={styles.tab} >
       <TouchableOpacity onPress={handlePress.bind(null, 'AnimalList')} >
         <Text style={styles.navText}>Record new Sighting</Text>
       </TouchableOpacity>
+    </View>
+    <View style={styles.separator}>
     </View>
     <View style={styles.tab} >
       {!randomSearchMode && currentAnimal !== null && <TouchableOpacity onPress={handlePress.bind(null, 'randomSearchMode')} >
         <Text style={styles.navText}>Record {currentAnimal.common_name}</Text>
       </TouchableOpacity> }
       {randomSearchMode && <TouchableOpacity onPress={handlePress.bind(null, 'newSightings')} >
-        <Text style={styles.navText}>Generate New Sightings</Text>
+        <Text style={styles.navText}>Get new sightings</Text>
       </TouchableOpacity> }
     </View>
   </View>
@@ -32,24 +38,30 @@ export const MapNavBar = ({handlePress, navigator, route, randomSearchMode, curr
 const styles = StyleSheet.create({
   navBar: {
     flex: 0.08,
-    height: 40,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'darkslategray'
+    backgroundColor: 'darkslategray',
+    width: width
   },
   tab: {
-    borderWidth: 1,
-    borderColor: 'cadetblue',
+    borderWidth: 0,
+    borderColor: 'transparent',
+    borderRightColor: 'cadetblue',
     borderRadius: 1,
-    padding: 10,
-    width: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 100
+    height: 40,
+    width: width * 0.3
   },
   navText: {
     color: 'cadetblue',
-    fontSize: 12
+    fontSize: 12,
+    textAlign: 'center'
+  },
+  separator: {
+    height: 35,
+    width: 1,
+    backgroundColor: 'cadetblue'
   }
 });
