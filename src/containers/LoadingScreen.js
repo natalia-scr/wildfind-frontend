@@ -20,13 +20,13 @@ export class LoadingScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 40,
-    paddingRight: 40,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
   logo: {
-
+    position: 'absolute',
+    left: -160,
+    top: 100
   }
 });
