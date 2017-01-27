@@ -77,12 +77,12 @@ class _Map extends Component {
       this.props.fetchSightings(this.props.currentPark._id);
     }
     if (id === 'AnimalList') {
-      // if (haversine(userLocation, this.props.currentPark.lat_lng, {unit: 'meter'}).toFixed(0) > 500) {
-      //   this.popup.alert('You need to be in the park to record a Sighting');
-      // } else {
+      if (haversine(userLocation, this.props.currentPark.lat_lng, {unit: 'meter'}).toFixed(0) > 500) {
+        this.popup.alert('You need to be in the park to record a Sighting');
+      } else {
         this.props.selectMapNavMode(true);
         this.props.navigator.push({id});
-      // }
+      }
     }
     if (id === 'Logbook') {
       this.props.selectMapNavMode(true);
