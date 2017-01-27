@@ -63,7 +63,7 @@ class _LoginScreen extends Component {
         />
         </View>
         <View>
-        {this.state.loading === true && <LoadingScreen />}
+        
         {this.state.loading === false && this.props.user === null &&
           <LoginInput handleChange={this.handleChange}
             handlePress={this.handlePress}
