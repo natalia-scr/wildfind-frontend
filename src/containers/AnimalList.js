@@ -95,7 +95,7 @@ class _AnimalList extends Component {
           }
         /> }
         {this.props.currentAnimal !== null && !this.props.mapNavMode && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.animalInfoVisible}
-          closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings}/> }
+          closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings} animalList={true} /> }
         {this.props.mapNavMode && this.props.currentAnimal !== null &&
           <SaveSighting
             closeModal={this.closeSaveModal.bind(this)}

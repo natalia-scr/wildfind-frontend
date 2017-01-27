@@ -26,7 +26,7 @@ class _Logbook extends Component {
 
   componentDidMount () {
     this.props.fetchUserLog(this.props.user.id);
-    this.props.fetchParks();
+    if (this.props.parks.length === 0) this.props.fetchParks();
     this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
     if (this.props.animals.length === 0) this.props.fetchAnimals();
   }
@@ -84,7 +84,7 @@ class _Logbook extends Component {
               </View>
             }
           {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal}
-            visible={this.props.animalInfoVisible} closeModal={this.closeModal.bind(this)} />}
+            visible={this.props.animalInfoVisible} closeModal={this.closeModal.bind(this)} animalList={false} />}
           </View>
         </ScrollView>
       </View>
@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
   },
   logBookContainer: {
     flex: 1,
-    height: height,
     backgroundColor: 'rgb(235, 232, 225)',
     padding: 5
   },
