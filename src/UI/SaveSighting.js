@@ -10,8 +10,10 @@ import {
   TextInput,
   Animated,
   Image,
-  Platform
+  Platform,
+  TouchableWithoutFeedback
 } from 'react-native';
+const dismissKeyboard = require('dismissKeyboard');
 import * as actions from '../actions';
 let { height, width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
@@ -70,13 +72,17 @@ class _SaveSighting extends Component {
             <View style={styles.saveBox}>
               <Text style={styles.saveTitle}>Save sighting details</Text>
               <Text style={styles.text}>Leave a comment about your experience:</Text>
-              <TextInput
-                style={styles.textInput}
-                multiline={true}
-                numberOfLines={4}
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
-              />
+              <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+                <View >
+                  <TextInput
+                      style={styles.textInput}
+                      multiline={true}
+                      numberOfLines={4}
+                      onChangeText={(text) => this.setState({text})}
+                      value={this.state.text}
+                    />
+                </View>
+              </TouchableWithoutFeedback>
               <View>
                 <View style={styles.abundanceContainer}>
                   <Text style={styles.text}>Abundance:</Text>
