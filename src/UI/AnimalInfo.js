@@ -49,9 +49,9 @@ export class AnimalInfo extends Component {
                   <Text style={styles.text}>{this.props.animal.description}</Text>
                 </View>
                 <View style={styles.buttonContainer}>
-                  <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
+                {this.props.animalList && <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
                     <Text style={styles.text}>Find Animal </Text>
-                  </Button>
+                  </Button> }
                   <Button style={styles.buttonCancel} onPress={this.handlePress.bind(this, 'return')}>
                     <Text style={styles.text}>Return to list</Text>
                   </Button>
