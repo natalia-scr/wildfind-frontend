@@ -14,6 +14,7 @@ import { TopBar } from './index';
 import {SaveSighting, MapNavBar} from '../UI';
 import * as actions from '../actions';
 import Popup from 'react-native-popup';
+import { formatDate } from '../services';
 
 class _Map extends Component {
   constructor (props) {
@@ -136,7 +137,7 @@ class _Map extends Component {
   render () {
     const colour = this.props.randomSearchMode ? '#800000' : '#00FFFF';
     const route = this.props.randomSearchMode ? 'ParkInfo' : 'AnimalList';
-    const title = this.props.randomSearchMode ? this.props.currentPark.name : this.props.currentAnimal.common_name;
+    const title = this.props.randomSearchMode ? this.props.currentPark.name : this.props.currentAnimal !== null ? this.props.currentAnimal.common_name : this.props.currentPark.name;
     return (
       <View style={styles.container}>
         <TopBar navigator={this.props.navigator} id={route} title={title} />
@@ -153,13 +154,14 @@ class _Map extends Component {
           showsUserLocation={true}
           followUserLocation={true}
         >
-            {this.props.markers.map((marker, i) => (
-              <MapView.Marker
-                key={i}
-                coordinate={marker.lat_lng}
-                pinColor={colour}
-                title={marker.animal_name}
-            />
+          {this.props.markers.map((marker, i) => (
+            <MapView.Marker
+              key={i}
+              coordinate={marker.lat_lng}
+              pinColor={colour}
+              title={marker.animal_name}
+              description={`Spotted on ${formatDate(marker.date)}`}
+          />
         ))}
 
         </MapView>
