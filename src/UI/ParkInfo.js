@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingTop: 8,
+    paddingTop: 18,
     ...Platform.select({
       android: {marginTop: 10}
     })
