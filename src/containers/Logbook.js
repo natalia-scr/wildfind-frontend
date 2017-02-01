@@ -18,26 +18,28 @@ const { height, width } = Dimensions.get('window');
 class _Logbook extends Component {
   constructor (props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([])
+      animalInfo: false
     };
   }
 
   componentDidMount () {
     this.props.fetchUserLog(this.props.user.id);
     if (this.props.parks.length === 0) this.props.fetchParks();
-    this.setState({dataSource: this.state.dataSource.cloneWithRows(this.props.userLog)});
     if (this.props.animals.length === 0) this.props.fetchAnimals();
   }
 
   handlePress (visibility, animalId) {
+    this.setState({animalInfo: true});
     this.props.setAnimalInfoVisibility(visibility);
     this.props.setCurrentAnimal(animalId);
   }
 
   closeModal () {
     this.props.setAnimalInfoVisibility(false);
+    this.setState({
+      animalInfo: false
+    });
   }
 
   render () {
@@ -76,15 +78,15 @@ class _Logbook extends Component {
                               return animal._id === sighting.animal_id;
                             })[0].small_img}}
                           />}
-                      </View>
+                        </View>
                       </View>
                     </TouchableOpacity>
                   </View>;
                 })}
               </View>
             }
-          {this.props.currentAnimal !== null && <AnimalInfo animal={this.props.currentAnimal}
-            visible={this.props.animalInfoVisible} closeModal={this.closeModal.bind(this)} animalList={false} />}
+            {this.props.currentAnimal !== null && this.state.animalInfo && <AnimalInfo animal={this.props.currentAnimal}
+              visible={this.props.animalInfoVisible} closeModal={this.closeModal.bind(this)} animalList={false} />}
           </View>
         </ScrollView>
       </View>

@@ -18,7 +18,8 @@ class _AnimalList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([]),
-      active: 'all'
+      active: 'all',
+      animalInfo: false
     };
   }
 
@@ -27,16 +28,18 @@ class _AnimalList extends Component {
   }
 
   handlePress (visible, id) {
-    this.props.setCurrentAnimal(id);
     if (!this.props.mapNavMode) {
       this.props.setAnimalInfoVisibility(visible);
+      this.setState({animalInfo: true});
     } else {
       this.props.setSightingInfoVisibility(visible);
     }
+    this.props.setCurrentAnimal(id);
   }
 
   closeModal () {
     this.props.setAnimalInfoVisibility(false);
+    this.setState({animalInfo: false})
   }
 
   closeSaveModal (status) {
@@ -94,7 +97,7 @@ class _AnimalList extends Component {
             </View>
           }
         /> }
-        {this.props.currentAnimal !== null && !this.props.mapNavMode && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.animalInfoVisible}
+        {this.props.currentAnimal !== null && this.state.animalInfo && !this.props.mapNavMode && <AnimalInfo animal={this.props.currentAnimal} visible={this.props.animalInfoVisible}
           closeModal={this.closeModal.bind(this)} navigator={this.props.navigator} clearSightings={this.props.clearSightings} animalList={true} /> }
         {this.props.mapNavMode && this.props.currentAnimal !== null &&
           <SaveSighting

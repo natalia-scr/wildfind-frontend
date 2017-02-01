@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
 import { TopBar } from './index';
 import * as actions from '../actions';
@@ -34,6 +35,7 @@ class List extends Component {
   render () {
     return (
       <View style={styles.container}>
+      <ScrollView>
         <TopBar title={'Parks'} id={'Welcome'} navigator={this.props.navigator} />
           <View style={styles.parksContainer}>
             {this.props.loading === true && <View><Text style={{color: 'white'}}>Loading parks...</Text></View>}
@@ -57,6 +59,7 @@ class List extends Component {
 
           </View>
         <Popup ref={popup => this.popup = popup} />
+        </ScrollView>
       </View>
     );
   }
@@ -86,14 +89,6 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: undefined,
-    height: undefined,
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   container: {
     flex: 1,
     backgroundColor: 'rgb(235, 232, 225)'

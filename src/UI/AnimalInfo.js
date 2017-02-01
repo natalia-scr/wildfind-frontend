@@ -26,6 +26,9 @@ export class AnimalInfo extends Component {
   }
 
   render () {
+    // if (this.props.animalList === undefined) this.props.animalList = true;
+    // if (this.props.logBook === undefined) this.props.logBook = false;
+    //console.warn(this.props.animalList);
     return (
       <View style={styles.container}>
             <Modal

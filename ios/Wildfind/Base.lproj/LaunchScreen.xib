@@ -23,7 +23,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="WildFind" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="141" width="441" height="43"/>
+                    <rect key="frame" x="20" y="134" width="441" height="43"/>
                     <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="39"/>
                     <color key="textColor" red="0.63862127590673579" green="0.63862127590673579" blue="0.63862127590673579" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
