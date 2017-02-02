@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
-  Platform
+  Platform,
+  ScrollView
 } from 'react-native';
 import { TopBar } from '../containers';
 const { height, width } = Dimensions.get('window');
@@ -29,6 +30,7 @@ export class _ParkInfo extends Component {
     const { park } = this.props;
     return (
       <View style={styles.container}>
+      <ScrollView>
         <TopBar navigator={this.props.navigator} id={'ParkList'} title={this.props.park.name} />
         <Image
           source={require('../img/alexlake.jpg')}
@@ -53,6 +55,7 @@ export class _ParkInfo extends Component {
             </TouchableOpacity>
           </View>
         </View>
+        </ScrollView>
       </View>
     );
   }
