@@ -160,7 +160,7 @@ class _Map extends Component {
               coordinate={marker.lat_lng}
               pinColor={colour}
               title={marker.animal_name}
-              description={`Spotted on ${formatDate(marker.date)}`}
+              description={JSON.stringify(marker.lat_lng)}
           />
         ))}
 
