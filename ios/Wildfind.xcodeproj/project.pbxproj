@@ -32,6 +32,7 @@
 		9439C9C81B614D939210D835 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E991928D0ACB421FA8CFCE88 /* MaterialCommunityIcons.ttf */; };
 		9A8E639D98964D69B2440EE5 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA8A168572AC4B74BFFCE654 /* SimpleLineIcons.ttf */; };
 		9C78F940921E4D0783F9B199 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 489B74CD2E4440F3A2AA44F9 /* MaterialIcons.ttf */; };
+		AB7420E00EA14C90859510F5 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D83B6366064C4F12B4EA5D69 /* libRCTOrientation.a */; };
 		B70C850453104EBF93D6164E /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B27DF822E0804D5E84F30808 /* libAirMaps.a */; };
 		CEBDB0D568CF43CF80F9B21A /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 144948AF04CA4740A9B8D6E8 /* EvilIcons.ttf */; };
 		E1B21FF11E364158001B8CA9 /* AIRGMSMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B21FD01E364158001B8CA9 /* AIRGMSMarker.m */; };
@@ -252,6 +253,13 @@
 			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
 			remoteInfo = AirMaps;
 		};
+		E1EBC0BE1E438FED00A8138A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF415A9434D54330893C97CC /* RCTOrientation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTOrientation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -290,6 +298,7 @@
 		B27DF822E0804D5E84F30808 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		BA8A168572AC4B74BFFCE654 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		C2A405ED809045CA96C33D10 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		D83B6366064C4F12B4EA5D69 /* libRCTOrientation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOrientation.a; sourceTree = "<group>"; };
 		E1B21FCF1E364158001B8CA9 /* AIRGMSMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIRGMSMarker.h; sourceTree = "<group>"; };
 		E1B21FD01E364158001B8CA9 /* AIRGMSMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIRGMSMarker.m; sourceTree = "<group>"; };
 		E1B21FD11E364158001B8CA9 /* AIRGoogleMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIRGoogleMap.h; sourceTree = "<group>"; };
@@ -327,6 +336,7 @@
 		E20113CDA68D4DDA8E026F87 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E991928D0ACB421FA8CFCE88 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		F6BD2330F5C0474B8CDBA85B /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		FF415A9434D54330893C97CC /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOrientation.xcodeproj; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +365,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				B70C850453104EBF93D6164E /* libAirMaps.a in Frameworks */,
 				2824D27C72D744E7BAD6F9C0 /* libRNVectorIcons.a in Frameworks */,
+				AB7420E00EA14C90859510F5 /* libRCTOrientation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +554,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				850C57E623774E7790FA445E /* AirMaps.xcodeproj */,
 				674E8434291B44AFBD7B56FF /* RNVectorIcons.xcodeproj */,
+				FF415A9434D54330893C97CC /* RCTOrientation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -628,6 +640,14 @@
 			);
 			name = AirGoogleMaps;
 			path = "../node_modules/react-native-maps/ios/AirGoogleMaps";
+			sourceTree = "<group>";
+		};
+		E1EBC0B01E438FE900A8138A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1EBC0BF1E438FED00A8138A /* libRCTOrientation.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,6 +749,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = E1EBC0B01E438FE900A8138A /* Products */;
+					ProjectRef = FF415A9434D54330893C97CC /* RCTOrientation.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -953,6 +977,13 @@
 			remoteRef = E1B21FB31E363FFB001B8CA9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E1EBC0BF1E438FED00A8138A /* libRCTOrientation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOrientation.a;
+			remoteRef = E1EBC0BE1E438FED00A8138A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1119,6 +1150,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1136,6 +1168,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
