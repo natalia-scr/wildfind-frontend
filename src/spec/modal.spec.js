@@ -3,7 +3,7 @@ import {expect} from 'chai';
 import {modal} from '../reducers/modal';
 import * as actions from '../actions/modal';
 
-describe.only('modal function', () => {
+describe('modal function', () => {
   it('is a function', () => {
     expect(modal).to.be.a('function');
   });

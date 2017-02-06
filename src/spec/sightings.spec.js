@@ -1,8 +1,9 @@
+/* eslint-env node, mocha */
 import {expect} from 'chai';
 import {sightingsReducer} from '../reducers/sightings';
 import * as actions from '../actions/sightings';
 
-describe('sightingsReducer function', () => {
+describe.only('sightingsReducer function', () => {
   it('is a function', () => {
     expect(sightingsReducer).to.be.a('function');
   });
