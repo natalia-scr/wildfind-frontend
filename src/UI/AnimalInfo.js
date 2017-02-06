@@ -13,12 +13,48 @@ import {
 } from 'react-native';
 let { height, width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
+import Sound from 'react-native-sound';
 
 export class AnimalInfo extends Component {
+  constructor () {
+    super();
+    this.state = {
+      audio: null,
+    };
+  }
+
+  componentDidMount () {
+    const call = 'bluetit';
+    const s = new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
+      if (e) {
+        console.log('error', e);
+      } else {
+        this.setState({audio: s})
+      }
+    })
+  }
+
+  componentWillUnmount () {
+    this.setState({audio: null});
+  }
+
+  playSound (action) {
+    if (action === 'play') {
+      console.warn('duration', this.state.audio.getDuration());
+      this.state.audio.play();
+    }
+    if (action === 'stop') {
+      this.state.audio.stop();
+    }
+  }
 
   handlePress = (choice, id) => {
-    if (choice === 'return') this.props.closeModal();
+    if (choice === 'return') {
+      this.state.audio.stop();
+      this.props.closeModal();
+    }
     if (choice === 'search') {
+      this.state.audio.stop();
       this.props.clearSightings();
       this.props.closeModal();
       this.props.navigator.push({id});
@@ -26,9 +62,6 @@ export class AnimalInfo extends Component {
   }
 
   render () {
-    // if (this.props.animalList === undefined) this.props.animalList = true;
-    // if (this.props.logBook === undefined) this.props.logBook = false;
-    //console.warn(this.props.animalList);
     return (
       <View style={styles.container}>
             <Modal
@@ -50,6 +83,8 @@ export class AnimalInfo extends Component {
                 </View>
                 <View style={styles.description}>
                   <Text style={styles.text}>{this.props.animal.description}</Text>
+                  <TouchableOpacity onPress={this.playSound.bind(this, 'play')}><Text>Press Here For Sound</Text></TouchableOpacity>
+                  <TouchableOpacity onPress={this.playSound.bind(this, 'stop')}><Text>Press Here To Stop</Text></TouchableOpacity>
                 </View>
                 <View style={styles.buttonContainer}>
                 {this.props.animalList && <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
