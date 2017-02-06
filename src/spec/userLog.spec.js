@@ -1,5 +1,6 @@
+/* eslint-env node, mocha */
 import {expect} from 'chai';
-import {userLogReducer} from '../reducers/userLog';
+import {userLogReducer} from '../reducers/logBook';
 import * as actions from '../actions/userLog';
 
 describe('userLogReducer function', () => {
