@@ -1,15 +1,28 @@
+/* eslint-env node, mocha */
 import {expect} from 'chai';
-import {modalReducer} from '../reducers/modal';
+import {modal} from '../reducers/modal';
 import * as actions from '../actions/modal';
 
-describe('modalReducer function', () => {
+describe('modal function', () => {
   it('is a function', () => {
-    expect(modalReducer).to.be.a('function');
+    expect(modal).to.be.a('function');
   });
-  it('updates the modal visibility', () => {
-    const myaction = actions.setModalVisibility(true);
+  it('updates the animal info visibility', () => {
+    const myaction = actions.setAnimalInfoVisibility(true);
     const initialState = { modalVisible: false };
-    let newState = modalReducer(initialState, myaction);
-    expect(newState.modalVisible).to.be.true;
+    let newState = modal(initialState, myaction);
+    expect(newState.animalInfoVisible).to.be.true;
+  });
+  it('updates the sighting info visibility', () => {
+    const myaction = actions.setSightingInfoVisibility(true);
+    const initialState = { modalVisible: false };
+    let newState = modal(initialState, myaction);
+    expect(newState.sightingInfoVisible).to.be.true;
+  });
+  it('updates the confirm save visibility', () => {
+    const myaction = actions.setConfirmSaveVisibility(true);
+    const initialState = { modalVisible: false };
+    let newState = modal(initialState, myaction);
+    expect(newState.confirmSaveVisible).to.be.true;
   });
 });
