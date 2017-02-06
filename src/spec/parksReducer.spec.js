@@ -3,7 +3,7 @@ import {expect} from 'chai';
 import {parks} from '../reducers/parks';
 import * as actions from '../actions/parks';
 
-describe.only('parks function', () => {
+describe('parks function', () => {
   it('is a function', () => {
     expect(parks).to.be.a('function');
   });
