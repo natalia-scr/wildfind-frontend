@@ -11,15 +11,18 @@ import {
   ScrollView,
   Dimensions
 } from 'react-native';
-let { height, width } = Dimensions.get('window');
+import { AudioCall } from './index';
+const { height, width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
 import Sound from 'react-native-sound';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export class AnimalInfo extends Component {
   constructor () {
     super();
     this.state = {
       audio: null,
+      playing: false
     };
   }
 
@@ -40,21 +43,24 @@ export class AnimalInfo extends Component {
 
   playSound (action) {
     if (action === 'play') {
-      console.warn('duration', this.state.audio.getDuration());
       this.state.audio.play();
+      this.setState({playing: true});
     }
     if (action === 'stop') {
       this.state.audio.stop();
+      this.setState({playing: false});
     }
   }
 
   handlePress = (choice, id) => {
     if (choice === 'return') {
       this.state.audio.stop();
+      this.setState({playing: false});
       this.props.closeModal();
     }
     if (choice === 'search') {
       this.state.audio.stop();
+      this.setState({playing: false});
       this.props.clearSightings();
       this.props.closeModal();
       this.props.navigator.push({id});
@@ -77,14 +83,15 @@ export class AnimalInfo extends Component {
                     source={{uri: this.props.animal.small_img}}
                   />
                   <View style={styles.titleText}>
-                    <Text style={styles.title}>{this.props.animal.common_name}</Text>
-                    <Text style={styles.small}>{this.props.animal.latin_name}</Text>
+                    <View>
+                      <Text style={styles.title}>{this.props.animal.common_name}</Text>
+                      <Text style={styles.small}>{this.props.animal.latin_name}</Text>
+                    </View>
+                    <AudioCall playSound={this.playSound.bind(this)} playing={this.state.playing} />
                   </View>
                 </View>
                 <View style={styles.description}>
                   <Text style={styles.text}>{this.props.animal.description}</Text>
-                  <TouchableOpacity onPress={this.playSound.bind(this, 'play')}><Text>Press Here For Sound</Text></TouchableOpacity>
-                  <TouchableOpacity onPress={this.playSound.bind(this, 'stop')}><Text>Press Here To Stop</Text></TouchableOpacity>
                 </View>
                 <View style={styles.buttonContainer}>
                 {this.props.animalList && <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
@@ -148,7 +155,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 8,
     backgroundColor: 'rgba(229, 238, 242, 0.95)',
-    width: width * 0.86
+    width: width * 0.86,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   small: {
     fontSize: 12,
