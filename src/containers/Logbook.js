@@ -58,7 +58,7 @@ class _Logbook extends Component {
               </View>
             }
 
-            {!this.props.loading && this.props.userLog.length !== 0 &&
+            {!this.props.loading && this.props.userLog.length !== 0 && !this.props.animalsLoading &&
               <View>
                 {this.props.userLog.map((sighting) => {
                   return <View key={sighting._id} style={styles.sightingContainer}>

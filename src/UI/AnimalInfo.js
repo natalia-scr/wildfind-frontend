@@ -62,6 +62,7 @@ export class AnimalInfo extends Component {
   }
 
   render () {
+    console.warn(this.props.animal);
     return (
       <View style={styles.container}>
             <Modal
