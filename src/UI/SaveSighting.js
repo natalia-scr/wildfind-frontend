@@ -16,15 +16,46 @@ import * as actions from '../actions';
 let { height, width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
 import { createSighting } from '../services';
+import { AudioCall } from './index';
+import Sound from 'react-native-sound';
 
 class _SaveSighting extends Component {
   constructor () {
     super();
     this.state = {
       text: '',
-      count: '1'
+      count: '1',
+      audio: null,
+      playing: false
     };
   }
+
+  componentDidMount () {
+    const call = 'bluetit';
+    const s = new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
+      if (e) {
+        console.log('error', e);
+      } else {
+        this.setState({audio: s});
+      }
+    });
+  }
+
+  componentWillUnmount () {
+    this.setState({audio: null});
+  }
+
+  playSound (action) {
+    if (action === 'play') {
+      this.state.audio.play();
+      this.setState({playing: true});
+    }
+    if (action === 'stop') {
+      this.state.audio.stop();
+      this.setState({playing: false});
+    }
+  }
+
   handlePress () {
     const sighting = createSighting(this.props.user, this.props.currentPark, this.props.currentAnimal, this.props.userLocation, this.state.text, this.state.count);
     this.props.saveSighting({sighting});
@@ -32,11 +63,13 @@ class _SaveSighting extends Component {
     if (this.props.callsaveAnimation !== null) this.props.callsaveAnimation();
     if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
   }
+
   plusButtonPress () {
     this.setState({
       count: (+this.state.count + 1).toString()
     });
   }
+
   minusButtonPress () {
     if (this.state.count > 0) {
       this.setState({
@@ -59,9 +92,14 @@ class _SaveSighting extends Component {
                 style={styles.img}
                 source={{uri: this.props.currentAnimal.small_img}}
               />
-              <View style={styles.animalTextContainer}>
-                <Text style={styles.title}>{this.props.currentAnimal.common_name}</Text>
-                <Text style={styles.small}>{this.props.currentAnimal.latin_name}</Text>
+              <View style={styles.headingContainer} >
+                <View style={styles.animalTextContainer}>
+                  <Text style={styles.title}>{this.props.currentAnimal.common_name}</Text>
+                  <Text style={styles.small}>{this.props.currentAnimal.latin_name}</Text>
+                </View>
+                <View style={styles.audioContainer}>
+                  <AudioCall playSound={this.playSound.bind(this)} playing={this.state.playing} />
+                </View>
               </View>
             </View>
             <View style={styles.description}>
@@ -272,6 +310,15 @@ const styles = StyleSheet.create({
   abundanceContainer: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  audioContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginLeft: width * 0.08
+  },
+  headingContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
 

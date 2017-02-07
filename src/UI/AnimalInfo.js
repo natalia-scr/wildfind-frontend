@@ -15,7 +15,6 @@ import { AudioCall } from './index';
 const { height, width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
 import Sound from 'react-native-sound';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 export class AnimalInfo extends Component {
   constructor () {
@@ -87,7 +86,9 @@ export class AnimalInfo extends Component {
                       <Text style={styles.title}>{this.props.animal.common_name}</Text>
                       <Text style={styles.small}>{this.props.animal.latin_name}</Text>
                     </View>
-                    <AudioCall playSound={this.playSound.bind(this)} playing={this.state.playing} />
+                    <View style={styles.audioContainer} >
+                      <AudioCall playSound={this.playSound.bind(this)} playing={this.state.playing} />
+                    </View>
                   </View>
                 </View>
                 <View style={styles.description}>
@@ -175,5 +176,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#3e3e3e'
+  },
+  audioContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end'
   }
 });

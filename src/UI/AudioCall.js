@@ -8,7 +8,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const AudioCall = ({playSound, playing}) => (
-  <View style={styles.audioContainer}>
+  <View>
     {!playing && <TouchableOpacity onPress={playSound.bind(this, 'play')} style={styles.audio} >
       <Icon name='play' size={22} color={'rgb(44, 157, 51)'} />
       <Text style={styles.audioText}>Play Call</Text>
@@ -23,10 +23,6 @@ export const AudioCall = ({playSound, playing}) => (
 export default AudioCall;
 
 const styles = StyleSheet.create({
-  audioContainer: {
-    justifyContent: 'center',
-    alignItems: 'flex-end'
-  },
   audio: {
     justifyContent: 'center',
     alignItems: 'center',
