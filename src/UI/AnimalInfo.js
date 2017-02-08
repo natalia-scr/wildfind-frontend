@@ -25,41 +25,63 @@ export class AnimalInfo extends Component {
     };
   }
 
-  componentDidMount () {
-    const call = 'bluetit';
+  playSound () {
+    const call = this.props.animal.common_name.toLowerCase().replace(/ |-/g, '');
     const s = new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
       if (e) {
         console.log('error', e);
       } else {
-        this.setState({audio: s})
+        s.play((success) => {
+            if (success) {
+              this.setState({playing: false})
+            } else {
+              console.warn('playback failed due to audio decoding errors');
+            }
+          });
+        this.setState({audio: s, playing: true})
       }
     })
+  }
+
+  stopSound () {
+    this.state.audio.stop();
+    this.setState({playing: false});
   }
 
   componentWillUnmount () {
     this.setState({audio: null});
   }
 
-  playSound (action) {
-    if (action === 'play') {
-      this.state.audio.play();
-      this.setState({playing: true});
-    }
-    if (action === 'stop') {
-      this.state.audio.stop();
-      this.setState({playing: false});
-    }
-  }
+  // playSound (action) {
+  //   if (action === 'play') {
+  //     this.state.audio.play((success) => {
+  //       if (success) {
+  //         console.warn('successfully finished playing');
+  //       } else {
+  //         console.warn('playback failed due to audio decoding errors');
+  //       }
+  //     });
+  //     this.setState({playing: true});
+  //   }
+  //   if (action === 'stop') {
+  //     this.state.audio.stop();
+  //     this.setState({playing: false});
+  //   }
+  // }
 
   handlePress = (choice, id) => {
     if (choice === 'return') {
-      this.state.audio.stop();
-      this.setState({playing: false});
+      if (this.state.audio !== null) {
+        this.state.audio.stop();
+        this.setState({playing: false});
+      }
       this.props.closeModal();
     }
     if (choice === 'search') {
-      this.state.audio.stop();
-      this.setState({playing: false});
+      if (this.state.audio !== null) {
+        this.state.audio.stop();
+        this.setState({playing: false});
+      }
       this.props.clearSightings();
       this.props.closeModal();
       this.props.navigator.push({id});
@@ -86,9 +108,9 @@ export class AnimalInfo extends Component {
                       <Text style={styles.title}>{this.props.animal.common_name}</Text>
                       <Text style={styles.small}>{this.props.animal.latin_name}</Text>
                     </View>
-                    <View style={styles.audioContainer} >
-                      <AudioCall playSound={this.playSound.bind(this)} playing={this.state.playing} />
-                    </View>
+                    {this.props.animal.taxon_group === 'Bird' && <View style={styles.audioContainer} >
+                      <AudioCall playSound={this.playSound.bind(this)}  stopSound={this.stopSound.bind(this)} playing={this.state.playing} />
+                    </View> }
                   </View>
                 </View>
                 <View style={styles.description}>
