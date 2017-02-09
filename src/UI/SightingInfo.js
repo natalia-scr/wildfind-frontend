@@ -11,21 +11,45 @@ import {
 import * as actions from '../actions';
 let { width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
-import { SaveSighting } from './SaveSighting';
+import { SaveSighting, AudioCall } from './index';
+import Sound from 'react-native-sound';
+
 
 class _SightingInfo extends Component {
   constructor () {
     super();
     this.state = {
-      saveModalVisibility: true
+      saveModalVisibility: true,
+      audio: null,
+      playing: false
     };
   }
 
-  // componentWillMount () {
-  //     this.setState({
-  //       saveModalVisibility: true
-  //     });
-  // }
+  componentDidMount () {
+    const call = 'bluetit';
+    const s = new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
+      if (e) {
+        console.log('error', e);
+      } else {
+        this.setState({audio: s});
+      }
+    });
+  }
+
+  componentWillUnmount () {
+    this.setState({audio: null});
+  }
+
+  playSound (action) {
+    if (action === 'play') {
+      this.state.audio.play();
+      this.setState({playing: true});
+    }
+    if (action === 'stop') {
+      this.state.audio.stop();
+      this.setState({playing: false});
+    }
+  }
 
   openSaveModal () {
     console.warn('click');
@@ -66,8 +90,13 @@ class _SightingInfo extends Component {
           transparent={true}
           onRequestClose={this.props.closeModal}
         >
-          <Text>{this.props.currentAnimal.common_name}</Text>
-          <Text>{this.props.currentAnimal.latin_name}</Text>
+          <View>
+            <Text>{this.props.currentAnimal.common_name}</Text>
+            <Text>{this.props.currentAnimal.latin_name}</Text>
+            <View style={styles.audioContainer}>
+              <AudioCall playSound={this.playSound.bind(this)} playing={this.state.playing} />
+            </View>
+          </View>
           <View>
             <Image
               style={{width: 100, height: 100}}

@@ -11,7 +11,8 @@ import {
   ScrollView,
   Dimensions
 } from 'react-native';
-let { height, width } = Dimensions.get('window');
+import { AudioCall } from './index';
+const { height, width } = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
 import Sound from 'react-native-sound';
 
@@ -20,41 +21,67 @@ export class AnimalInfo extends Component {
     super();
     this.state = {
       audio: null,
+      playing: false
     };
   }
 
-  componentDidMount () {
-    const call = 'bluetit';
+  playSound () {
+    const call = this.props.animal.common_name.toLowerCase().replace(/ |-/g, '');
     const s = new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
       if (e) {
         console.log('error', e);
       } else {
-        this.setState({audio: s})
+        s.play((success) => {
+            if (success) {
+              this.setState({playing: false})
+            } else {
+              console.warn('playback failed due to audio decoding errors');
+            }
+          });
+        this.setState({audio: s, playing: true})
       }
     })
+  }
+
+  stopSound () {
+    this.state.audio.stop();
+    this.setState({playing: false});
   }
 
   componentWillUnmount () {
     this.setState({audio: null});
   }
 
-  playSound (action) {
-    if (action === 'play') {
-      console.warn('duration', this.state.audio.getDuration());
-      this.state.audio.play();
-    }
-    if (action === 'stop') {
-      this.state.audio.stop();
-    }
-  }
+  // playSound (action) {
+  //   if (action === 'play') {
+  //     this.state.audio.play((success) => {
+  //       if (success) {
+  //         console.warn('successfully finished playing');
+  //       } else {
+  //         console.warn('playback failed due to audio decoding errors');
+  //       }
+  //     });
+  //     this.setState({playing: true});
+  //   }
+  //   if (action === 'stop') {
+  //     this.state.audio.stop();
+  //     this.setState({playing: false});
+  //   }
+  // }
 
   handlePress = (choice, id) => {
     if (choice === 'return') {
-      this.state.audio.stop();
+      if (this.state.audio !== null) {
+        this.state.audio.stop();
+        this.setState({playing: false});
+      }
       this.props.closeModal();
     }
     if (choice === 'search') {
-      this.state.audio.stop();
+      if (this.state.audio !== null) {
+        this.state.audio.stop();
+        this.setState({playing: false});
+      }
       this.props.clearSightings();
       this.props.closeModal();
       this.props.navigator.push({id});
@@ -78,14 +105,17 @@ export class AnimalInfo extends Component {
                     source={{uri: this.props.animal.small_img}}
                   />
                   <View style={styles.titleText}>
-                    <Text style={styles.title}>{this.props.animal.common_name}</Text>
-                    <Text style={styles.small}>{this.props.animal.latin_name}</Text>
+                    <View>
+                      <Text style={styles.title}>{this.props.animal.common_name}</Text>
+                      <Text style={styles.small}>{this.props.animal.latin_name}</Text>
+                    </View>
+                    {this.props.animal.taxon_group === 'Bird' && <View style={styles.audioContainer} >
+                      <AudioCall playSound={this.playSound.bind(this)}  stopSound={this.stopSound.bind(this)} playing={this.state.playing} />
+                    </View> }
                   </View>
                 </View>
                 <View style={styles.description}>
                   <Text style={styles.text}>{this.props.animal.description}</Text>
-                  <TouchableOpacity onPress={this.playSound.bind(this, 'play')}><Text>Press Here For Sound</Text></TouchableOpacity>
-                  <TouchableOpacity onPress={this.playSound.bind(this, 'stop')}><Text>Press Here To Stop</Text></TouchableOpacity>
                 </View>
                 <View style={styles.buttonContainer}>
                 {this.props.animalList && <Button style={styles.buttonSave} onPress={this.handlePress.bind(this, 'search', 'Map')}>
@@ -149,7 +179,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 8,
     backgroundColor: 'rgba(229, 238, 242, 0.95)',
-    width: width * 0.86
+    width: width * 0.86,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   small: {
     fontSize: 12,
@@ -167,5 +199,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#3e3e3e'
+  },
+  audioContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end'
   }
 });

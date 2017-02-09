@@ -5,3 +5,4 @@ export { SightingInfo } from './SightingInfo';
 export { TabBar } from './TabBar';
 export { SaveSighting } from './SaveSighting';
 export { MapNavBar } from './MapNavBar';
+export { AudioCall } from './AudioCall';
