@@ -36,7 +36,70 @@
 		AB7420E00EA14C90859510F5 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D83B6366064C4F12B4EA5D69 /* libRCTOrientation.a */; };
 		B70C850453104EBF93D6164E /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B27DF822E0804D5E84F30808 /* libAirMaps.a */; };
 		CEBDB0D568CF43CF80F9B21A /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 144948AF04CA4740A9B8D6E8 /* EvilIcons.ttf */; };
-		E110C4871E4A312300E3211D /* bluetit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E110C4861E4A312300E3211D /* bluetit.mp3 */; };
+		E10D00001E4CE57E008B7766 /* commongull.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC01E4CE57E008B7766 /* commongull.mp3 */; };
+		E10D00011E4CE57E008B7766 /* coot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC11E4CE57E008B7766 /* coot.mp3 */; };
+		E10D00021E4CE57E008B7766 /* cormorant.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC21E4CE57E008B7766 /* cormorant.mp3 */; };
+		E10D00031E4CE57E008B7766 /* dunnock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC31E4CE57E008B7766 /* dunnock.mp3 */; };
+		E10D00041E4CE57E008B7766 /* feralpigeon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC41E4CE57E008B7766 /* feralpigeon.mp3 */; };
+		E10D00051E4CE57E008B7766 /* fieldfare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC51E4CE57E008B7766 /* fieldfare.mp3 */; };
+		E10D00061E4CE57E008B7766 /* firecrest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC61E4CE57E008B7766 /* firecrest.mp3 */; };
+		E10D00071E4CE57E008B7766 /* gardenwarbler.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC71E4CE57E008B7766 /* gardenwarbler.mp3 */; };
+		E10D00081E4CE57E008B7766 /* goldcrest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC81E4CE57E008B7766 /* goldcrest.mp3 */; };
+		E10D00091E4CE57E008B7766 /* goldfinch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFC91E4CE57E008B7766 /* goldfinch.mp3 */; };
+		E10D000A1E4CE57E008B7766 /* goosander.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFCA1E4CE57E008B7766 /* goosander.mp3 */; };
+		E10D000B1E4CE57E008B7766 /* greatcrestedgrebe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFCB1E4CE57E008B7766 /* greatcrestedgrebe.mp3 */; };
+		E10D000C1E4CE57E008B7766 /* greatspottedwoodpecker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFCC1E4CE57E008B7766 /* greatspottedwoodpecker.mp3 */; };
+		E10D000D1E4CE57E008B7766 /* greattit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFCD1E4CE57E008B7766 /* greattit.mp3 */; };
+		E10D000E1E4CE57E008B7766 /* greenfinch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFCE1E4CE57E008B7766 /* greenfinch.mp3 */; };
+		E10D000F1E4CE57E008B7766 /* greyheron.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFCF1E4CE57E008B7766 /* greyheron.mp3 */; };
+		E10D00101E4CE57E008B7766 /* greylaggoose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD01E4CE57E008B7766 /* greylaggoose.mp3 */; };
+		E10D00111E4CE57E008B7766 /* greywagtail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD11E4CE57E008B7766 /* greywagtail.mp3 */; };
+		E10D00121E4CE57E008B7766 /* herringgull.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD21E4CE57E008B7766 /* herringgull.mp3 */; };
+		E10D00131E4CE57E008B7766 /* housesparrow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD31E4CE57E008B7766 /* housesparrow.mp3 */; };
+		E10D00141E4CE57E008B7766 /* jackdaw.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD41E4CE57E008B7766 /* jackdaw.mp3 */; };
+		E10D00151E4CE57E008B7766 /* jay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD51E4CE57E008B7766 /* jay.mp3 */; };
+		E10D00161E4CE57E008B7766 /* lesserblackbackedgull.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD61E4CE57E008B7766 /* lesserblackbackedgull.mp3 */; };
+		E10D00171E4CE57E008B7766 /* littlegrebe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD71E4CE57E008B7766 /* littlegrebe.mp3 */; };
+		E10D00181E4CE57E008B7766 /* longtailedtit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD81E4CE57E008B7766 /* longtailedtit.mp3 */; };
+		E10D00191E4CE57E008B7766 /* magpie.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFD91E4CE57E008B7766 /* magpie.mp3 */; };
+		E10D001A1E4CE57E008B7766 /* mallard.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFDA1E4CE57E008B7766 /* mallard.mp3 */; };
+		E10D001B1E4CE57E008B7766 /* mandarinduck.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFDB1E4CE57E008B7766 /* mandarinduck.mp3 */; };
+		E10D001C1E4CE57E008B7766 /* mistlethrush.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFDC1E4CE57E008B7766 /* mistlethrush.mp3 */; };
+		E10D001D1E4CE57E008B7766 /* moorhen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFDD1E4CE57E008B7766 /* moorhen.mp3 */; };
+		E10D001E1E4CE57E008B7766 /* muteswan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFDE1E4CE57E008B7766 /* muteswan.mp3 */; };
+		E10D001F1E4CE57E008B7766 /* nuthatch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFDF1E4CE57E008B7766 /* nuthatch.mp3 */; };
+		E10D00201E4CE57E008B7766 /* piedwagtail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE01E4CE57E008B7766 /* piedwagtail.mp3 */; };
+		E10D00211E4CE57E008B7766 /* pinkfootedgoosander.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE11E4CE57E008B7766 /* pinkfootedgoosander.mp3 */; };
+		E10D00221E4CE57E008B7766 /* redwing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE21E4CE57E008B7766 /* redwing.mp3 */; };
+		E10D00231E4CE57E008B7766 /* ringneckedparakeet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE31E4CE57E008B7766 /* ringneckedparakeet.mp3 */; };
+		E10D00241E4CE57E008B7766 /* robin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE41E4CE57E008B7766 /* robin.mp3 */; };
+		E10D00251E4CE57E008B7766 /* shoveler.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE51E4CE57E008B7766 /* shoveler.mp3 */; };
+		E10D00261E4CE57E008B7766 /* siskin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE61E4CE57E008B7766 /* siskin.mp3 */; };
+		E10D00271E4CE57E008B7766 /* songthrush.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE71E4CE57E008B7766 /* songthrush.mp3 */; };
+		E10D00281E4CE57E008B7766 /* sparrowhawk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE81E4CE57E008B7766 /* sparrowhawk.mp3 */; };
+		E10D00291E4CE57E008B7766 /* spottedflycatcher.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFE91E4CE57E008B7766 /* spottedflycatcher.mp3 */; };
+		E10D002A1E4CE57E008B7766 /* starling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFEA1E4CE57E008B7766 /* starling.mp3 */; };
+		E10D002B1E4CE57E008B7766 /* stockdove.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFEB1E4CE57E008B7766 /* stockdove.mp3 */; };
+		E10D002C1E4CE57E008B7766 /* swift.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFEC1E4CE57E008B7766 /* swift.mp3 */; };
+		E10D002D1E4CE57E008B7766 /* tawnyowl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFED1E4CE57E008B7766 /* tawnyowl.mp3 */; };
+		E10D002E1E4CE57E008B7766 /* treecreeper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFEE1E4CE57E008B7766 /* treecreeper.mp3 */; };
+		E10D002F1E4CE57E008B7766 /* tuftedduck.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFEF1E4CE57E008B7766 /* tuftedduck.mp3 */; };
+		E10D00301E4CE57E008B7766 /* waxwing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFF01E4CE57E008B7766 /* waxwing.mp3 */; };
+		E10D00311E4CE57E008B7766 /* willowwarbler.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFF11E4CE57E008B7766 /* willowwarbler.mp3 */; };
+		E10D00321E4CE57E008B7766 /* woodpigeon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFF21E4CE57E008B7766 /* woodpigeon.mp3 */; };
+		E10D00331E4CE57E008B7766 /* wren.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFF31E4CE57E008B7766 /* wren.mp3 */; };
+		E10DFFF41E4CE57E008B7766 /* blackbird.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFB41E4CE57E008B7766 /* blackbird.mp3 */; };
+		E10DFFF51E4CE57E008B7766 /* blackcap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFB51E4CE57E008B7766 /* blackcap.mp3 */; };
+		E10DFFF61E4CE57E008B7766 /* blackheadedgull.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFB61E4CE57E008B7766 /* blackheadedgull.mp3 */; };
+		E10DFFF71E4CE57E008B7766 /* bluetit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFB71E4CE57E008B7766 /* bluetit.mp3 */; };
+		E10DFFF81E4CE57E008B7766 /* brambling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFB81E4CE57E008B7766 /* brambling.mp3 */; };
+		E10DFFF91E4CE57E008B7766 /* bullfinch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFB91E4CE57E008B7766 /* bullfinch.mp3 */; };
+		E10DFFFA1E4CE57E008B7766 /* canadagoose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFBA1E4CE57E008B7766 /* canadagoose.mp3 */; };
+		E10DFFFB1E4CE57E008B7766 /* carrioncrow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFBB1E4CE57E008B7766 /* carrioncrow.mp3 */; };
+		E10DFFFC1E4CE57E008B7766 /* chaffinch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFBC1E4CE57E008B7766 /* chaffinch.mp3 */; };
+		E10DFFFD1E4CE57E008B7766 /* chiffchaff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFBD1E4CE57E008B7766 /* chiffchaff.mp3 */; };
+		E10DFFFE1E4CE57E008B7766 /* coaltit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFBE1E4CE57E008B7766 /* coaltit.mp3 */; };
+		E10DFFFF1E4CE57E008B7766 /* collareddove.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E10DFFBF1E4CE57E008B7766 /* collareddove.mp3 */; };
 		E1B21FF11E364158001B8CA9 /* AIRGMSMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B21FD01E364158001B8CA9 /* AIRGMSMarker.m */; };
 		E1B21FF21E364158001B8CA9 /* AIRGoogleMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B21FD21E364158001B8CA9 /* AIRGoogleMap.m */; };
 		E1B21FF31E364158001B8CA9 /* AIRGoogleMapCallout.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B21FD41E364158001B8CA9 /* AIRGoogleMapCallout.m */; };
@@ -310,7 +373,70 @@
 		BA8A168572AC4B74BFFCE654 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		C2A405ED809045CA96C33D10 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		D83B6366064C4F12B4EA5D69 /* libRCTOrientation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOrientation.a; sourceTree = "<group>"; };
-		E110C4861E4A312300E3211D /* bluetit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bluetit.mp3; path = ../android/app/src/main/res/raw/bluetit.mp3; sourceTree = "<group>"; };
+		E10DFFB41E4CE57E008B7766 /* blackbird.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blackbird.mp3; path = ../android/app/src/main/res/raw/blackbird.mp3; sourceTree = "<group>"; };
+		E10DFFB51E4CE57E008B7766 /* blackcap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blackcap.mp3; path = ../android/app/src/main/res/raw/blackcap.mp3; sourceTree = "<group>"; };
+		E10DFFB61E4CE57E008B7766 /* blackheadedgull.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blackheadedgull.mp3; path = ../android/app/src/main/res/raw/blackheadedgull.mp3; sourceTree = "<group>"; };
+		E10DFFB71E4CE57E008B7766 /* bluetit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bluetit.mp3; path = ../android/app/src/main/res/raw/bluetit.mp3; sourceTree = "<group>"; };
+		E10DFFB81E4CE57E008B7766 /* brambling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = brambling.mp3; path = ../android/app/src/main/res/raw/brambling.mp3; sourceTree = "<group>"; };
+		E10DFFB91E4CE57E008B7766 /* bullfinch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bullfinch.mp3; path = ../android/app/src/main/res/raw/bullfinch.mp3; sourceTree = "<group>"; };
+		E10DFFBA1E4CE57E008B7766 /* canadagoose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = canadagoose.mp3; path = ../android/app/src/main/res/raw/canadagoose.mp3; sourceTree = "<group>"; };
+		E10DFFBB1E4CE57E008B7766 /* carrioncrow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = carrioncrow.mp3; path = ../android/app/src/main/res/raw/carrioncrow.mp3; sourceTree = "<group>"; };
+		E10DFFBC1E4CE57E008B7766 /* chaffinch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = chaffinch.mp3; path = ../android/app/src/main/res/raw/chaffinch.mp3; sourceTree = "<group>"; };
+		E10DFFBD1E4CE57E008B7766 /* chiffchaff.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = chiffchaff.mp3; path = ../android/app/src/main/res/raw/chiffchaff.mp3; sourceTree = "<group>"; };
+		E10DFFBE1E4CE57E008B7766 /* coaltit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = coaltit.mp3; path = ../android/app/src/main/res/raw/coaltit.mp3; sourceTree = "<group>"; };
+		E10DFFBF1E4CE57E008B7766 /* collareddove.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = collareddove.mp3; path = ../android/app/src/main/res/raw/collareddove.mp3; sourceTree = "<group>"; };
+		E10DFFC01E4CE57E008B7766 /* commongull.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = commongull.mp3; path = ../android/app/src/main/res/raw/commongull.mp3; sourceTree = "<group>"; };
+		E10DFFC11E4CE57E008B7766 /* coot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = coot.mp3; path = ../android/app/src/main/res/raw/coot.mp3; sourceTree = "<group>"; };
+		E10DFFC21E4CE57E008B7766 /* cormorant.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cormorant.mp3; path = ../android/app/src/main/res/raw/cormorant.mp3; sourceTree = "<group>"; };
+		E10DFFC31E4CE57E008B7766 /* dunnock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = dunnock.mp3; path = ../android/app/src/main/res/raw/dunnock.mp3; sourceTree = "<group>"; };
+		E10DFFC41E4CE57E008B7766 /* feralpigeon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = feralpigeon.mp3; path = ../android/app/src/main/res/raw/feralpigeon.mp3; sourceTree = "<group>"; };
+		E10DFFC51E4CE57E008B7766 /* fieldfare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fieldfare.mp3; path = ../android/app/src/main/res/raw/fieldfare.mp3; sourceTree = "<group>"; };
+		E10DFFC61E4CE57E008B7766 /* firecrest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = firecrest.mp3; path = ../android/app/src/main/res/raw/firecrest.mp3; sourceTree = "<group>"; };
+		E10DFFC71E4CE57E008B7766 /* gardenwarbler.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gardenwarbler.mp3; path = ../android/app/src/main/res/raw/gardenwarbler.mp3; sourceTree = "<group>"; };
+		E10DFFC81E4CE57E008B7766 /* goldcrest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goldcrest.mp3; path = ../android/app/src/main/res/raw/goldcrest.mp3; sourceTree = "<group>"; };
+		E10DFFC91E4CE57E008B7766 /* goldfinch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goldfinch.mp3; path = ../android/app/src/main/res/raw/goldfinch.mp3; sourceTree = "<group>"; };
+		E10DFFCA1E4CE57E008B7766 /* goosander.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goosander.mp3; path = ../android/app/src/main/res/raw/goosander.mp3; sourceTree = "<group>"; };
+		E10DFFCB1E4CE57E008B7766 /* greatcrestedgrebe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = greatcrestedgrebe.mp3; path = ../android/app/src/main/res/raw/greatcrestedgrebe.mp3; sourceTree = "<group>"; };
+		E10DFFCC1E4CE57E008B7766 /* greatspottedwoodpecker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = greatspottedwoodpecker.mp3; path = ../android/app/src/main/res/raw/greatspottedwoodpecker.mp3; sourceTree = "<group>"; };
+		E10DFFCD1E4CE57E008B7766 /* greattit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = greattit.mp3; path = ../android/app/src/main/res/raw/greattit.mp3; sourceTree = "<group>"; };
+		E10DFFCE1E4CE57E008B7766 /* greenfinch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = greenfinch.mp3; path = ../android/app/src/main/res/raw/greenfinch.mp3; sourceTree = "<group>"; };
+		E10DFFCF1E4CE57E008B7766 /* greyheron.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = greyheron.mp3; path = ../android/app/src/main/res/raw/greyheron.mp3; sourceTree = "<group>"; };
+		E10DFFD01E4CE57E008B7766 /* greylaggoose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = greylaggoose.mp3; path = ../android/app/src/main/res/raw/greylaggoose.mp3; sourceTree = "<group>"; };
+		E10DFFD11E4CE57E008B7766 /* greywagtail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = greywagtail.mp3; path = ../android/app/src/main/res/raw/greywagtail.mp3; sourceTree = "<group>"; };
+		E10DFFD21E4CE57E008B7766 /* herringgull.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = herringgull.mp3; path = ../android/app/src/main/res/raw/herringgull.mp3; sourceTree = "<group>"; };
+		E10DFFD31E4CE57E008B7766 /* housesparrow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = housesparrow.mp3; path = ../android/app/src/main/res/raw/housesparrow.mp3; sourceTree = "<group>"; };
+		E10DFFD41E4CE57E008B7766 /* jackdaw.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jackdaw.mp3; path = ../android/app/src/main/res/raw/jackdaw.mp3; sourceTree = "<group>"; };
+		E10DFFD51E4CE57E008B7766 /* jay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jay.mp3; path = ../android/app/src/main/res/raw/jay.mp3; sourceTree = "<group>"; };
+		E10DFFD61E4CE57E008B7766 /* lesserblackbackedgull.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = lesserblackbackedgull.mp3; path = ../android/app/src/main/res/raw/lesserblackbackedgull.mp3; sourceTree = "<group>"; };
+		E10DFFD71E4CE57E008B7766 /* littlegrebe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = littlegrebe.mp3; path = ../android/app/src/main/res/raw/littlegrebe.mp3; sourceTree = "<group>"; };
+		E10DFFD81E4CE57E008B7766 /* longtailedtit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = longtailedtit.mp3; path = ../android/app/src/main/res/raw/longtailedtit.mp3; sourceTree = "<group>"; };
+		E10DFFD91E4CE57E008B7766 /* magpie.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = magpie.mp3; path = ../android/app/src/main/res/raw/magpie.mp3; sourceTree = "<group>"; };
+		E10DFFDA1E4CE57E008B7766 /* mallard.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mallard.mp3; path = ../android/app/src/main/res/raw/mallard.mp3; sourceTree = "<group>"; };
+		E10DFFDB1E4CE57E008B7766 /* mandarinduck.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mandarinduck.mp3; path = ../android/app/src/main/res/raw/mandarinduck.mp3; sourceTree = "<group>"; };
+		E10DFFDC1E4CE57E008B7766 /* mistlethrush.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mistlethrush.mp3; path = ../android/app/src/main/res/raw/mistlethrush.mp3; sourceTree = "<group>"; };
+		E10DFFDD1E4CE57E008B7766 /* moorhen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = moorhen.mp3; path = ../android/app/src/main/res/raw/moorhen.mp3; sourceTree = "<group>"; };
+		E10DFFDE1E4CE57E008B7766 /* muteswan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = muteswan.mp3; path = ../android/app/src/main/res/raw/muteswan.mp3; sourceTree = "<group>"; };
+		E10DFFDF1E4CE57E008B7766 /* nuthatch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = nuthatch.mp3; path = ../android/app/src/main/res/raw/nuthatch.mp3; sourceTree = "<group>"; };
+		E10DFFE01E4CE57E008B7766 /* piedwagtail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piedwagtail.mp3; path = ../android/app/src/main/res/raw/piedwagtail.mp3; sourceTree = "<group>"; };
+		E10DFFE11E4CE57E008B7766 /* pinkfootedgoosander.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pinkfootedgoosander.mp3; path = ../android/app/src/main/res/raw/pinkfootedgoosander.mp3; sourceTree = "<group>"; };
+		E10DFFE21E4CE57E008B7766 /* redwing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = redwing.mp3; path = ../android/app/src/main/res/raw/redwing.mp3; sourceTree = "<group>"; };
+		E10DFFE31E4CE57E008B7766 /* ringneckedparakeet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ringneckedparakeet.mp3; path = ../android/app/src/main/res/raw/ringneckedparakeet.mp3; sourceTree = "<group>"; };
+		E10DFFE41E4CE57E008B7766 /* robin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = robin.mp3; path = ../android/app/src/main/res/raw/robin.mp3; sourceTree = "<group>"; };
+		E10DFFE51E4CE57E008B7766 /* shoveler.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = shoveler.mp3; path = ../android/app/src/main/res/raw/shoveler.mp3; sourceTree = "<group>"; };
+		E10DFFE61E4CE57E008B7766 /* siskin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = siskin.mp3; path = ../android/app/src/main/res/raw/siskin.mp3; sourceTree = "<group>"; };
+		E10DFFE71E4CE57E008B7766 /* songthrush.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = songthrush.mp3; path = ../android/app/src/main/res/raw/songthrush.mp3; sourceTree = "<group>"; };
+		E10DFFE81E4CE57E008B7766 /* sparrowhawk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sparrowhawk.mp3; path = ../android/app/src/main/res/raw/sparrowhawk.mp3; sourceTree = "<group>"; };
+		E10DFFE91E4CE57E008B7766 /* spottedflycatcher.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = spottedflycatcher.mp3; path = ../android/app/src/main/res/raw/spottedflycatcher.mp3; sourceTree = "<group>"; };
+		E10DFFEA1E4CE57E008B7766 /* starling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = starling.mp3; path = ../android/app/src/main/res/raw/starling.mp3; sourceTree = "<group>"; };
+		E10DFFEB1E4CE57E008B7766 /* stockdove.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = stockdove.mp3; path = ../android/app/src/main/res/raw/stockdove.mp3; sourceTree = "<group>"; };
+		E10DFFEC1E4CE57E008B7766 /* swift.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = swift.mp3; path = ../android/app/src/main/res/raw/swift.mp3; sourceTree = "<group>"; };
+		E10DFFED1E4CE57E008B7766 /* tawnyowl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tawnyowl.mp3; path = ../android/app/src/main/res/raw/tawnyowl.mp3; sourceTree = "<group>"; };
+		E10DFFEE1E4CE57E008B7766 /* treecreeper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = treecreeper.mp3; path = ../android/app/src/main/res/raw/treecreeper.mp3; sourceTree = "<group>"; };
+		E10DFFEF1E4CE57E008B7766 /* tuftedduck.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tuftedduck.mp3; path = ../android/app/src/main/res/raw/tuftedduck.mp3; sourceTree = "<group>"; };
+		E10DFFF01E4CE57E008B7766 /* waxwing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = waxwing.mp3; path = ../android/app/src/main/res/raw/waxwing.mp3; sourceTree = "<group>"; };
+		E10DFFF11E4CE57E008B7766 /* willowwarbler.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = willowwarbler.mp3; path = ../android/app/src/main/res/raw/willowwarbler.mp3; sourceTree = "<group>"; };
+		E10DFFF21E4CE57E008B7766 /* woodpigeon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = woodpigeon.mp3; path = ../android/app/src/main/res/raw/woodpigeon.mp3; sourceTree = "<group>"; };
+		E10DFFF31E4CE57E008B7766 /* wren.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wren.mp3; path = ../android/app/src/main/res/raw/wren.mp3; sourceTree = "<group>"; };
 		E1B21FCF1E364158001B8CA9 /* AIRGMSMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIRGMSMarker.h; sourceTree = "<group>"; };
 		E1B21FD01E364158001B8CA9 /* AIRGMSMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIRGMSMarker.m; sourceTree = "<group>"; };
 		E1B21FD11E364158001B8CA9 /* AIRGoogleMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIRGoogleMap.h; sourceTree = "<group>"; };
@@ -610,7 +736,70 @@
 		E110C4A51E4A31C900E3211D /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				E110C4861E4A312300E3211D /* bluetit.mp3 */,
+				E10DFFB41E4CE57E008B7766 /* blackbird.mp3 */,
+				E10DFFB51E4CE57E008B7766 /* blackcap.mp3 */,
+				E10DFFB61E4CE57E008B7766 /* blackheadedgull.mp3 */,
+				E10DFFB71E4CE57E008B7766 /* bluetit.mp3 */,
+				E10DFFB81E4CE57E008B7766 /* brambling.mp3 */,
+				E10DFFB91E4CE57E008B7766 /* bullfinch.mp3 */,
+				E10DFFBA1E4CE57E008B7766 /* canadagoose.mp3 */,
+				E10DFFBB1E4CE57E008B7766 /* carrioncrow.mp3 */,
+				E10DFFBC1E4CE57E008B7766 /* chaffinch.mp3 */,
+				E10DFFBD1E4CE57E008B7766 /* chiffchaff.mp3 */,
+				E10DFFBE1E4CE57E008B7766 /* coaltit.mp3 */,
+				E10DFFBF1E4CE57E008B7766 /* collareddove.mp3 */,
+				E10DFFC01E4CE57E008B7766 /* commongull.mp3 */,
+				E10DFFC11E4CE57E008B7766 /* coot.mp3 */,
+				E10DFFC21E4CE57E008B7766 /* cormorant.mp3 */,
+				E10DFFC31E4CE57E008B7766 /* dunnock.mp3 */,
+				E10DFFC41E4CE57E008B7766 /* feralpigeon.mp3 */,
+				E10DFFC51E4CE57E008B7766 /* fieldfare.mp3 */,
+				E10DFFC61E4CE57E008B7766 /* firecrest.mp3 */,
+				E10DFFC71E4CE57E008B7766 /* gardenwarbler.mp3 */,
+				E10DFFC81E4CE57E008B7766 /* goldcrest.mp3 */,
+				E10DFFC91E4CE57E008B7766 /* goldfinch.mp3 */,
+				E10DFFCA1E4CE57E008B7766 /* goosander.mp3 */,
+				E10DFFCB1E4CE57E008B7766 /* greatcrestedgrebe.mp3 */,
+				E10DFFCC1E4CE57E008B7766 /* greatspottedwoodpecker.mp3 */,
+				E10DFFCD1E4CE57E008B7766 /* greattit.mp3 */,
+				E10DFFCE1E4CE57E008B7766 /* greenfinch.mp3 */,
+				E10DFFCF1E4CE57E008B7766 /* greyheron.mp3 */,
+				E10DFFD01E4CE57E008B7766 /* greylaggoose.mp3 */,
+				E10DFFD11E4CE57E008B7766 /* greywagtail.mp3 */,
+				E10DFFD21E4CE57E008B7766 /* herringgull.mp3 */,
+				E10DFFD31E4CE57E008B7766 /* housesparrow.mp3 */,
+				E10DFFD41E4CE57E008B7766 /* jackdaw.mp3 */,
+				E10DFFD51E4CE57E008B7766 /* jay.mp3 */,
+				E10DFFD61E4CE57E008B7766 /* lesserblackbackedgull.mp3 */,
+				E10DFFD71E4CE57E008B7766 /* littlegrebe.mp3 */,
+				E10DFFD81E4CE57E008B7766 /* longtailedtit.mp3 */,
+				E10DFFD91E4CE57E008B7766 /* magpie.mp3 */,
+				E10DFFDA1E4CE57E008B7766 /* mallard.mp3 */,
+				E10DFFDB1E4CE57E008B7766 /* mandarinduck.mp3 */,
+				E10DFFDC1E4CE57E008B7766 /* mistlethrush.mp3 */,
+				E10DFFDD1E4CE57E008B7766 /* moorhen.mp3 */,
+				E10DFFDE1E4CE57E008B7766 /* muteswan.mp3 */,
+				E10DFFDF1E4CE57E008B7766 /* nuthatch.mp3 */,
+				E10DFFE01E4CE57E008B7766 /* piedwagtail.mp3 */,
+				E10DFFE11E4CE57E008B7766 /* pinkfootedgoosander.mp3 */,
+				E10DFFE21E4CE57E008B7766 /* redwing.mp3 */,
+				E10DFFE31E4CE57E008B7766 /* ringneckedparakeet.mp3 */,
+				E10DFFE41E4CE57E008B7766 /* robin.mp3 */,
+				E10DFFE51E4CE57E008B7766 /* shoveler.mp3 */,
+				E10DFFE61E4CE57E008B7766 /* siskin.mp3 */,
+				E10DFFE71E4CE57E008B7766 /* songthrush.mp3 */,
+				E10DFFE81E4CE57E008B7766 /* sparrowhawk.mp3 */,
+				E10DFFE91E4CE57E008B7766 /* spottedflycatcher.mp3 */,
+				E10DFFEA1E4CE57E008B7766 /* starling.mp3 */,
+				E10DFFEB1E4CE57E008B7766 /* stockdove.mp3 */,
+				E10DFFEC1E4CE57E008B7766 /* swift.mp3 */,
+				E10DFFED1E4CE57E008B7766 /* tawnyowl.mp3 */,
+				E10DFFEE1E4CE57E008B7766 /* treecreeper.mp3 */,
+				E10DFFEF1E4CE57E008B7766 /* tuftedduck.mp3 */,
+				E10DFFF01E4CE57E008B7766 /* waxwing.mp3 */,
+				E10DFFF11E4CE57E008B7766 /* willowwarbler.mp3 */,
+				E10DFFF21E4CE57E008B7766 /* woodpigeon.mp3 */,
+				E10DFFF31E4CE57E008B7766 /* wren.mp3 */,
 			);
 			name = sounds;
 			sourceTree = "<group>";
@@ -1039,17 +1228,80 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				E10DFFF71E4CE57E008B7766 /* bluetit.mp3 in Resources */,
 				5D3A3F6CAA7F4A819376A441 /* Entypo.ttf in Resources */,
+				E10D001E1E4CE57E008B7766 /* muteswan.mp3 in Resources */,
+				E10D00281E4CE57E008B7766 /* sparrowhawk.mp3 in Resources */,
+				E10DFFF91E4CE57E008B7766 /* bullfinch.mp3 in Resources */,
+				E10D00051E4CE57E008B7766 /* fieldfare.mp3 in Resources */,
+				E10DFFF81E4CE57E008B7766 /* brambling.mp3 in Resources */,
+				E10D00181E4CE57E008B7766 /* longtailedtit.mp3 in Resources */,
+				E10DFFFB1E4CE57E008B7766 /* carrioncrow.mp3 in Resources */,
+				E10D00081E4CE57E008B7766 /* goldcrest.mp3 in Resources */,
+				E10D00161E4CE57E008B7766 /* lesserblackbackedgull.mp3 in Resources */,
+				E10D002C1E4CE57E008B7766 /* swift.mp3 in Resources */,
+				E10D000B1E4CE57E008B7766 /* greatcrestedgrebe.mp3 in Resources */,
 				CEBDB0D568CF43CF80F9B21A /* EvilIcons.ttf in Resources */,
 				147D5AFB609A4AFD904EDC4A /* FontAwesome.ttf in Resources */,
+				E10D00231E4CE57E008B7766 /* ringneckedparakeet.mp3 in Resources */,
+				E10D00321E4CE57E008B7766 /* woodpigeon.mp3 in Resources */,
+				E10D00121E4CE57E008B7766 /* herringgull.mp3 in Resources */,
+				E10D00151E4CE57E008B7766 /* jay.mp3 in Resources */,
+				E10D00311E4CE57E008B7766 /* willowwarbler.mp3 in Resources */,
+				E10D00261E4CE57E008B7766 /* siskin.mp3 in Resources */,
+				E10D002A1E4CE57E008B7766 /* starling.mp3 in Resources */,
+				E10D00241E4CE57E008B7766 /* robin.mp3 in Resources */,
+				E10D002F1E4CE57E008B7766 /* tuftedduck.mp3 in Resources */,
 				EDC290C1953C4DB3B7946998 /* Foundation.ttf in Resources */,
+				E10D00101E4CE57E008B7766 /* greylaggoose.mp3 in Resources */,
 				46B48B8B069C4A06822899AE /* Ionicons.ttf in Resources */,
+				E10D002B1E4CE57E008B7766 /* stockdove.mp3 in Resources */,
+				E10DFFF41E4CE57E008B7766 /* blackbird.mp3 in Resources */,
+				E10D000E1E4CE57E008B7766 /* greenfinch.mp3 in Resources */,
 				9439C9C81B614D939210D835 /* MaterialCommunityIcons.ttf in Resources */,
+				E10D00201E4CE57E008B7766 /* piedwagtail.mp3 in Resources */,
+				E10D00211E4CE57E008B7766 /* pinkfootedgoosander.mp3 in Resources */,
+				E10D00041E4CE57E008B7766 /* feralpigeon.mp3 in Resources */,
+				E10D00251E4CE57E008B7766 /* shoveler.mp3 in Resources */,
+				E10D000A1E4CE57E008B7766 /* goosander.mp3 in Resources */,
+				E10D001F1E4CE57E008B7766 /* nuthatch.mp3 in Resources */,
+				E10D00071E4CE57E008B7766 /* gardenwarbler.mp3 in Resources */,
+				E10D00271E4CE57E008B7766 /* songthrush.mp3 in Resources */,
+				E10D00021E4CE57E008B7766 /* cormorant.mp3 in Resources */,
+				E10DFFFE1E4CE57E008B7766 /* coaltit.mp3 in Resources */,
+				E10D000F1E4CE57E008B7766 /* greyheron.mp3 in Resources */,
 				9C78F940921E4D0783F9B199 /* MaterialIcons.ttf in Resources */,
-				E110C4871E4A312300E3211D /* bluetit.mp3 in Resources */,
+				E10D00111E4CE57E008B7766 /* greywagtail.mp3 in Resources */,
+				E10D002E1E4CE57E008B7766 /* treecreeper.mp3 in Resources */,
+				E10D001A1E4CE57E008B7766 /* mallard.mp3 in Resources */,
+				E10D00291E4CE57E008B7766 /* spottedflycatcher.mp3 in Resources */,
+				E10DFFFD1E4CE57E008B7766 /* chiffchaff.mp3 in Resources */,
+				E10D00221E4CE57E008B7766 /* redwing.mp3 in Resources */,
 				412D26033C33431F949924CD /* Octicons.ttf in Resources */,
+				E10D00141E4CE57E008B7766 /* jackdaw.mp3 in Resources */,
+				E10D00171E4CE57E008B7766 /* littlegrebe.mp3 in Resources */,
+				E10D001D1E4CE57E008B7766 /* moorhen.mp3 in Resources */,
+				E10D002D1E4CE57E008B7766 /* tawnyowl.mp3 in Resources */,
+				E10D001B1E4CE57E008B7766 /* mandarinduck.mp3 in Resources */,
+				E10D00301E4CE57E008B7766 /* waxwing.mp3 in Resources */,
+				E10D000D1E4CE57E008B7766 /* greattit.mp3 in Resources */,
+				E10DFFFC1E4CE57E008B7766 /* chaffinch.mp3 in Resources */,
+				E10DFFFF1E4CE57E008B7766 /* collareddove.mp3 in Resources */,
+				E10D001C1E4CE57E008B7766 /* mistlethrush.mp3 in Resources */,
+				E10D00131E4CE57E008B7766 /* housesparrow.mp3 in Resources */,
+				E10D000C1E4CE57E008B7766 /* greatspottedwoodpecker.mp3 in Resources */,
+				E10DFFF61E4CE57E008B7766 /* blackheadedgull.mp3 in Resources */,
 				9A8E639D98964D69B2440EE5 /* SimpleLineIcons.ttf in Resources */,
+				E10D00191E4CE57E008B7766 /* magpie.mp3 in Resources */,
 				E2DC38C4C8DB4CD99DB9E6E2 /* Zocial.ttf in Resources */,
+				E10D00061E4CE57E008B7766 /* firecrest.mp3 in Resources */,
+				E10D00001E4CE57E008B7766 /* commongull.mp3 in Resources */,
+				E10D00091E4CE57E008B7766 /* goldfinch.mp3 in Resources */,
+				E10D00011E4CE57E008B7766 /* coot.mp3 in Resources */,
+				E10DFFF51E4CE57E008B7766 /* blackcap.mp3 in Resources */,
+				E10DFFFA1E4CE57E008B7766 /* canadagoose.mp3 in Resources */,
+				E10D00331E4CE57E008B7766 /* wren.mp3 in Resources */,
+				E10D00031E4CE57E008B7766 /* dunnock.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
