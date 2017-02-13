@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   ListView,
-  Image
+  Image,
+  Animated
 } from 'react-native';
 import { TopBar } from './index';
 import { AnimalInfo, BackButton, TabBar, SaveSighting } from '../UI';

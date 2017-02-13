@@ -25,22 +25,26 @@ export class AnimalInfo extends Component {
     };
   }
 
-  playSound () {
+  componentDidMount () {
     const call = this.props.animal.common_name.toLowerCase().replace(/ |-/g, '');
-    const s = new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
-      if (e) {
-        console.log('error', e);
-      } else {
-        s.play((success) => {
-            if (success) {
-              this.setState({playing: false})
-            } else {
-              console.warn('playback failed due to audio decoding errors');
-            }
-          });
-        this.setState({audio: s, playing: true})
-      }
+    this.setState({
+      audio: new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
+        if (e) {
+          console.log('error', e);
+        }
+      })
     })
+  }
+
+  playSound () {
+    this.setState({playing: true})
+    this.state.audio.play((success) => {
+        if (success) {
+          this.setState({playing: false})
+        } else {
+          console.warn('playback failed due to audio decoding errors');
+        }
+      });
   }
 
   stopSound () {
