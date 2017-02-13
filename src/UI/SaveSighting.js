@@ -26,42 +26,52 @@ class _SaveSighting extends Component {
       text: '',
       count: '1',
       audio: null,
-      playing: false
+      playing: false,
+      callSave: false
     };
   }
 
   componentDidMount () {
-    const call = 'bluetit';
-    const s = new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
-      if (e) {
-        console.log('error', e);
+    this.setState({callSave: false});
+    const call = this.props.currentAnimal.common_name.toLowerCase().replace(/ |-/g, '');
+    this.setState({
+      audio: new Sound(`${call}.mp3`, Sound.MAIN_BUNDLE, (e) => {
+        if (e) {
+          console.log('error', e);
+        }
+      })
+    });
+  }
+
+  playSound () {
+    this.setState({playing: true});
+    this.state.audio.play((success) => {
+      if (success) {
+        this.setState({playing: false});
       } else {
-        this.setState({audio: s});
+        console.warn('playback failed due to audio decoding errors');
       }
     });
   }
 
-  componentWillUnmount () {
-    this.setState({audio: null});
+  stopSound () {
+    this.state.audio.stop();
+    this.setState({playing: false});
   }
 
-  playSound (action) {
-    if (action === 'play') {
-      this.state.audio.play();
-      this.setState({playing: true});
-    }
-    if (action === 'stop') {
+  componentWillUnmount () {
+    if (this.state.audio !== null) {
       this.state.audio.stop();
       this.setState({playing: false});
     }
+    if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
   }
 
   handlePress () {
     const sighting = createSighting(this.props.user, this.props.currentPark, this.props.currentAnimal, this.props.userLocation, this.state.text, this.state.count);
     this.props.saveSighting({sighting});
-    this.props.closeModal('save');
     if (this.props.callsaveAnimation !== null) this.props.callsaveAnimation();
-    if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
+    this.props.closeModal('save');
   }
 
   plusButtonPress () {
@@ -97,9 +107,9 @@ class _SaveSighting extends Component {
                   <Text style={styles.title}>{this.props.currentAnimal.common_name}</Text>
                   <Text style={styles.small}>{this.props.currentAnimal.latin_name}</Text>
                 </View>
-                <View style={styles.audioContainer}>
-                  <AudioCall playSound={this.playSound.bind(this)} playing={this.state.playing} />
-                </View>
+                {this.props.currentAnimal.taxon_group === 'Bird' && <View style={styles.audioContainer} >
+                  <AudioCall playSound={this.playSound.bind(this)} stopSound={this.stopSound.bind(this)} playing={this.state.playing} />
+                </View> }
               </View>
             </View>
             <View style={styles.description}>
@@ -250,8 +260,11 @@ const styles = StyleSheet.create({
     })
   },
   animalTextContainer: {
-    marginLeft: 20,
-    marginTop: 20
+    marginLeft: 10,
+    marginTop: 20,
+    width: width * 0.35,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   },
   text: {
     color: '#3e3e3e',
@@ -313,8 +326,7 @@ const styles = StyleSheet.create({
   },
   audioContainer: {
     justifyContent: 'center',
-    alignItems: 'flex-end',
-    marginLeft: width * 0.08
+    alignItems: 'flex-end'
   },
   headingContainer: {
     flexDirection: 'row',
