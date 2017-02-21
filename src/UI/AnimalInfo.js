@@ -53,6 +53,7 @@ export class AnimalInfo extends Component {
   }
 
   componentWillUnmount () {
+    this.state.audio.release();
     this.setState({audio: null});
   }
 
@@ -73,7 +74,7 @@ export class AnimalInfo extends Component {
   //   }
   // }
 
-  handlePress = (choice, id) => {
+  handlePress (choice, id) {
     if (choice === 'return') {
       if (this.state.audio !== null) {
         this.state.audio.stop();
@@ -93,7 +94,6 @@ export class AnimalInfo extends Component {
   }
 
   render () {
-    console.warn(this.props.animal);
     return (
       <View style={styles.container}>
             <Modal
@@ -114,7 +114,7 @@ export class AnimalInfo extends Component {
                       <Text style={styles.small}>{this.props.animal.latin_name}</Text>
                     </View>
                     {this.props.animal.taxon_group === 'Bird' && <View style={styles.audioContainer} >
-                      <AudioCall playSound={this.playSound.bind(this)}  stopSound={this.stopSound.bind(this)} playing={this.state.playing} />
+                      <AudioCall playSound={this.playSound.bind(this)} stopSound={this.stopSound.bind(this)} playing={this.state.playing} />
                     </View> }
                   </View>
                 </View>

@@ -6,6 +6,7 @@ import {
   Platform
 } from 'react-native';
 import { BackButton } from '../UI';
+import LinearGradient from 'react-native-linear-gradient';
 
 export const TopBar = ({id, navigator, title}) => (
   <View style={styles.topBar}>
@@ -23,20 +24,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(44, 157, 51)',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     position: 'relative',
+    paddingTop: 10,
     ...Platform.select({
       ios: {height: 55},
-      android: {height: 40}
+      android: {height: 60}
     })
   },
   topBarText: {
     alignItems: 'center',
+    justifyContent: 'center',
     fontSize: 20,
     color: 'whitesmoke',
-    ...Platform.select({
-      ios: {paddingTop: 25},
-      android: {paddingTop: 10}
-    })
+    fontFamily: 'sans-serif-light'
   },
   button: {
     height: 40,

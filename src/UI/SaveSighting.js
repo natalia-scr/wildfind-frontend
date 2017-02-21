@@ -62,6 +62,7 @@ class _SaveSighting extends Component {
   componentWillUnmount () {
     if (this.state.audio !== null) {
       this.state.audio.stop();
+      this.state.audio.release();
       this.setState({playing: false});
     }
     if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
