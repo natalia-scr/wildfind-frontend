@@ -8,11 +8,12 @@ import {
 } from 'react-native';
 import { onBackPress } from '../services';
 import Button from 'apsl-react-native-button';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const BackButton = ({navigator, id}) => (
   <View>
     <Button style={styles.button} onPress={onBackPress.bind(null, navigator, id)}>
-      <Text style={styles.Buttontext}>{'<'}</Text>
+      <Icon name='arrow-back' size={25} color={'whitesmoke'} />
     </Button>
   </View>
 );

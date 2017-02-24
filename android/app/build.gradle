@@ -126,7 +126,8 @@ android {
 }
 
 dependencies {
-    compile project(':RNSound')
+    compile project(':react-native-sound')
+    compile project(':react-native-linear-gradient')
     compile project(':react-native-vector-icons')
     compile project(':react-native-maps')
     compile fileTree(dir: "libs", include: ["*.jar"])

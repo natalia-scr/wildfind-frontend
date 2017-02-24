@@ -62,6 +62,7 @@ class _SaveSighting extends Component {
   componentWillUnmount () {
     if (this.state.audio !== null) {
       this.state.audio.stop();
+      this.state.audio.release();
       this.setState({playing: false});
     }
     if (!this.props.mapNavMode) this.props.removeMarker(this.props.currentMarkerId);
@@ -143,8 +144,8 @@ class _SaveSighting extends Component {
                   <Text style={styles.text}>Save sighting</Text>
                 </Button>
                 <Button style={styles.buttonCancel} onPress={this.props.closeModal}>
-                  <Text style={styles.text}>cancel and keep searching</Text><
-                /Button>
+                  <Text style={styles.text}>cancel and keep searching</Text>  
+                </Button>
               </View>
             </View>
           </View>
