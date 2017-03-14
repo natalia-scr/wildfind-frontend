@@ -33,14 +33,14 @@ export class AnimalInfo extends Component {
           console.log('error', e);
         }
       })
-    })
+    });
   }
 
   playSound () {
-    this.setState({playing: true})
+    this.setState({playing: true});
     this.state.audio.play((success) => {
         if (success) {
-          this.setState({playing: false})
+          this.setState({playing: false});
         } else {
           console.warn('playback failed due to audio decoding errors');
         }
@@ -89,7 +89,7 @@ export class AnimalInfo extends Component {
       }
       this.props.clearSightings();
       this.props.closeModal();
-      this.props.navigator.push({id});
+      this.props.navigator.replace({id});
     }
   }
 

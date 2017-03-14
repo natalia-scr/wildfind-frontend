@@ -25,6 +25,7 @@ class _Map extends Component {
       userLocation: {latitude: 0, longitude: 0}
     };
   }
+
   componentDidMount () {
     this.props.selectMapNavMode(false);
     if (this.props.animals.length === 0) {
@@ -34,7 +35,7 @@ class _Map extends Component {
       if (this.props.randomSearchMode) this.props.fetchSightings(this.props.currentPark._id);
       else this.props.fetchSightingsById(this.props.currentAnimal._id);
     }
-    navigator.geolocation.watchPosition(pos => {
+    this.watchID = navigator.geolocation.watchPosition(pos => {
       const markers = this.props.markers.slice(0);
       const long = +pos.coords.longitude;
       const lat = +pos.coords.latitude;
@@ -60,6 +61,10 @@ class _Map extends Component {
   error => console.warn(JSON.stringify(error)),
   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 5}
   );
+  }
+
+  componentWillUnmount () {
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
   handlePress (id) {
