@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     paddingTop: 10,
     ...Platform.select({
-      ios: {height: 55},
+      ios: {height: 70},
       android: {height: 60}
     })
   },
@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 20,
-    color: 'whitesmoke',
-    fontFamily: 'sans-serif-light'
+    marginTop: 10,
+    color: 'whitesmoke'
   },
   button: {
-    height: 40,
+    height: 50,
     width: 50,
     alignItems: 'center',
     justifyContent: 'center'

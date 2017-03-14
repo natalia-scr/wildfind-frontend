@@ -81,12 +81,12 @@ class _Map extends Component {
         this.popup.alert('You need to be in the park to record a Sighting');
       } else {
         this.props.selectMapNavMode(true);
-        this.props.navigator.push({id});
+        this.props.navigator.replace({id});
       }
     }
     if (id === 'Logbook') {
       this.props.selectMapNavMode(true);
-      this.props.navigator.push({id});
+      this.props.navigator.replace({id});
     }
   }
 
@@ -150,20 +150,18 @@ class _Map extends Component {
             latitudeDelta: 0.0082,
             longitudeDelta: 0.0081
           }}
-          onRegionChange={this.onRegionChange}
           showsUserLocation={true}
           followUserLocation={true}
         >
           {this.props.markers.map((marker, i) => (
             <MapView.Marker
-              key={i}
+              key={marker._id}
               coordinate={marker.lat_lng}
               pinColor={colour}
               title={marker.animal_name}
               description={JSON.stringify(marker.lat_lng)}
           />
         ))}
-
         </MapView>
         <MapNavBar route={route} navigator={this.props.navigator} handlePress={this.handlePress.bind(this)}
           randomSearchMode={this.props.randomSearchMode} currentAnimal={this.props.currentAnimal} />
